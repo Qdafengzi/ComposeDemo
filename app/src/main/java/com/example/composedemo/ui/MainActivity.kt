@@ -1,4 +1,4 @@
-package com.example.composedemo
+package com.example.composedemo.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
