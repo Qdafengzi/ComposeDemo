@@ -31,6 +31,13 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = FontActivity::class.java, text = "Font")
                 CreateButton(clazz = StateActivity::class.java, text = "State")
                 CreateButton(clazz = SnackBarActivity::class.java, text = "SnackBar")
+                CreateButton(clazz = ListActivity::class.java, text = "List")
+                CreateButton(clazz = ConstrainLayoutActivity::class.java, text = "ConstrainLayout")
+
+                CreateButton(clazz = ButtonActivity::class.java, text = "Button")
+
+
+
             }
         }
     }

@@ -52,6 +52,21 @@
             android:exported="true"
             android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
 
+        <activity
+            android:name=".ui.ListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+
+        <activity
+            android:name=".ui.ConstrainLayoutActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+
+        <activity
+            android:name=".ui.ButtonActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+
     </application>
 
 </manifest>
