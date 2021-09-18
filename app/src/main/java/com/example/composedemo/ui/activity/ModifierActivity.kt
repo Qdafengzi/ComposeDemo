@@ -1,4 +1,4 @@
-package com.example.composedemo.ui
+package com.example.composedemo.ui.activity
 
 import android.os.Bundle
 import android.util.Log

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.composedemo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,7 @@
         android:theme="@style/Theme.ComposeDemo">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ComposeDemo.NoActionBar">
@@ -23,49 +25,54 @@
         </activity>
 
         <activity
-            android:name=".ui.RowAndColumnActivity"
+            android:name=".ui.activity.RowAndColumnActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar"></activity>
 
         <activity
-            android:name=".ui.ModifierActivity"
+            android:name=".ui.activity.ModifierActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity
-            android:name=".ui.ImageCardActivity"
+            android:name=".ui.activity.ImageCardActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity
-            android:name=".ui.FontActivity"
+            android:name=".ui.activity.FontActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
         <activity
-            android:name=".ui.StateActivity"
+            android:name=".ui.activity.StateActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity
-            android:name=".ui.SnackBarActivity"
+            android:name=".ui.activity.SnackBarActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity
-            android:name=".ui.ListActivity"
+            android:name=".ui.activity.ListActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity
-            android:name=".ui.ConstrainLayoutActivity"
+            android:name=".ui.activity.ConstrainLayoutActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity
-            android:name=".ui.ButtonActivity"
+            android:name=".ui.activity.ButtonActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
+
+        <activity android:name=".ui.activity.WebViewActivity"
+
+
+            />
+        <activity android:name=".ui.activity.GridListActivity" />
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.composedemo.ui
+package com.example.composedemo.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
                     .fillMaxSize()
                     .verticalScroll(state = state, enabled = true)
             ) {
+
                 CreateButton(clazz = RowAndColumnActivity::class.java, text = "Row And Column")
                 CreateButton(clazz = ModifierActivity::class.java, text = "Modifier")
                 CreateButton(clazz = ImageCardActivity::class.java, text = "Card And Image")
@@ -35,9 +36,8 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = ConstrainLayoutActivity::class.java, text = "ConstrainLayout")
 
                 CreateButton(clazz = ButtonActivity::class.java, text = "Button")
-
-
-
+                CreateButton(clazz = WebViewActivity::class.java, text = "WebView")
+                CreateButton(clazz = GridListActivity::class.java, text = "Grid")
             }
         }
     }
