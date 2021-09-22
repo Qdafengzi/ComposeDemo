@@ -69,10 +69,11 @@
             android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
         <activity android:name=".ui.activity.WebViewActivity"
-
-
             />
         <activity android:name=".ui.activity.GridListActivity" />
+        <activity android:name=".ui.activity.BezierActivity" />
+        <activity android:name=".ui.activity.CanvasActivity" />
+        <activity android:name=".ui.activity.RootCanvasActivity" />
 
     </application>
 

@@ -38,6 +38,8 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = ButtonActivity::class.java, text = "Button")
                 CreateButton(clazz = WebViewActivity::class.java, text = "WebView")
                 CreateButton(clazz = GridListActivity::class.java, text = "Grid")
+                CreateButton(clazz = BezierActivity::class.java, text = "Bezier")
+                CreateButton(clazz = CanvasActivity::class.java, text = "Canvas")
             }
         }
     }
