@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -49,14 +51,16 @@ class MainActivity : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 18.dp, bottom = 10.dp, start = 16.dp, end = 16.dp),
+                .padding(top = 5.dp, bottom = 5.dp, start = 16.dp, end = 16.dp),
             contentAlignment = Alignment.Center
         ) {
-            Spacer(modifier = Modifier.height(20.dp))
-            Button(modifier = modifier.fillMaxWidth(), onClick = {
-                intent = Intent(this@MainActivity, clazz)
-                startActivity(intent)
-            }) {
+            Button(modifier = modifier
+                .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+                onClick = {
+                    intent = Intent(this@MainActivity, clazz)
+                    startActivity(intent)
+                }) {
                 Text(text = text, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
             }
         }
