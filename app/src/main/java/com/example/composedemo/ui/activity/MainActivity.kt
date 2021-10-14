@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = SmartRefreshActivity::class.java, text = "Refresh")
                 CreateButton(clazz = XmlAndComposeActivity::class.java, text = "Xml and Compose")
                 CreateButton(clazz = ComposeAndXmlActivity::class.java, text = "Compose and Xml")
+                CreateButton(clazz = WechatFriendsCircle::class.java, text = "Wechat Friends Circle")
             }
         }
     }

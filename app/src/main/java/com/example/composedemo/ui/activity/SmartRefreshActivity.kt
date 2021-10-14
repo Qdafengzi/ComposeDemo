@@ -36,7 +36,6 @@ class SmartRefreshActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SmartRefreshLayout(content = {
-
                 LazyColumn(content = {
                     items(count = 10) {
                         Text(
