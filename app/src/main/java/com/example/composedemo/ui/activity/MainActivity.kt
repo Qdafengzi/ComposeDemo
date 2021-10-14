@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -12,12 +13,18 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
+@ExperimentalFoundationApi
+@ExperimentalComposeUiApi
+@ExperimentalPermissionsApi
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,7 +43,6 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = SnackBarActivity::class.java, text = "SnackBar")
                 CreateButton(clazz = ListActivity::class.java, text = "List")
                 CreateButton(clazz = ConstrainLayoutActivity::class.java, text = "ConstrainLayout")
-
                 CreateButton(clazz = ButtonActivity::class.java, text = "Button")
                 CreateButton(clazz = WebViewActivity::class.java, text = "WebView")
                 CreateButton(clazz = GridListActivity::class.java, text = "Grid")
@@ -46,7 +52,10 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = SmartRefreshActivity::class.java, text = "Refresh")
                 CreateButton(clazz = XmlAndComposeActivity::class.java, text = "Xml and Compose")
                 CreateButton(clazz = ComposeAndXmlActivity::class.java, text = "Compose and Xml")
-                CreateButton(clazz = WechatFriendsCircle::class.java, text = "Wechat Friends Circle")
+                CreateButton(clazz = WechatFriendsCircleActivity::class.java, text = "Wechat Friends Circle")
+                CreateButton(clazz = ComposeCameraXActivity::class.java, text = "Camerax")
+                CreateButton(clazz = PermissionActivity::class.java, text = "Permission")
+
             }
         }
     }

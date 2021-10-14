@@ -3,6 +3,9 @@
     package="com.example.composedemo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.any" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +30,7 @@
         <activity
             android:name=".ui.activity.RowAndColumnActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"></activity>
+            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
 
         <activity
             android:name=".ui.activity.ModifierActivity"
@@ -68,8 +71,7 @@
             android:exported="true"
             android:theme="@style/Theme.ComposeDemo.NoActionBar" />
 
-        <activity android:name=".ui.activity.WebViewActivity"
-            />
+        <activity android:name=".ui.activity.WebViewActivity" />
         <activity android:name=".ui.activity.GridListActivity" />
         <activity android:name=".ui.activity.BezierActivity" />
         <activity android:name=".ui.activity.CanvasActivity" />
@@ -77,7 +79,9 @@
         <activity android:name=".ui.activity.SmartRefreshActivity" />
         <activity android:name=".ui.activity.XmlAndComposeActivity" />
         <activity android:name=".ui.activity.ComposeAndXmlActivity" />
-        <activity android:name=".ui.activity.WechatFriendsCircle" />
+        <activity android:name=".ui.activity.WechatFriendsCircleActivity" />
+        <activity android:name=".ui.activity.ComposeCameraXActivity" />
+        <activity android:name=".ui.activity.PermissionActivity" />
 
     </application>
 

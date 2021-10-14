@@ -33,7 +33,7 @@ import com.example.composedemo.R
 
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
-class WechatFriendsCircle : AppCompatActivity() {
+class WechatFriendsCircleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
