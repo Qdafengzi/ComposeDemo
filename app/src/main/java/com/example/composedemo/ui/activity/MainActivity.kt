@@ -42,6 +42,10 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = GridListActivity::class.java, text = "Grid")
                 CreateButton(clazz = BezierActivity::class.java, text = "Bezier")
                 CreateButton(clazz = CanvasActivity::class.java, text = "Canvas")
+                CreateButton(clazz = ComplexActivity::class.java, text = "Complex layout")
+                CreateButton(clazz = SmartRefreshActivity::class.java, text = "Refresh")
+                CreateButton(clazz = XmlAndComposeActivity::class.java, text = "Xml and Compose")
+                CreateButton(clazz = ComposeAndXmlActivity::class.java, text = "Compose and Xml")
             }
         }
     }

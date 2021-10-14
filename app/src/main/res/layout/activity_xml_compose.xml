@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#2196F3"
+        android:gravity="center"
+        android:text="XML Text View one"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#FF9800"
+        android:gravity="center"
+        android:text="XML Text View two "
+        android:textSize="30sp" />
+
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/mComposeView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="1" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

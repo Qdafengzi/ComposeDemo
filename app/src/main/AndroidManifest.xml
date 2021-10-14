@@ -73,7 +73,10 @@
         <activity android:name=".ui.activity.GridListActivity" />
         <activity android:name=".ui.activity.BezierActivity" />
         <activity android:name=".ui.activity.CanvasActivity" />
-        <activity android:name=".ui.activity.RootCanvasActivity" />
+        <activity android:name=".ui.activity.ComplexActivity" />
+        <activity android:name=".ui.activity.SmartRefreshActivity" />
+        <activity android:name=".ui.activity.XmlAndComposeActivity" />
+        <activity android:name=".ui.activity.ComposeAndXmlActivity" />
 
     </application>
 
