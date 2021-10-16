@@ -82,6 +82,9 @@
         <activity android:name=".ui.activity.WechatFriendsCircleActivity" />
         <activity android:name=".ui.activity.ComposeCameraXActivity" />
         <activity android:name=".ui.activity.PermissionActivity" />
+        <activity android:name=".ui.activity.MainActivityNewActivity" />
+        <activity android:name=".ui.activity.BottomNavigationActivity" />
+        <activity android:name=".ui.activity.ClockActivity" />
 
     </application>
 

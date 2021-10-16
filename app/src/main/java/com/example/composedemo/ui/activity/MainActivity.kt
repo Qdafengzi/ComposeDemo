@@ -55,7 +55,9 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = WechatFriendsCircleActivity::class.java, text = "Wechat Friends Circle")
                 CreateButton(clazz = ComposeCameraXActivity::class.java, text = "Camerax")
                 CreateButton(clazz = PermissionActivity::class.java, text = "Permission")
-
+                CreateButton(clazz = MainActivityNewActivity::class.java, text = "Navigation")
+                CreateButton(clazz = BottomNavigationActivity::class.java, text = "Bottom Navigation")
+                CreateButton(clazz = ClockActivity::class.java, text = "Clock")
             }
         }
     }
