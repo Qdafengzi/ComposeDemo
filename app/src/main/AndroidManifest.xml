@@ -85,6 +85,7 @@
         <activity android:name=".ui.activity.MainActivityNewActivity" />
         <activity android:name=".ui.activity.BottomNavigationActivity" />
         <activity android:name=".ui.activity.ClockActivity" />
+        <activity android:name=".ui.activity.NewUiStyleActivity" />
 
     </application>
 
