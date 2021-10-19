@@ -58,7 +58,8 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = MainActivityNewActivity::class.java, text = "Navigation")
                 CreateButton(clazz = BottomNavigationActivity::class.java, text = "Bottom Navigation")
                 CreateButton(clazz = ClockActivity::class.java, text = "Clock")
-                CreateButton(clazz = NewUiStyleActivity::class.java, text = "Clock")
+                CreateButton(clazz = NewUiStyleActivity::class.java, text = "New Ui Style")
+                CreateButton(clazz = TextFieldActivity::class.java, text = "TextField width")
             }
         }
     }
