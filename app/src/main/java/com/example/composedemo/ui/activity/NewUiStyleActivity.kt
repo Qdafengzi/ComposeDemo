@@ -30,6 +30,7 @@ class NewUiStyleActivity : AppCompatActivity() {
 
     @Composable
     fun NewUiStyle() {
+
         Column(
             modifier = Modifier
                 .fillMaxSize()

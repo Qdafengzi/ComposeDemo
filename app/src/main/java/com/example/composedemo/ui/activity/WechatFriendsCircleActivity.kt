@@ -46,7 +46,6 @@ class WechatFriendsCircleActivity : AppCompatActivity() {
     @Composable
     fun FriendsCircle() {
         val screenWidth = getScreenWidth()
-
         var picWidth by remember { mutableStateOf(0) }
 
         LazyColumn(modifier = Modifier.fillMaxSize(), content = {
@@ -92,8 +91,6 @@ class WechatFriendsCircleActivity : AppCompatActivity() {
                         },
                         text = "王嘉尔，1994年3月28日出生于香港，中国香港流行乐男歌手、音乐人、主持人、设计师、创意总监 。王嘉尔，1994年3月28日出生于香港，中国香港流行乐男歌手、音乐人、主持人、设计师、创意总监 王嘉尔，1994年3月28日出生于香港，中国香港流行乐男歌手、音乐人、主持人、设计师、创意总监 王嘉尔，1994年3月28日出生于香港，中国香港流行乐男歌手、音乐人、主持人、设计师、创意总监  $it"
                     )
-
-
                     val padding = (LocalDensity.current.run { 4.dp.toPx() }).toInt()
 
                     Column(modifier = Modifier
