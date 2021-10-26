@@ -92,9 +92,6 @@
         <activity android:name=".ui.activity.BottomNavigationActivity" />
         <activity android:name=".ui.activity.ClockActivity" />
         <activity android:name=".ui.activity.NewUiStyleActivity" />
-        <activity android:name=".ui.activity.TextFieldActivity" />
-        <activity android:name=".ui.activity.StateFlowActivity" />
-        <activity android:name=".ui.activity.StateTwoActivity" />
 
     </application>
 
