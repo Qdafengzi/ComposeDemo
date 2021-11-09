@@ -1,5 +1,6 @@
 package com.example.composedemo.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -27,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LifecycleOwner
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 
@@ -40,6 +40,7 @@ class ComposeCameraXActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     @Composable
     fun SimpleCameraPreview() {
         val mSelectedColor = remember() {
@@ -50,7 +51,7 @@ class ComposeCameraXActivity : AppCompatActivity() {
             mutableStateOf(Color.Black)
         }
 
-        val  pointPosition = remember {
+        val pointPosition = remember {
             mutableStateOf(Offset(100f, 100f))
         }
 
@@ -59,47 +60,79 @@ class ComposeCameraXActivity : AppCompatActivity() {
         val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
 
         Column(modifier = Modifier.fillMaxSize()) {
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .background(color = mColor.value)
-                .height(40.dp)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = mColor.value)
+                    .height(40.dp)
+            ) {
 
             }
 
 
             ConstraintLayout(modifier = Modifier.fillMaxSize()) {
                 val (preview, focusView) = createRefs()
-
-
-                Box(modifier = Modifier.constrainAs(preview) {
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                }) {
+                Box(modifier = Modifier
+                    .constrainAs(preview) {
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                    }
+                    .onSizeChanged {
+                        //1080  2041
+                        Log.d("camera size:", ";;;;;;;; ${it.width}  ${it.height}")
+                    }) {
                     AndroidView(
                         factory = { ctx ->
+                            val executor = ContextCompat.getMainExecutor(ctx)
+
                             val preview = PreviewView(context).apply {
                                 this.scaleType = scaleType
-                                layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                                layoutParams = ViewGroup.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.MATCH_PARENT
+                                )
                                 // Preview is incorrectly scaled in Compose on some devices without this
                                 implementationMode = PreviewView.ImplementationMode.COMPATIBLE
+
                             }
 
-                            val executor = ContextCompat.getMainExecutor(ctx)
+
                             cameraProviderFuture.addListener({
                                 val cameraProvider = cameraProviderFuture.get()
 
-                                val cameraPreView = androidx.camera.core.Preview.Builder().build()
-                                val cameraSelector: CameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
-                                cameraPreView.setSurfaceProvider(preview.surfaceProvider)
+                                val cameraUseCase = androidx.camera.core.Preview.Builder().build()
+                                cameraUseCase.setSurfaceProvider(preview.surfaceProvider)
+                                val cameraSelector: CameraSelector = CameraSelector.Builder()
+                                    .requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
 
+                                Log.d(
+                                    "imageProxy:::::",
+                                    "imageProxy::::: ${preview.width}   ${preview.height} "
+                                )
                                 val analysis2 = ImageAnalysis.Builder().build()
-                                analysis2.setAnalyzer(executor, InfoAnalyzer(mColor, pointPosition, mSelectedColor))
+                                analysis2.setAnalyzer(
+                                    executor,
+                                    InfoAnalyzer(mColor, pointPosition, mSelectedColor)
+                                )
+                                val camera = cameraProvider.bindToLifecycle(
+                                    lifecycleOwner,
+                                    cameraSelector,
+                                    cameraUseCase,
+                                    analysis2
+                                )
 
-                                val camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, cameraPreView, analysis2)
+                                //  // androidx.camera.camera2
+                                Log.d("implementationType","${  camera.cameraInfo.implementationType}")
+
                                 camera.cameraControl.cancelFocusAndMetering()
+                                camera.cameraInfo.sensorRotationDegrees
+
+
                             }, executor)
+
+
                             preview
                         },
                         modifier = Modifier.fillMaxSize(),
@@ -115,9 +148,11 @@ class ComposeCameraXActivity : AppCompatActivity() {
                         bottom.linkTo(parent.bottom)
                     }
                     .onSizeChanged {
-                        pointPosition.value= Offset((it.width / 2).toFloat(),(it.height / 2).toFloat())
-                    }.drawBehind {
-                        drawCircle(color = mColor.value,radius = 20f)
+                        pointPosition.value =
+                            Offset((it.width / 2).toFloat(), (it.height / 2).toFloat())
+                    }
+                    .drawBehind {
+                        drawCircle(color = mColor.value, radius = 20f)
                     }) {
 
 
@@ -129,8 +164,13 @@ class ComposeCameraXActivity : AppCompatActivity() {
         }
     }
 
+    val POINTER_RADIUS = 5
 
-    class InfoAnalyzer(var color: MutableState<Color>, val position:MutableState<Offset>, private var mSelectedColor: MutableState<IntArray>) : ImageAnalysis.Analyzer {
+    inner class InfoAnalyzer(
+        var color: MutableState<Color>,
+        val position: MutableState<Offset>,
+        private var mSelectedColor: MutableState<IntArray>
+    ) : ImageAnalysis.Analyzer {
         /**
          * Helper extension function used to extract a byte array from an
          * image plane buffer
@@ -150,35 +190,79 @@ class ComposeCameraXActivity : AppCompatActivity() {
             Log.d("InfoAnalyzer", "imageProxy planes size is : ${image.planes.size}")
             Log.d("InfoAnalyzer", "imageProxy image.timestamp is : ${image.imageInfo.timestamp}")
 
-            Log.d("---------->", "${position.value.x.toInt()}  ${position.value.y.toInt()}")
+            Log.d("imageProxy111:", "${image.planes[0].pixelStride}  ${image.planes[0].rowStride}")
+
+
+            //InfoAnalyzer: imageProxy format is : 23
+            //InfoAnalyzer: imageProxy width is : 640
+            //InfoAnalyzer: imageProxy height is : 480
+            //InfoAnalyzer: imageProxy planes size is : 3
+            //InfoAnalyzer: imageProxy image.timestamp is : 484488808569825
+            //imageProxy: 540  1020
 
             val buffer = image.planes[0].buffer
             // Extract image data from callback object
             val data = buffer.toByteArray()
+
+
             mSelectedColor.value[0] = 0
             mSelectedColor.value[1] = 0
             mSelectedColor.value[2] = 0
-            for (i in 0..5) {
-                for (j in 0..5) {
-                    addColorFromYUV420(data, mSelectedColor, i * 5 + j + 1, position.value.x.toInt() - 5 + i, position.value.y.toInt() - 5 + j, 100, 500)
-                }
-            }
 
-            color.value =Color(red = mSelectedColor.value[0],green = mSelectedColor.value[1],blue = mSelectedColor.value[2])
+            addColorFromYUV420(
+                data,
+                mSelectedColor,
+                1,
+                image.width/2,
+                image.height/2,
+                image.width,
+                image.height
+            )
+
+
+            //1080  2041
+//            for (i in 0..POINTER_RADIUS) {
+//                for (j in 0..POINTER_RADIUS) {
+//                    addColorFromYUV420(
+//                        data,
+//                        mSelectedColor,
+//                        i * POINTER_RADIUS + j + 1,
+//                        50 - POINTER_RADIUS + i,
+//                        250 - POINTER_RADIUS + j,
+//                        100,
+//                        500
+//                    )
+//                }
+//            }
+
+            color.value = Color(
+                red = mSelectedColor.value[0],
+                green = mSelectedColor.value[1],
+                blue = mSelectedColor.value[2]
+            )
             Log.d("color:", "------->${color.value}")
             image.close()
         }
 
 
-        private fun addColorFromYUV420(data: ByteArray, averageColor: MutableState<IntArray>, count: Int, x: Int, y: Int, width: Int, height: Int) {
+        private fun addColorFromYUV420(
+            data: ByteArray,
+            averageColor: MutableState<IntArray>,
+            count: Int,
+            x: Int,
+            y: Int,
+            width: Int,
+            height: Int
+        ) {
             try {
                 val size = width * height
 //               val Y: Int = data[y * width + x] and 0xff
-                val Y: Int = data[y * width + x].toInt() and 0xff
+                //        final int Y = data[y * width + x] & 0xff;
+                val Y: Int = data[y * width + x].toInt() and 0xFF
                 val xby2 = x / 2
                 val yby2 = y / 2
-                val V = (data[size + 2 * xby2 + yby2 * width].toInt() and 0xff) - 128.0f
-                val U = (data[size + 2 * xby2 + 1 + yby2 * width].toInt() and 0xff) - 128.0f
+                val V = (data[size + 2 * xby2 + yby2 * width].toInt() and 0xFF) - 128.0f
+                val U = (data[size + 2 * xby2 + 1 + yby2 * width].toInt() and 0xFF) - 128.0f
                 val Yf = 1.164f * Y.toFloat() - 16.0f
                 var red = (Yf + 1.596f * V).toInt()
                 var green = (Yf - 0.813f * V - 0.391f * U).toInt()
@@ -235,12 +319,5 @@ class ComposeCameraXActivity : AppCompatActivity() {
             Log.d("CameraXApp", "Average luminosity:")
             image.close()
         }
-    }
-
-    private fun bindPreview(lifecycleOwner: LifecycleOwner, previewView: PreviewView, cameraProvider: ProcessCameraProvider) {
-
-//        camera.cameraControl.setZoomRatio(0.5f)
-//        camera.cameraInfo.
-
     }
 }
