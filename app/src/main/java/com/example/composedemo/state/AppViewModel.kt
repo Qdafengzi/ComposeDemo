@@ -13,9 +13,10 @@ class AppViewModel : ViewModel() {
     val mStateOne: MutableSharedFlow<StateBean> = MutableSharedFlow()
     val mStateTwo: MutableStateFlow<StateBean> = MutableStateFlow(StateBean())
 
+    val mStateTwoStr = MutableStateFlow("")
+
     fun setStateOne(str: String) {
         viewModelScope.launch {
-
             if (mStateOne.asLiveData().value == null) {
                 mStateOne.emit(StateBean(str))
             } else {
@@ -27,6 +28,8 @@ class AppViewModel : ViewModel() {
 
     fun setStateTwo(str: String) {
         viewModelScope.launch {
+            mStateTwoStr.emit(str)
+
             if (mStateTwo.asLiveData().value == null) {
                 mStateTwo.emit(StateBean(str))
             } else {
