@@ -3,12 +3,11 @@ package com.example.composedemo.ui.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.util.Rational
 import android.view.ViewGroup
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.background
@@ -40,7 +39,7 @@ class ComposeCameraXActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("RestrictedApi")
+    @SuppressLint("RestrictedApi", "UnsafeOptInUsageError")
     @Composable
     fun SimpleCameraPreview() {
         val mSelectedColor = remember() {
@@ -87,7 +86,7 @@ class ComposeCameraXActivity : AppCompatActivity() {
                         factory = { ctx ->
                             val executor = ContextCompat.getMainExecutor(ctx)
 
-                            val preview = PreviewView(context).apply {
+                            val previewView = PreviewView(context).apply {
                                 this.scaleType = scaleType
                                 layoutParams = ViewGroup.LayoutParams(
                                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -95,45 +94,58 @@ class ComposeCameraXActivity : AppCompatActivity() {
                                 )
                                 // Preview is incorrectly scaled in Compose on some devices without this
                                 implementationMode = PreviewView.ImplementationMode.COMPATIBLE
-
                             }
 
 
                             cameraProviderFuture.addListener({
                                 val cameraProvider = cameraProviderFuture.get()
 
-                                val cameraUseCase = androidx.camera.core.Preview.Builder().build()
-                                cameraUseCase.setSurfaceProvider(preview.surfaceProvider)
+                                val cameraUseCase = Preview.Builder().build()
+                                cameraUseCase.setSurfaceProvider(previewView.surfaceProvider)
                                 val cameraSelector: CameraSelector = CameraSelector.Builder()
                                     .requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
 
+
+                                val viewPort: ViewPort = ViewPort.Builder(
+                                    Rational(
+                                        previewView.width,
+                                        previewView.height
+                                    ),
+                                    previewView.display.rotation
+                                ).setScaleType(ViewPort.FILL_CENTER).build()
+
+
+                                val useCaseGroupBuilder: UseCaseGroup.Builder = UseCaseGroup.Builder().setViewPort(
+                                    viewPort
+                                )
+
                                 Log.d(
                                     "imageProxy:::::",
-                                    "imageProxy::::: ${preview.width}   ${preview.height} "
+                                    "imageProxy::::: ${previewView.width}   ${previewView.height} "
                                 )
                                 val analysis2 = ImageAnalysis.Builder().build()
                                 analysis2.setAnalyzer(
                                     executor,
                                     InfoAnalyzer(mColor, pointPosition, mSelectedColor)
                                 )
+
+                                useCaseGroupBuilder.addUseCase(cameraUseCase)
+                                useCaseGroupBuilder.addUseCase(analysis2)
+
+
+                                cameraProvider.unbindAll()
                                 val camera = cameraProvider.bindToLifecycle(
                                     lifecycleOwner,
                                     cameraSelector,
-                                    cameraUseCase,
-                                    analysis2
+                                    useCaseGroupBuilder.build()
                                 )
 
                                 //  // androidx.camera.camera2
                                 Log.d("implementationType","${  camera.cameraInfo.implementationType}")
 
                                 camera.cameraControl.cancelFocusAndMetering()
-                                camera.cameraInfo.sensorRotationDegrees
-
-
                             }, executor)
-
-
-                            preview
+                            previewView
                         },
                         modifier = Modifier.fillMaxSize(),
                     )
@@ -154,13 +166,8 @@ class ComposeCameraXActivity : AppCompatActivity() {
                     .drawBehind {
                         drawCircle(color = mColor.value, radius = 20f)
                     }) {
-
-
                 }
-
             }
-
-
         }
     }
 
@@ -171,6 +178,9 @@ class ComposeCameraXActivity : AppCompatActivity() {
         val position: MutableState<Offset>,
         private var mSelectedColor: MutableState<IntArray>
     ) : ImageAnalysis.Analyzer {
+        private var lastAnalyzedTimestamp = 0L
+
+
         /**
          * Helper extension function used to extract a byte array from an
          * image plane buffer
@@ -184,43 +194,49 @@ class ComposeCameraXActivity : AppCompatActivity() {
         }
 
         override fun analyze(image: ImageProxy) {
-            Log.d("InfoAnalyzer", "imageProxy format is : ${image.format.toString(16)}")
-            Log.d("InfoAnalyzer", "imageProxy width is : ${image.width}")
-            Log.d("InfoAnalyzer", "imageProxy height is : ${image.height}")
-            Log.d("InfoAnalyzer", "imageProxy planes size is : ${image.planes.size}")
-            Log.d("InfoAnalyzer", "imageProxy image.timestamp is : ${image.imageInfo.timestamp}")
+            val currentTimeStamp = System.currentTimeMillis()
+            val intervalInSeconds = TimeUnit.SECONDS.toMillis(10)
+            val deltaTime = currentTimeStamp - lastAnalyzedTimestamp
+            if (deltaTime >= intervalInSeconds){
+                Log.d("InfoAnalyzer", "imageProxy format is : ${image.format.toString(16)}")
+                Log.d("InfoAnalyzer", "imageProxy width is : ${image.width}")
+                Log.d("InfoAnalyzer", "imageProxy height is : ${image.height}")
+                Log.d("InfoAnalyzer", "imageProxy planes size is : ${image.planes.size}")
+                Log.d("InfoAnalyzer", "imageProxy image.timestamp is : ${image.imageInfo.timestamp}")
 
-            Log.d("imageProxy111:", "${image.planes[0].pixelStride}  ${image.planes[0].rowStride}")
-
-
-            //InfoAnalyzer: imageProxy format is : 23
-            //InfoAnalyzer: imageProxy width is : 640
-            //InfoAnalyzer: imageProxy height is : 480
-            //InfoAnalyzer: imageProxy planes size is : 3
-            //InfoAnalyzer: imageProxy image.timestamp is : 484488808569825
-            //imageProxy: 540  1020
-
-            val buffer = image.planes[0].buffer
-            // Extract image data from callback object
-            val data = buffer.toByteArray()
+                Log.d("imageProxy111:", "${image.planes[0].pixelStride}  ${image.planes[0].rowStride}")
 
 
-            mSelectedColor.value[0] = 0
-            mSelectedColor.value[1] = 0
-            mSelectedColor.value[2] = 0
+                //InfoAnalyzer: imageProxy format is : 23
+                //InfoAnalyzer: imageProxy width is : 640
+                //InfoAnalyzer: imageProxy height is : 480
+                //InfoAnalyzer: imageProxy planes size is : 3
+                //InfoAnalyzer: imageProxy image.timestamp is : 484488808569825
+                //imageProxy: 540  1020
 
-            addColorFromYUV420(
-                data,
-                mSelectedColor,
-                1,
-                image.width/2,
-                image.height/2,
-                image.width,
-                image.height
-            )
+                val buffer = image.planes[0].buffer
+                // Extract image data from callback object
+                val data = buffer.toByteArray()
+                val pixels = data.map { it.toInt() and 0xFF }
 
 
-            //1080  2041
+
+                mSelectedColor.value[0] = 0
+                mSelectedColor.value[1] = 0
+                mSelectedColor.value[2] = 0
+
+                addColorFromYUV420(
+                    data,
+                    mSelectedColor,
+                    1,
+                    image.width/2,
+                    image.height/2,
+                    image.width,
+                    image.height
+                )
+
+
+                //1080  2041
 //            for (i in 0..POINTER_RADIUS) {
 //                for (j in 0..POINTER_RADIUS) {
 //                    addColorFromYUV420(
@@ -235,12 +251,15 @@ class ComposeCameraXActivity : AppCompatActivity() {
 //                }
 //            }
 
-            color.value = Color(
-                red = mSelectedColor.value[0],
-                green = mSelectedColor.value[1],
-                blue = mSelectedColor.value[2]
-            )
-            Log.d("color:", "------->${color.value}")
+                color.value = Color(
+                    red = mSelectedColor.value[0],
+                    green = mSelectedColor.value[1],
+                    blue = mSelectedColor.value[2]
+                )
+                Log.d("color:", "------->${color.value}")
+
+            }
+
             image.close()
         }
 
@@ -308,6 +327,7 @@ class ComposeCameraXActivity : AppCompatActivity() {
                 val data = buffer.toByteArray()
                 // Convert the data into an array of pixel values
                 val pixels = data.map { it.toInt() and 0xFF }
+
                 // Compute average luminance for the image
                 val luma = pixels.average()
                 // Log the new luma value
