@@ -92,6 +92,11 @@ dependencies {
 
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
+    implementation "com.google.accompanist:accompanist-pager:${accompanist_version}"
+    implementation "com.google.accompanist:accompanist-pager-indicators:${accompanist_version}"
+
+    api("io.coil-kt:coil-compose:1.4.0")
+
     // = "com.github.iamjosephmj:flinger:${Versions.flinger}"
     //implementation 'com.github.iamjosephmj:flinger:1.1.1'
 }

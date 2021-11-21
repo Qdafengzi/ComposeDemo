@@ -18,12 +18,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
+
+@InternalCoroutinesApi
+@ExperimentalPagerApi
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalPermissionsApi
 class MainActivity : ComponentActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +66,8 @@ class MainActivity : ComponentActivity() {
                 CreateButton(clazz = BottomNavigationActivity::class.java, text = "Bottom Navigation")
                 CreateButton(clazz = ClockActivity::class.java, text = "Clock")
                 CreateButton(clazz = NewUiStyleActivity::class.java, text = "New Ui Style")
+                CreateButton(clazz = JDongActivity::class.java, text = "Jing Dong Shopping UI")
+                CreateButton(clazz = LazyColumnForIndexedActivity::class.java, text = "Lazy column load more")
             }
         }
     }

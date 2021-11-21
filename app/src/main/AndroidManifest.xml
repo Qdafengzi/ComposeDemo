@@ -92,6 +92,8 @@
         <activity android:name=".ui.activity.BottomNavigationActivity" />
         <activity android:name=".ui.activity.ClockActivity" />
         <activity android:name=".ui.activity.NewUiStyleActivity" />
+        <activity android:name=".ui.activity.JDongActivity" />
+        <activity android:name=".ui.activity.LazyColumnForIndexedActivity" />
 
     </application>
 
