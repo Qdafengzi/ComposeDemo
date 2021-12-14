@@ -1,6 +1,8 @@
 package com.example.composedemo.app
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -19,12 +21,15 @@ class App : Application(), ViewModelStoreOwner {
 
 
     companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var CONTEXT: Context
 
         lateinit var appViewModelInstance: AppViewModel
     }
 
     override fun onCreate() {
         super.onCreate()
+        CONTEXT = this
         mAppViewModelStore = ViewModelStore()
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
     }

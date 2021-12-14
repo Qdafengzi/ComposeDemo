@@ -12,6 +12,11 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+    <meta-data
+        android:name="com.google.mlkit.vision.DEPENDENCIES"
+        android:value="ocr" />
+    <!-- To use multiple models: android:value="ocr,model2,model3" -->
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -33,10 +38,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.activity.RowAndColumnActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar"/>
 
         <activity
             android:name=".ui.activity.ModifierActivity"
@@ -94,6 +95,8 @@
         <activity android:name=".ui.activity.NewUiStyleActivity" />
         <activity android:name=".ui.activity.JDongActivity" />
         <activity android:name=".ui.activity.LazyColumnForIndexedActivity" />
+        <activity android:name=".ui.activity.CanvasLineActivity" />
+        <activity android:name=".ui.activity.MlKitActivity" />
 
     </application>
 
