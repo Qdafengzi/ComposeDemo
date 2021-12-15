@@ -7,6 +7,10 @@ object RouteName {
     const val Template = "profile"
 
 
+    object WidgetsRoute{
+        const val KeyboardPage ="KeyboardPage"
+    }
+
     object TemplateRoute{
         const val PermissionPage ="PermissionPage"
         const val SmartRefreshPage ="SmartRefreshPage"

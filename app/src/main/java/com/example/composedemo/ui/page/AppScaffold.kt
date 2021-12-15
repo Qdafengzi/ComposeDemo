@@ -21,11 +21,13 @@ import com.example.composedemo.ui.page.tab.HomePage
 import com.example.composedemo.ui.page.tab.TemplatePage
 import com.example.composedemo.ui.page.tab.WidgetsPage
 import com.example.composedemo.ui.page.template.*
+import com.example.composedemo.ui.page.widgets.KeyboardPage
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
+import java.security.KeyPair
 
 @InternalCoroutinesApi
 @ExperimentalPermissionsApi
@@ -193,6 +195,12 @@ fun AppScaffold() {
                 composable(route = RouteName.TemplateRoute.WechatFriendsCirclePage) {
                     WechatFriendsCirclePage(navCtrl, RouteName.TemplateRoute.WechatFriendsCirclePage)
                 }
+
+                //widgets
+                composable(route = RouteName.WidgetsRoute.KeyboardPage) {
+                    KeyboardPage(navCtrl, RouteName.WidgetsRoute.KeyboardPage)
+                }
+
 
 
 
