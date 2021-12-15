@@ -8,14 +8,7 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -32,33 +25,15 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
-import com.example.composedemo.ui.theme.AppTheme
+import com.example.composedemo.ui.widget.CommonToolbar
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 
 
 @Composable
 fun CameraPage(navCtrl: NavHostController, title: String) {
-    Scaffold(topBar = {
-        TopAppBar(backgroundColor = AppTheme.colors.toolbarColor) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navCtrl.popBackStack()
-                },
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = AppTheme.colors.mainColor
-            )
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = title,
-                color = AppTheme.colors.mainColor
-            )
-        }
-    }) {
-        Column() {
-            SimpleCameraPreview()
-        }
+    CommonToolbar(navCtrl, title) {
+        SimpleCameraPreview()
     }
 }
 
@@ -138,9 +113,10 @@ fun SimpleCameraPreview() {
                             ).setScaleType(ViewPort.FILL_CENTER).build()
 
 
-                            val useCaseGroupBuilder: UseCaseGroup.Builder = UseCaseGroup.Builder().setViewPort(
-                                viewPort
-                            )
+                            val useCaseGroupBuilder: UseCaseGroup.Builder =
+                                UseCaseGroup.Builder().setViewPort(
+                                    viewPort
+                                )
 
                             Log.d(
                                 "imageProxy:::::",
@@ -164,7 +140,7 @@ fun SimpleCameraPreview() {
                             )
 
                             //  // androidx.camera.camera2
-                            Log.d("implementationType","${  camera.cameraInfo.implementationType}")
+                            Log.d("implementationType", "${camera.cameraInfo.implementationType}")
 
                             camera.cameraControl.cancelFocusAndMetering()
                         }, executor)
@@ -220,7 +196,7 @@ class InfoAnalyzer(
         val currentTimeStamp = System.currentTimeMillis()
         val intervalInSeconds = TimeUnit.SECONDS.toMillis(10)
         val deltaTime = currentTimeStamp - lastAnalyzedTimestamp
-        if (deltaTime >= intervalInSeconds){
+        if (deltaTime >= intervalInSeconds) {
             Log.d("InfoAnalyzer", "imageProxy format is : ${image.format.toString(16)}")
             Log.d("InfoAnalyzer", "imageProxy width is : ${image.width}")
             Log.d("InfoAnalyzer", "imageProxy height is : ${image.height}")
@@ -252,8 +228,8 @@ class InfoAnalyzer(
                 data,
                 mSelectedColor,
                 1,
-                image.width/2,
-                image.height/2,
+                image.width / 2,
+                image.height / 2,
                 image.width,
                 image.height
             )
@@ -323,7 +299,7 @@ class InfoAnalyzer(
 }
 
 
- class LuminosityAnalyzer() : ImageAnalysis.Analyzer {
+class LuminosityAnalyzer() : ImageAnalysis.Analyzer {
     private var lastAnalyzedTimestamp = 0L
 
     /**

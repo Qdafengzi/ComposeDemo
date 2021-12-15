@@ -10,18 +10,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.composedemo.ui.theme.AppTheme
 
 
 @Composable
 fun ItemButton(text: String, modifier: Modifier = Modifier, onclick: () -> Unit) {
-    val color = Color((0..255).random(), (0..255).random(), (0..255).random())
     Button(modifier = modifier
         .wrapContentWidth(),
-        shape = RoundedCornerShape(4.dp),
-        colors = ButtonDefaults.buttonColors(backgroundColor = color, contentColor = color),
+        shape = RoundedCornerShape(6.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = AppTheme.colors.toolbarColor,
+            contentColor = AppTheme.colors.toolbarColor
+        ),
         onClick = {
             onclick.invoke()
         }) {
-        Text(text = text, color = Color.Black, textAlign = TextAlign.Center)
+        Text(text = text, color = Color.White, textAlign = TextAlign.Center)
     }
 }

@@ -12,6 +12,8 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.ui.page.common.RouteName
 import com.example.composedemo.ui.widget.ItemButton
 import com.example.composedemo.utils.RouteUtils
+import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
+import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -32,7 +34,9 @@ fun HomePage(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 10.dp, end = 10.dp),
-        mainAxisSpacing = 10.dp
+        mainAxisSpacing = 10.dp,
+        mainAxisAlignment = FlowMainAxisAlignment.Center,
+        crossAxisAlignment = FlowCrossAxisAlignment.Center,
     ) {
         // column contents
 

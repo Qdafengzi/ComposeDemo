@@ -6,15 +6,8 @@ import android.view.MotionEvent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -30,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.composedemo.ui.theme.AppTheme
+import com.example.composedemo.ui.widget.CommonToolbar
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
@@ -39,37 +32,18 @@ import kotlin.math.roundToInt
 @ExperimentalComposeUiApi
 @Composable
 fun CanvasPage(navCtrl: NavHostController, title: String) {
-    Scaffold(topBar = {
-        TopAppBar(backgroundColor = AppTheme.colors.toolbarColor) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navCtrl.popBackStack()
-                },
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = AppTheme.colors.mainColor
-            )
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = title,
-                color = AppTheme.colors.mainColor
-            )
-        }
-    }) {
-
-//            DragTest()
+    CommonToolbar(navCtrl, title) {
+        //            DragTest()
         DragGestureDemo()
 //            TransformGestureDemo()
     }
 }
 
 
-
-
 @SuppressLint("RememberReturnType")
 @Preview
 @Composable
-fun DragTest(){
+fun DragTest() {
     val cacheOffset = remember() {
         mutableStateOf(Offset.Zero)
     }
@@ -110,7 +84,7 @@ fun DragTest(){
                             awaitDragOrCancellation(downPointerInputChange.id)
                         }
                         // 等于空，说明已经抬起
-                        if(dragUpOrCancelPointerInputChange==null){
+                        if (dragUpOrCancelPointerInputChange == null) {
                             launch {
                                 val result = offsetAnimatable.animateTo(Offset.Zero)
                                 cacheOffset.value = Offset.Zero
@@ -120,9 +94,20 @@ fun DragTest(){
                 }
             }
             .fillMaxSize()
-    ){
-        Box(modifier = Modifier.offset{ IntOffset(offsetAnimatable.value.x.roundToInt(), offsetAnimatable.value.y.roundToInt()) }.size(50.dp).background(
-            Color.Blue))
+    ) {
+        Box(
+            modifier = Modifier
+                .offset {
+                    IntOffset(
+                        offsetAnimatable.value.x.roundToInt(),
+                        offsetAnimatable.value.y.roundToInt()
+                    )
+                }
+                .size(50.dp)
+                .background(
+                    Color.Blue
+                )
+        )
     }
 }
 
@@ -138,7 +123,8 @@ fun DragGestureDemo() {
     var offset by remember { mutableStateOf(Offset.Zero) }
     var ratationAngle by remember { mutableStateOf(0f) }
     var scale by remember { mutableStateOf(1f) }
-    Box(contentAlignment = Alignment.Center,
+    Box(
+        contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         Box(Modifier
@@ -158,7 +144,7 @@ fun DragGestureDemo() {
                     panZoomLock = true, // 平移或放大时是否可以旋转
                     onGesture = { centroid: Offset, pan: Offset, zoom: Float, rotation: Float ->
                         //一个手指的时候禁止滑动缩放
-                        if (! isOneFinger.value) {
+                        if (!isOneFinger.value) {
                             offset += pan
                             scale *= zoom
                             ratationAngle += rotation
@@ -192,63 +178,63 @@ fun DragGestureDemo() {
             .pointerInteropFilter {
                 isOneFinger.value = it.pointerCount == 1
                 when (it.action) {
-                    MotionEvent.ACTION_DOWN           -> {
+                    MotionEvent.ACTION_DOWN -> {
                         Log.d("--->", "ACTION_DOWN  ${it.x}  ${it.y}")
                     }
-                    MotionEvent.ACTION_MOVE           -> {
+                    MotionEvent.ACTION_MOVE -> {
                         Log.d("--->", "ACTION_MOVE")
                     }
-                    MotionEvent.ACTION_POINTER_DOWN   -> {
+                    MotionEvent.ACTION_POINTER_DOWN -> {
                         Log.d("--->", "有多余的手指点击了")
                         Log.d("--->", "${it.actionIndex}")
                         Log.d("--->", "${it.getPointerId(it.actionIndex)}")
 
                     }
-                    MotionEvent.ACTION_POINTER_UP     -> {
+                    MotionEvent.ACTION_POINTER_UP -> {
                         Log.d("--->", "有多余的手指离开了")
                     }
-                    MotionEvent.ACTION_UP             -> {
+                    MotionEvent.ACTION_UP -> {
                         Log.d("--->", "ACTION_UP")
                     }
                     MotionEvent.ACTION_POINTER_2_DOWN -> {
                         Log.d("--->", "ACTION_POINTER_2_DOWN")
                     }
-                    MotionEvent.ACTION_POINTER_2_UP   -> {
+                    MotionEvent.ACTION_POINTER_2_UP -> {
                         Log.d("--->", "ACTION_POINTER_2_UP")
                     }
                     MotionEvent.ACTION_POINTER_3_DOWN -> {
                         Log.d("--->", "ACTION_POINTER_3_DOWN")
 //                            return@pointerInteropFilter false
                     }
-                    MotionEvent.ACTION_POINTER_3_UP   -> {
+                    MotionEvent.ACTION_POINTER_3_UP -> {
                         Log.d("--->", "ACTION_POINTER_3_UP")
 //                            return@pointerInteropFilter false
                     }
-                    773                               -> {
+                    773 -> {
                         Log.d("--->", "四个手指 DOWN")
                         return@pointerInteropFilter false
                     }
 
-                    774                               -> {
+                    774 -> {
                         Log.d("--->", "四个手指 UP")
                         return@pointerInteropFilter false
                     }
 
-                    1029                              -> {
+                    1029 -> {
                         Log.d("--->", "五个手指 DOWN")
                     }
-                    1030                              -> {
+                    1030 -> {
                         Log.d("--->", "五个手指 DOWN")
                     }
 
-                    MotionEvent.ACTION_OUTSIDE        -> {
+                    MotionEvent.ACTION_OUTSIDE -> {
                         Log.d("--->", "ACTION_OUTSIDE ")
                     }
-                    MotionEvent.ACTION_CANCEL         -> {
+                    MotionEvent.ACTION_CANCEL -> {
                         Log.d("--->", "ACTION_CANCEL ")
                     }
 
-                    else                              -> {
+                    else -> {
                         //四手指 773 放下 774离开
                         //五手指 1029放下 1030离开
                         Log.d("--->", "其他")

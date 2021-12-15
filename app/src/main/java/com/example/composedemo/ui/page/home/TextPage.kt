@@ -1,7 +1,6 @@
 package com.example.composedemo.ui.page.home
 
 import android.util.Log
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,9 +10,10 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,29 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.composedemo.R
-import com.example.composedemo.ui.theme.AppTheme
 import com.example.composedemo.ui.theme.Co_333333
+import com.example.composedemo.ui.widget.CommonToolbar
 
 
 @Composable
 fun TextPage(navCtrl: NavHostController, title: String) {
-    Scaffold(topBar = {
-        TopAppBar(backgroundColor = AppTheme.colors.toolbarColor) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navCtrl.popBackStack()
-                },
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = AppTheme.colors.mainColor
-            )
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = title,
-                color = AppTheme.colors.mainColor
-            )
-        }
-    }) {
+    CommonToolbar(navCtrl, title) {
         Column() {
             //创建字体
             val fontFamily = FontFamily(

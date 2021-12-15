@@ -1,13 +1,13 @@
 package com.example.composedemo.ui.page.home
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Surface
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,28 +18,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.composedemo.flinger.StockFlingBehaviours
-import com.example.composedemo.ui.theme.AppTheme
+import com.example.composedemo.ui.widget.CommonToolbar
 
 
 @Composable
 fun ComplexPage(navCtrl: NavHostController, title: String) {
-    Scaffold(topBar = {
-        TopAppBar(backgroundColor = AppTheme.colors.toolbarColor) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navCtrl.popBackStack()
-                },
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = AppTheme.colors.mainColor
-            )
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = title,
-                color = AppTheme.colors.mainColor
-            )
-        }
-    }) {
+    CommonToolbar(navCtrl, title) {
         LazyColumnDemo()
     }
 }

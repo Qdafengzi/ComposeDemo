@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.composedemo.ui.theme.AppTheme
+import com.example.composedemo.ui.widget.CommonToolbar
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.rememberPermissionState
@@ -28,23 +26,7 @@ import com.google.accompanist.permissions.rememberPermissionState
 @ExperimentalPermissionsApi
 @Composable
 fun PermissionPage(navCtrl: NavHostController, title: String) {
-    Scaffold(topBar = {
-        TopAppBar(backgroundColor = AppTheme.colors.toolbarColor) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navCtrl.popBackStack()
-                },
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = AppTheme.colors.mainColor
-            )
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = title,
-                color = AppTheme.colors.mainColor
-            )
-        }
-    }) {
+    CommonToolbar(navCtrl, title) {
         Column() {
             val context = LocalContext.current
             FeatureThatRequiresCameraPermission { startAppSettings(context) }

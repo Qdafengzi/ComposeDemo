@@ -4,11 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -16,10 +17,9 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.composedemo.ui.theme.AppTheme
+import com.example.composedemo.ui.widget.CommonToolbar
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabel
 import com.google.mlkit.vision.label.ImageLabeler
@@ -40,34 +40,14 @@ import kotlin.coroutines.resume
 
 @Composable
 fun MLKitPage(navCtrl: NavHostController, title: String) {
-    Scaffold(topBar = {
-        TopAppBar(backgroundColor = AppTheme.colors.toolbarColor) {
-            Icon(
-                modifier = Modifier.clickable {
-                    navCtrl.popBackStack()
-                },
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = AppTheme.colors.mainColor
-            )
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = title,
-                color = AppTheme.colors.mainColor
-            )
-        }
-    }) {
-        Column() {
-            MLKitSample()
-        }
+    CommonToolbar(navCtrl, title) {
+        MLKitSample()
     }
 }
 
 
 @Composable
 fun MLKitSample() {
-
-
 
     var text by remember {
         mutableStateOf("")
@@ -87,14 +67,14 @@ fun MLKitSample() {
         val image = InputImage.fromBitmap(bmp, 0)
 
 
-        Image(bitmap =bmp.asImageBitmap() , contentDescription = "")
+        Image(bitmap = bmp.asImageBitmap(), contentDescription = "")
 
 
         val result = recognizer.process(image)
             .addOnSuccessListener { visionText ->
                 // Task completed successfully
                 //                    L
-                text= visionText.text
+                text = visionText.text
             }
             .addOnFailureListener { e ->
                 // Task failed with an exception
@@ -126,14 +106,14 @@ fun MLKitSample3() {
         val image = InputImage.fromBitmap(bmp, 0)
 
 
-        Image(bitmap =bmp.asImageBitmap() , contentDescription = "")
+        Image(bitmap = bmp.asImageBitmap(), contentDescription = "")
 
 
         val result = recognizer.process(image)
             .addOnSuccessListener { visionText ->
                 // Task completed successfully
                 //                    L
-                text= visionText.text
+                text = visionText.text
             }
             .addOnFailureListener { e ->
                 // Task failed with an exception
