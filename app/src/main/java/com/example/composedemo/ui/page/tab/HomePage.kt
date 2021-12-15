@@ -119,6 +119,10 @@ fun HomePage(
         ItemButton(text = RouteName.HomeRoute.WebViewPage) {
             RouteUtils.navTo(navCtrl, RouteName.HomeRoute.WebViewPage)
         }
+
+        ItemButton(text = RouteName.HomeRoute.MotionLayoutPage) {
+            RouteUtils.navTo(navCtrl, RouteName.HomeRoute.MotionLayoutPage)
+        }
     }
 }
 

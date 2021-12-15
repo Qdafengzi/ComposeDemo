@@ -51,6 +51,7 @@ object RouteName {
         const val SnackBarPage ="SnackBarPage"
         const val StatePage ="StatePage"
         const val WebViewPage ="WebViewPage"
+        const val MotionLayoutPage = "MotionLayoutPage"
 
     }
 

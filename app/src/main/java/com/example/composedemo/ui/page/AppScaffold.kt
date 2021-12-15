@@ -163,6 +163,10 @@ fun AppScaffold() {
                     WebViewPage(navCtrl, RouteName.HomeRoute.WebViewPage)
                 }
 
+                composable(route = RouteName.HomeRoute.MotionLayoutPage) {
+                    MotionLayoutPage(navCtrl, RouteName.HomeRoute.MotionLayoutPage)
+                }
+
 
 
                 //TemplateRoute
