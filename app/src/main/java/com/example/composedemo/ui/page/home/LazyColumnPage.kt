@@ -1,6 +1,7 @@
 package com.example.composedemo.ui.page.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,18 +22,22 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 @Composable
 fun LazyColumnPage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
-        val list = mutableListOf<String>()
-        repeat(5) {
-            list.add("Item $it")
-        }
 
-        InfiniteList(list) {
-            repeat(2) {
-                list.add("Item add $it")
+        Column(modifier = Modifier.fillMaxWidth()) {
+            val list = mutableListOf<String>()
+            repeat(5) {
+                list.add("Item $it")
+            }
+
+            InfiniteList(list) {
+                repeat(2) {
+                    list.add("Item add $it")
+                }
             }
         }
-    }
 
+
+    }
 }
 
 

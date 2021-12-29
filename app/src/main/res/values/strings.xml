@@ -6,4 +6,8 @@
     <string name="widgets">Widgets</string>
     <string name="template">Template</string>
     <string name="anim">Anim</string>
+
+    <string name="nested_scroll">Compose %s</string>
+    <string name="star">🌟</string>
+    <string name="delete">delete</string>
 </resources>

@@ -14,14 +14,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -40,7 +35,6 @@ import com.google.accompanist.insets.statusBarsPadding
 fun KeyboardPage(navCtrl: NavHostController, title: String) {
     val context = LocalContext.current
     WindowCompat.setDecorFitsSystemWindows((context as Activity).window, false)
-    LocalSoftwareKeyboardController
 
     var keyboardStatus by remember {
         mutableStateOf(false)
@@ -50,7 +44,6 @@ fun KeyboardPage(navCtrl: NavHostController, title: String) {
         keyboardStatus = it
     }
 
-    val focusRequester = FocusRequester()
     CommonToolbar(navCtrl, title) {
         ProvideWindowInsets {
             Column(
@@ -66,8 +59,7 @@ fun KeyboardPage(navCtrl: NavHostController, title: String) {
 
                 TextField(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .focusRequester(focusRequester),
+                        .fillMaxWidth(),
                     value = text.value,
                     onValueChange = { text.value = it },
                     placeholder = {

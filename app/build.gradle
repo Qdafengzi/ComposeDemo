@@ -30,6 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = '11'
         useIR = true
+        freeCompilerArgs+="-Xopt-in=kotlin.RequiresOptIn"
     }
     buildFeatures {
         compose true
@@ -47,10 +48,12 @@ dependencies {
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.ui:ui-util:$compose_version"
     implementation 'androidx.activity:activity-compose:1.4.0'
 
 
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+    implementation project(path: ':glpanorama')
 
     // CameraX core library
     def camerax_version = '1.0.2'
@@ -60,7 +63,7 @@ dependencies {
     // CameraX Lifecycle library
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
     // CameraX View class
-    implementation 'androidx.camera:camera-view:1.0.0-alpha31'
+    implementation 'androidx.camera:camera-view:1.0.0-alpha32'
 
     //权限
     def accompanist_version = '0.20.2'
@@ -78,7 +81,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
 
 
-    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
+    implementation("androidx.navigation:navigation-compose:2.4.0-rc01")
 
     api("androidx.lifecycle:lifecycle-common-java8:2.4.0")
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -104,12 +107,12 @@ dependencies {
     // = "com.github.iamjosephmj:flinger:${Versions.flinger}"
     //implementation 'com.github.iamjosephmj:flinger:1.1.1'
 
-    implementation 'com.google.mlkit:image-labeling:17.0.5'
-    implementation 'com.google.mlkit:object-detection:16.2.7'
-    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.0'
+    implementation 'com.google.mlkit:image-labeling:17.0.6'
+    implementation 'com.google.mlkit:object-detection:16.2.8'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.1'
 
     // To recognize Chinese script
-    implementation 'com.google.mlkit:text-recognition-chinese:16.0.0-beta1'
+    implementation 'com.google.mlkit:text-recognition-chinese:16.0.0-beta2'
 
 
     implementation "com.google.code.gson:gson:2.8.9"

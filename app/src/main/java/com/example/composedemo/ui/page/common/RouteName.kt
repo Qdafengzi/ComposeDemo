@@ -56,6 +56,9 @@ object RouteName {
         const val StatePage ="StatePage"
         const val WebViewPage ="WebViewPage"
         const val MotionLayoutPage = "MotionLayoutPage"
+        const val NestedScrollPage = "NestedScrollPage"
+        const val LeftScrollDeletePage = "LeftScrollDeletePage"
+        const val FullImageScreenPage = "FullImageScreenPage"
 
     }
 

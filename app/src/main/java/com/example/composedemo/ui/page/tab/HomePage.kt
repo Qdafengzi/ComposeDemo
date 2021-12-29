@@ -123,6 +123,16 @@ fun HomePage(
         ItemButton(text = RouteName.HomeRoute.MotionLayoutPage) {
             RouteUtils.navTo(navCtrl, RouteName.HomeRoute.MotionLayoutPage)
         }
+        ItemButton(text = RouteName.HomeRoute.NestedScrollPage) {
+            RouteUtils.navTo(navCtrl, RouteName.HomeRoute.NestedScrollPage)
+        }
+        ItemButton(text = RouteName.HomeRoute.LeftScrollDeletePage) {
+            RouteUtils.navTo(navCtrl, RouteName.HomeRoute.LeftScrollDeletePage)
+        }
+
+        ItemButton(text = RouteName.HomeRoute.FullImageScreenPage) {
+            RouteUtils.navTo(navCtrl, RouteName.HomeRoute.FullImageScreenPage)
+        }
     }
 }
 

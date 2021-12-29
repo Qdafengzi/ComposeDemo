@@ -1,5 +1,7 @@
 package com.example.composedemo.ui.page
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.material.MaterialTheme
@@ -29,6 +31,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.security.KeyPair
 
+@RequiresApi(Build.VERSION_CODES.R)
 @InternalCoroutinesApi
 @ExperimentalPermissionsApi
 @ExperimentalComposeUiApi
@@ -168,7 +171,16 @@ fun AppScaffold() {
                 composable(route = RouteName.HomeRoute.MotionLayoutPage) {
                     MotionLayoutPage(navCtrl, RouteName.HomeRoute.MotionLayoutPage)
                 }
+                composable(route = RouteName.HomeRoute.NestedScrollPage) {
+                    NestedScrollPage(navCtrl, RouteName.HomeRoute.NestedScrollPage)
+                }
+                composable(route = RouteName.HomeRoute.LeftScrollDeletePage) {
+                    LeftScrollDeletePage(navCtrl, RouteName.HomeRoute.LeftScrollDeletePage)
+                }
 
+                composable(route = RouteName.HomeRoute.FullImageScreenPage) {
+                    FullImageScreenPage(navCtrl, RouteName.HomeRoute.FullImageScreenPage)
+                }
 
 
                 //TemplateRoute
