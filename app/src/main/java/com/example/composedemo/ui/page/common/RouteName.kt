@@ -58,7 +58,9 @@ object RouteName {
         const val MotionLayoutPage = "MotionLayoutPage"
         const val NestedScrollPage = "NestedScrollPage"
         const val LeftScrollDeletePage = "LeftScrollDeletePage"
-        const val FullImageScreenPage = "FullImageScreenPage"
+        const val Goods3dImagePage = "Goods3dImagePage one"
+        const val Goods3dImagePageTwo = "Goods3dImagePage Two"
+        const val Goods3dImagePageThree = "Goods3dImagePage three"
 
     }
 

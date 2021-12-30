@@ -1,7 +1,6 @@
 package com.example.composedemo.ui.page.home
 
 import android.view.LayoutInflater
-import android.widget.TextView
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -14,7 +13,7 @@ import com.example.composedemo.ui.widget.CommonToolbar
 import com.zph.glpanorama.GLPanorama
 
 @Composable
-fun FullImageScreenPage(navCtrl: NavHostController, title: String) {
+fun Goods3dImagePage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
         AndroidView(
             modifier = Modifier

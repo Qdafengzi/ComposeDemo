@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:gravity="center"
     android:layout_height="match_parent">
 
-    <com.zph.glpanorama.GLPanorama
-        android:id="@+id/mGLPanorama"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mImage"
+        android:src="@mipmap/img_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -29,7 +29,6 @@ import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
-import java.security.KeyPair
 
 @RequiresApi(Build.VERSION_CODES.R)
 @InternalCoroutinesApi
@@ -57,7 +56,6 @@ fun AppScaffold() {
             }
         },
         content = {
-
             NavHost(
                 modifier = Modifier.background(MaterialTheme.colors.background),
                 navController = navCtrl,
@@ -178,10 +176,16 @@ fun AppScaffold() {
                     LeftScrollDeletePage(navCtrl, RouteName.HomeRoute.LeftScrollDeletePage)
                 }
 
-                composable(route = RouteName.HomeRoute.FullImageScreenPage) {
-                    FullImageScreenPage(navCtrl, RouteName.HomeRoute.FullImageScreenPage)
+                composable(route = RouteName.HomeRoute.Goods3dImagePage) {
+                    Goods3dImagePage(navCtrl, RouteName.HomeRoute.Goods3dImagePage)
+                }
+                composable(route = RouteName.HomeRoute.Goods3dImagePageTwo) {
+                    Goods3dImagePageTwo(navCtrl, RouteName.HomeRoute.Goods3dImagePageTwo)
                 }
 
+                composable(route = RouteName.HomeRoute.Goods3dImagePageThree) {
+                    Goods3dImagePageThree(navCtrl, RouteName.HomeRoute.Goods3dImagePageThree)
+                }
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {

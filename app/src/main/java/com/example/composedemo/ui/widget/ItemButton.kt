@@ -1,6 +1,7 @@
 package com.example.composedemo.ui.widget
 
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -16,7 +17,8 @@ import com.example.composedemo.ui.theme.AppTheme
 @Composable
 fun ItemButton(text: String, modifier: Modifier = Modifier, onclick: () -> Unit) {
     Button(modifier = modifier
-        .wrapContentWidth(),
+        .padding(start = 20.dp,end = 20.dp,top = 16.dp)
+        .fillMaxWidth(),
         shape = RoundedCornerShape(6.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = AppTheme.colors.toolbarColor,
@@ -25,6 +27,6 @@ fun ItemButton(text: String, modifier: Modifier = Modifier, onclick: () -> Unit)
         onClick = {
             onclick.invoke()
         }) {
-        Text(text = text, color = Color.White, textAlign = TextAlign.Center)
+        Text(text = text, color = Color.White,textAlign = TextAlign.Start)
     }
 }
