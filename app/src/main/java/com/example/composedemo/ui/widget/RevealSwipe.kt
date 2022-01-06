@@ -9,35 +9,22 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FractionalThreshold
-import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ResistanceConfig
-import androidx.compose.material.Surface
 import androidx.compose.material.SwipeableDefaults
 import androidx.compose.material.SwipeableState
-import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.rememberSwipeableState
 import androidx.compose.material.swipeable
 import androidx.compose.runtime.Composable
@@ -56,7 +43,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
@@ -254,13 +240,8 @@ fun RevealSwipe(
                 modifier = modifier
                     .then(
                         if (enableSwipe) Modifier
-                            .offset {
-                                IntOffset(
-                                    state.offset.value.roundToInt(),
-                                    0
-                                )
-                            }
-                            .revealSwipable(
+                            .offset { IntOffset(state.offset.value.roundToInt(), 0) }
+                            .revealSweepable(
                                 state = state,
                                 maxRevealPx = maxRevealPx,
                                 maxAmountOfOverflow = maxAmountOfOverflow,
@@ -285,14 +266,14 @@ fun RevealSwipe(
     }
 }
 
+
 @OptIn(ExperimentalMaterialApi::class)
-private fun Modifier.revealSwipable(
+private fun Modifier.revealSweepable(
     maxRevealPx: Float,
     maxAmountOfOverflow: Dp,
     directions: Set<RevealDirection>,
     state: RevealState,
 ) = composed {
-
     val maxAmountOfOverflowPx = with(LocalDensity.current) { maxAmountOfOverflow.toPx() }
 
     val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
@@ -330,11 +311,12 @@ private fun Float.nonNaNorZero() = if (isNaN()) 0f else this
 
 enum class RevealDirection {
     /**
+     * 头部展示 方式
      * Can be dismissed by swiping in the reading direction.
      */
     StartToEnd,
-
     /**
+     * 尾部展示 方式
      * Can be dismissed by swiping in the reverse of the reading direction.
      */
     EndToStart
@@ -345,16 +327,19 @@ enum class RevealDirection {
  */
 enum class RevealValue {
     /**
+     * 隐藏状态
      * Indicates the component has not been revealed yet.
      */
     Default,
 
     /**
+     * 尾部展示状态
      * Fully revealed to end
      */
     FullyRevealedEnd,
 
     /**
+     * 头部展示状态
      * Fully revealed to start
      */
     FullyRevealedStart,
@@ -398,194 +383,194 @@ suspend fun RevealState.resetFast() {
         anim = SnapSpec(1)
     )
 }
-
-@OptIn(ExperimentalMaterialApi::class)
-@Preview
-@Composable
-private fun RevealSwipegPreview() {
-    MaterialTheme {
-        Surface(
-            modifier = Modifier
-                .width(400.dp)
-                .height(400.dp)
-        ) {
-            LazyColumn(
-                contentPadding = PaddingValues(10.dp)
-            ) {
-                item {
-                    RevealSwipe(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 5.dp),
-                        directions = setOf(
-                            RevealDirection.StartToEnd,
-                            RevealDirection.EndToStart
-                        ),
-                        hiddenContentStart = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Star,
-                                contentDescription = null,
-                                tint = Color.White
-                            )
-                        },
-                        hiddenContentEnd = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Delete,
-                                contentDescription = null
-                            )
-                        }
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .requiredHeight(80.dp),
-                            backgroundColor = Color(0xFF505160),
-                            shape = it,
-                        ) {
-                            Column(
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(start = 20.dp),
-                                    text = "Both directions"
-                                )
-                            }
-                        }
-                    }
-                }
-                item {
-                    RevealSwipe(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 5.dp),
-                        closeOnContentClick = false,
-                        closeOnBackgroundClick = false,
-                        directions = setOf(
-                            RevealDirection.StartToEnd,
-                            RevealDirection.EndToStart
-                        ),
-                        hiddenContentStart = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Star,
-                                contentDescription = null,
-                                tint = Color.White
-                            )
-                        },
-                        hiddenContentEnd = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Delete,
-                                contentDescription = null
-                            )
-                        }
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .requiredHeight(80.dp),
-                            backgroundColor = Color(0xFF68829E),
-                            shape = it,
-                        ) {
-                            Column(
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(start = 20.dp),
-                                    text = "Both directions.\ncloseOnClick = false"
-                                )
-                            }
-                        }
-                    }
-                }
-                item {
-                    RevealSwipe(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 5.dp),
-                        directions = setOf(
-                            RevealDirection.StartToEnd,
-                        ),
-                        hiddenContentStart = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Star,
-                                contentDescription = null,
-                                tint = Color.White
-                            )
-                        },
-                        hiddenContentEnd = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Delete,
-                                contentDescription = null
-                            )
-                        }
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .requiredHeight(80.dp),
-                            backgroundColor = Color(0xFFAEBD38),
-                            shape = it,
-                        ) {
-                            Column(
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(start = 20.dp),
-                                    text = "StartToEnd"
-                                )
-                            }
-                        }
-                    }
-                }
-                item {
-                    RevealSwipe(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 5.dp),
-                        animateBackgroundCardColor = false,
-                        directions = setOf(
-                            RevealDirection.EndToStart,
-                        ),
-                        hiddenContentStart = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Star,
-                                contentDescription = null,
-                                tint = Color.White
-                            )
-                        },
-                        hiddenContentEnd = {
-                            Icon(
-                                modifier = Modifier.padding(horizontal = 25.dp),
-                                imageVector = Icons.Outlined.Delete,
-                                contentDescription = null
-                            )
-                        }
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .requiredHeight(80.dp),
-                            backgroundColor = Color(0xFF598234),
-                            shape = it,
-                        ) {
-                            Column(
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(start = 20.dp),
-                                    text = "EndToStart"
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//
+//@OptIn(ExperimentalMaterialApi::class)
+//@Preview
+//@Composable
+//private fun RevealSwipegPreview() {
+//    MaterialTheme {
+//        Surface(
+//            modifier = Modifier
+//                .width(400.dp)
+//                .height(400.dp)
+//        ) {
+//            LazyColumn(
+//                contentPadding = PaddingValues(10.dp)
+//            ) {
+//                item {
+//                    RevealSwipe(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 5.dp),
+//                        directions = setOf(
+//                            RevealDirection.StartToEnd,
+//                            RevealDirection.EndToStart
+//                        ),
+//                        hiddenContentStart = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Star,
+//                                contentDescription = null,
+//                                tint = Color.White
+//                            )
+//                        },
+//                        hiddenContentEnd = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Delete,
+//                                contentDescription = null
+//                            )
+//                        }
+//                    ) {
+//                        Card(
+//                            modifier = Modifier
+//                                .fillMaxSize()
+//                                .requiredHeight(80.dp),
+//                            backgroundColor = Color(0xFF505160),
+//                            shape = it,
+//                        ) {
+//                            Column(
+//                                verticalArrangement = Arrangement.Center
+//                            ) {
+//                                Text(
+//                                    modifier = Modifier.padding(start = 20.dp),
+//                                    text = "Both directions"
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//                item {
+//                    RevealSwipe(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 5.dp),
+//                        closeOnContentClick = false,
+//                        closeOnBackgroundClick = false,
+//                        directions = setOf(
+//                            RevealDirection.StartToEnd,
+//                            RevealDirection.EndToStart
+//                        ),
+//                        hiddenContentStart = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Star,
+//                                contentDescription = null,
+//                                tint = Color.White
+//                            )
+//                        },
+//                        hiddenContentEnd = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Delete,
+//                                contentDescription = null
+//                            )
+//                        }
+//                    ) {
+//                        Card(
+//                            modifier = Modifier
+//                                .fillMaxSize()
+//                                .requiredHeight(80.dp),
+//                            backgroundColor = Color(0xFF68829E),
+//                            shape = it,
+//                        ) {
+//                            Column(
+//                                verticalArrangement = Arrangement.Center
+//                            ) {
+//                                Text(
+//                                    modifier = Modifier.padding(start = 20.dp),
+//                                    text = "Both directions.\ncloseOnClick = false"
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//                item {
+//                    RevealSwipe(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 5.dp),
+//                        directions = setOf(
+//                            RevealDirection.StartToEnd,
+//                        ),
+//                        hiddenContentStart = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Star,
+//                                contentDescription = null,
+//                                tint = Color.White
+//                            )
+//                        },
+//                        hiddenContentEnd = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Delete,
+//                                contentDescription = null
+//                            )
+//                        }
+//                    ) {
+//                        Card(
+//                            modifier = Modifier
+//                                .fillMaxSize()
+//                                .requiredHeight(80.dp),
+//                            backgroundColor = Color(0xFFAEBD38),
+//                            shape = it,
+//                        ) {
+//                            Column(
+//                                verticalArrangement = Arrangement.Center
+//                            ) {
+//                                Text(
+//                                    modifier = Modifier.padding(start = 20.dp),
+//                                    text = "StartToEnd"
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//                item {
+//                    RevealSwipe(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 5.dp),
+//                        animateBackgroundCardColor = false,
+//                        directions = setOf(
+//                            RevealDirection.EndToStart,
+//                        ),
+//                        hiddenContentStart = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Star,
+//                                contentDescription = null,
+//                                tint = Color.White
+//                            )
+//                        },
+//                        hiddenContentEnd = {
+//                            Icon(
+//                                modifier = Modifier.padding(horizontal = 25.dp),
+//                                imageVector = Icons.Outlined.Delete,
+//                                contentDescription = null
+//                            )
+//                        }
+//                    ) {
+//                        Card(
+//                            modifier = Modifier
+//                                .fillMaxSize()
+//                                .requiredHeight(80.dp),
+//                            backgroundColor = Color(0xFF598234),
+//                            shape = it,
+//                        ) {
+//                            Column(
+//                                verticalArrangement = Arrangement.Center
+//                            ) {
+//                                Text(
+//                                    modifier = Modifier.padding(start = 20.dp),
+//                                    text = "EndToStart"
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
