@@ -63,7 +63,19 @@ private fun <T> T.or(orValue: T, whenClosure: T.() -> Boolean): T {
     return if (whenClosure()) orValue else this
 }
 
-@ExperimentalMaterialApi
+/**
+ * @param  enableSwipe 是否可以滑动
+ * @param onContentClick 内容点击触发
+ * @param onBackgroundStartClick 头部背景点击
+ * @param onBackgroundEndClick 尾部背景点击
+ * @param closeOnContentClick 当点击内容的时候关闭 头部或者尾部
+ * @param closeOnBackgroundClick 当点击头部或者尾部背景的时候关闭 头部或者尾部
+ * @param animateBackgroundCardColor 卡片背景颜色 过度
+ *
+ *
+ *
+ */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun RevealSwipe(
     modifier: Modifier = Modifier,
@@ -123,9 +135,7 @@ fun RevealSwipe(
 
     Box {
         var shapeSize: Size by remember { mutableStateOf(Size(0f, 0f)) }
-
         val density = LocalDensity.current
-
         val cornerRadiusBottomEnd = remember(shapeSize, density) {
             shape.bottomEnd.toPx(
                 shapeSize = shapeSize,
@@ -194,7 +204,7 @@ fun RevealSwipe(
             alpha = alpha
         ) else backgroundCardStartColor
 
-        // non swipable with hidden content
+        // non sweepable with hidden content
         Card(
             contentColor = backgroundCardContentColor,
             backgroundColor = Color.Transparent,

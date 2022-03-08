@@ -18,6 +18,7 @@ object RouteName {
         const val JingDongPage ="JingDongPage"
         const val WechatFriendsCirclePage ="WechatFriendsCirclePage"
         const val MLKitPage ="MLKitPage"
+        const val ImageScale = "ImageScale"
     }
 
 

@@ -209,15 +209,20 @@ fun AppScaffold() {
                 }
 
                 composable(route = RouteName.TemplateRoute.WechatFriendsCirclePage) {
-                    WechatFriendsCirclePage(navCtrl, RouteName.TemplateRoute.WechatFriendsCirclePage)
+                    WechatFriendsCirclePage(
+                        navCtrl,
+                        RouteName.TemplateRoute.WechatFriendsCirclePage
+                    )
                 }
+                composable(route = RouteName.TemplateRoute.ImageScale) {
+                    ImageScale(navCtrl, RouteName.TemplateRoute.ImageScale)
+                }
+
 
                 //widgets
                 composable(route = RouteName.WidgetsRoute.KeyboardPage) {
                     KeyboardPage(navCtrl, RouteName.WidgetsRoute.KeyboardPage)
                 }
-
-
 
 
                 //WebView
