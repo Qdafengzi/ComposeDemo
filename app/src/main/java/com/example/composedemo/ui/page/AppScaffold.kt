@@ -15,6 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.composedemo.ui.page.anim.Aim1Page
+import com.example.composedemo.ui.page.anim.MarqueePage
+import com.example.composedemo.ui.page.anim.MoreText
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
 import com.example.composedemo.ui.page.home.*
@@ -218,10 +221,27 @@ fun AppScaffold() {
                     ImageScale(navCtrl, RouteName.TemplateRoute.ImageScale)
                 }
 
+                composable(route = RouteName.TemplateRoute.SealedClass) {
+                    SealedClassListPage(navCtrl, RouteName.TemplateRoute.SealedClass)
+                }
+
 
                 //widgets
                 composable(route = RouteName.WidgetsRoute.KeyboardPage) {
                     KeyboardPage(navCtrl, RouteName.WidgetsRoute.KeyboardPage)
+                }
+
+                //Aim
+                composable(route = RouteName.AimRoute.MarqueePage) {
+                    MarqueePage(navCtrl, RouteName.AimRoute.MarqueePage)
+                }
+
+                composable(route = RouteName.AimRoute.Aim1) {
+                    Aim1Page(navCtrl, RouteName.AimRoute.Aim1)
+                }
+
+                composable(route = RouteName.AimRoute.MoreText) {
+                    MoreText(navCtrl, RouteName.AimRoute.MoreText)
                 }
 
 

@@ -53,5 +53,9 @@ fun TemplatePage(
         ItemButton(text = RouteName.TemplateRoute.ImageScale) {
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.ImageScale)
         }
+
+        ItemButton(text = RouteName.TemplateRoute.SealedClass) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.SealedClass)
+        }
     }
 }

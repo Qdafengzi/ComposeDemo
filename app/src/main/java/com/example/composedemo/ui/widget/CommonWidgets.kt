@@ -29,7 +29,7 @@ fun CommonToolbar(navCtrl: NavHostController, title: String,content: @Composable
                 tint = AppTheme.colors.mainColor
             )
             Text(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(start = 20.dp),
                 text = title,
                 color = AppTheme.colors.mainColor
             )

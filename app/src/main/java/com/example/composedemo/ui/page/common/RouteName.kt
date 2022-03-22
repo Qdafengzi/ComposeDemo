@@ -19,6 +19,14 @@ object RouteName {
         const val WechatFriendsCirclePage ="WechatFriendsCirclePage"
         const val MLKitPage ="MLKitPage"
         const val ImageScale = "ImageScale"
+        const val SealedClass = "SealedClass"
+
+    }
+
+    object AimRoute{
+        const val MarqueePage = "MarqueePage"
+        const val Aim1 = "Aim1"
+        const val MoreText = "MoreText"
     }
 
 
