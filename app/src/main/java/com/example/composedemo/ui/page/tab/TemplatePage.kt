@@ -50,8 +50,8 @@ fun TemplatePage(
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.WechatFriendsCirclePage)
         }
 
-        ItemButton(text = RouteName.TemplateRoute.ImageScale) {
-            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.ImageScale)
+        ItemButton(text = RouteName.TemplateRoute.ImageZoom) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.ImageZoom)
         }
 
         ItemButton(text = RouteName.TemplateRoute.SealedClass) {

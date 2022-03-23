@@ -217,8 +217,8 @@ fun AppScaffold() {
                         RouteName.TemplateRoute.WechatFriendsCirclePage
                     )
                 }
-                composable(route = RouteName.TemplateRoute.ImageScale) {
-                    ImageScale(navCtrl, RouteName.TemplateRoute.ImageScale)
+                composable(route = RouteName.TemplateRoute.ImageZoom) {
+                    ImageZoom(navCtrl, RouteName.TemplateRoute.ImageZoom)
                 }
 
                 composable(route = RouteName.TemplateRoute.SealedClass) {
