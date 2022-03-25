@@ -20,6 +20,7 @@ object RouteName {
         const val MLKitPage ="MLKitPage"
         const val ImageZoom = "ImageScale"
         const val SealedClass = "SealedClass"
+        const val DebouncedClickable = "DebouncedClickable"
 
     }
 

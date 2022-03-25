@@ -57,5 +57,9 @@ fun TemplatePage(
         ItemButton(text = RouteName.TemplateRoute.SealedClass) {
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.SealedClass)
         }
+
+        ItemButton(text = RouteName.TemplateRoute.DebouncedClickable) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.DebouncedClickable)
+        }
     }
 }

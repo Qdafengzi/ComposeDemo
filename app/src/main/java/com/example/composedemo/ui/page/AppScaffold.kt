@@ -225,6 +225,10 @@ fun AppScaffold() {
                     SealedClassListPage(navCtrl, RouteName.TemplateRoute.SealedClass)
                 }
 
+                composable(route = RouteName.TemplateRoute.DebouncedClickable) {
+                    DebouncedClickable(navCtrl, RouteName.TemplateRoute.DebouncedClickable)
+                }
+
 
                 //widgets
                 composable(route = RouteName.WidgetsRoute.KeyboardPage) {
