@@ -10,4 +10,7 @@
     <string name="nested_scroll">Compose %s</string>
     <string name="star">🌟</string>
     <string name="delete">delete</string>
+    <string name="minus">减去</string>
+    <string name="plus">加啊</string>
+    <string name="shopping_cart">购物车</string>
 </resources>

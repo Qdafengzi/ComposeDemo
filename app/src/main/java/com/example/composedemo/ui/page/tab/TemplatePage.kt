@@ -61,5 +61,9 @@ fun TemplatePage(
         ItemButton(text = RouteName.TemplateRoute.DebouncedClickable) {
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.DebouncedClickable)
         }
+
+        ItemButton(text = RouteName.TemplateRoute.ColorPicker) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.ColorPicker)
+        }
     }
 }

@@ -21,6 +21,7 @@ object RouteName {
         const val ImageZoom = "ImageScale"
         const val SealedClass = "SealedClass"
         const val DebouncedClickable = "DebouncedClickable"
+        const val ColorPicker = "ColorPicker"
 
     }
 
