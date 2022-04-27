@@ -22,6 +22,7 @@ object RouteName {
         const val SealedClass = "SealedClass"
         const val DebouncedClickable = "DebouncedClickable"
         const val ColorPicker = "ColorPicker"
+        const val Banner = "Banner"
 
     }
 

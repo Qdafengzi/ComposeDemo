@@ -234,6 +234,10 @@ fun AppScaffold() {
                     ColorPickerPage(navCtrl, RouteName.TemplateRoute.ColorPicker)
                 }
 
+                composable(route = RouteName.TemplateRoute.Banner) {
+                    BannerPage(navCtrl, RouteName.TemplateRoute.Banner)
+                }
+
 
                 //widgets
                 composable(route = RouteName.WidgetsRoute.KeyboardPage) {

@@ -65,5 +65,9 @@ fun TemplatePage(
         ItemButton(text = RouteName.TemplateRoute.ColorPicker) {
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.ColorPicker)
         }
+
+        ItemButton(text = RouteName.TemplateRoute.Banner) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.Banner)
+        }
     }
 }
