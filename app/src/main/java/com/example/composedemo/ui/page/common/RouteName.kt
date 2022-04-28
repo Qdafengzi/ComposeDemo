@@ -1,5 +1,7 @@
 package com.example.composedemo.ui.page.common
 
+import com.example.composedemo.ui.widget.StaggeredGridScope
+
 object RouteName {
     const val HOME = "home"
     const val WIDGETS = "Widgets"
@@ -23,6 +25,7 @@ object RouteName {
         const val DebouncedClickable = "DebouncedClickable"
         const val ColorPicker = "ColorPicker"
         const val Banner = "Banner"
+        const val StaggeredGridCompare = "StaggeredGridCompare"
 
     }
 

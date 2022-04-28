@@ -69,5 +69,9 @@ fun TemplatePage(
         ItemButton(text = RouteName.TemplateRoute.Banner) {
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.Banner)
         }
+
+        ItemButton(text = RouteName.TemplateRoute.StaggeredGridCompare) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.StaggeredGridCompare)
+        }
     }
 }

@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.paging.PagingData
+import androidx.paging.PagingDataDiffer
 import androidx.paging.compose.LazyPagingItems
 import kotlinx.coroutines.flow.Flow
 
@@ -137,7 +139,8 @@ fun LazyStaggeredVerticalGrid(
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
-    content: LazyStaggeredGridScope.() -> Unit
+    content: LazyStaggeredGridScope.() -> Unit,
+    headContent: @Composable () -> Unit
 ) {
     val scope = LazyStaggeredVerticalGridImpl()
     scope.apply(content)
@@ -152,7 +155,8 @@ fun LazyStaggeredVerticalGrid(
                     maxColumnWidth = maxWidth,
                     state = state,
                     contentPadding = contentPadding,
-                    scope = scope
+                    scope = scope,
+                    headContent = headContent
                 )
             }
         is GridCells.Adaptive ->
@@ -165,7 +169,8 @@ fun LazyStaggeredVerticalGrid(
                     maxColumnWidth = maxWidth,
                     state = state,
                     contentPadding = contentPadding,
-                    scope = scope
+                    scope = scope,
+                    headContent = headContent
                 )
             }
     }
@@ -180,6 +185,7 @@ private fun FixedStaggeredVerticalLazyGrid(
     state: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
     scope: LazyStaggeredVerticalGridImpl,
+    headContent: @Composable () -> Unit
 ) {
     val rows = (scope.totalSize + nColumns - 1) / nColumns
     LazyColumn(
@@ -187,6 +193,11 @@ private fun FixedStaggeredVerticalLazyGrid(
         state = state,
         contentPadding = contentPadding
     ) {
+        item {
+            Box(modifier = Modifier.fillMaxWidth()) {
+                headContent()
+            }
+        }
         item {
             Row {
                 for (columnIndex in 0 until nColumns) {
@@ -295,7 +306,6 @@ internal class IntervalList<T> {
 
             if (middleValue < value) {
                 left = middle + 1
-
                 // Verify that the left will not be bigger than our value
                 if (value < list[left].startIndex) {
                     return middle

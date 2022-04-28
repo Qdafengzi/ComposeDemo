@@ -237,6 +237,9 @@ fun AppScaffold() {
                 composable(route = RouteName.TemplateRoute.Banner) {
                     BannerPage(navCtrl, RouteName.TemplateRoute.Banner)
                 }
+                composable(route = RouteName.TemplateRoute.StaggeredGridCompare) {
+                    StaggeredGridCompare(navCtrl, RouteName.TemplateRoute.StaggeredGridCompare)
+                }
 
 
                 //widgets
