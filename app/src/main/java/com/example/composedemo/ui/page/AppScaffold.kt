@@ -241,6 +241,22 @@ fun AppScaffold() {
                     StaggeredGridCompare(navCtrl, RouteName.TemplateRoute.StaggeredGridCompare)
                 }
 
+                composable(route = RouteName.TemplateRoute.ChannelPage) {
+                    ChannelPage(navCtrl, RouteName.TemplateRoute.ChannelPage)
+                }
+
+                composable(route = RouteName.TemplateRoute.GridView) {
+                    GridViewPage(navCtrl, RouteName.TemplateRoute.GridView)
+                }
+
+                composable(route = RouteName.TemplateRoute.NetError) {
+                    NetErrorPage(navCtrl, RouteName.TemplateRoute.NetError)
+                }
+
+                composable(route = RouteName.TemplateRoute.SupportScreenSize) {
+                    SupportScreenSizePage(navCtrl, RouteName.TemplateRoute.SupportScreenSize)
+                }
+
 
                 //widgets
                 composable(route = RouteName.WidgetsRoute.KeyboardPage) {

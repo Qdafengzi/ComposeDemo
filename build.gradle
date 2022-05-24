@@ -9,6 +9,7 @@ buildscript {
         maven {
             url "https://jitpack.io"
         }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.3'

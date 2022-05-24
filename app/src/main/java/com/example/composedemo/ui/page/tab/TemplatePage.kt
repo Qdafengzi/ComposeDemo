@@ -1,13 +1,17 @@
 package com.example.composedemo.ui.page.tab
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.composedemo.ui.page.common.RouteName
+import com.example.composedemo.ui.page.template.ChannelPage
 import com.example.composedemo.ui.widget.ItemButton
 import com.example.composedemo.utils.RouteUtils
 import com.google.accompanist.flowlayout.FlowRow
@@ -19,11 +23,11 @@ fun TemplatePage(
     navCtrl: NavHostController,
     scaffoldState: ScaffoldState,
 ) {
-    FlowRow(
+    Column(
         modifier = Modifier
+            .verticalScroll(state = rememberScrollState(), enabled = true)
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp),
-        mainAxisSpacing = 10.dp
+            .padding(start = 10.dp, end = 10.dp, bottom = 80.dp),
     ) {
         // column contents
         ItemButton(text = RouteName.TemplateRoute.CameraPage) {
@@ -72,6 +76,22 @@ fun TemplatePage(
 
         ItemButton(text = RouteName.TemplateRoute.StaggeredGridCompare) {
             RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.StaggeredGridCompare)
+        }
+
+        ItemButton(text =  RouteName.TemplateRoute.ChannelPage) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.ChannelPage)
+        }
+
+        ItemButton(text =  RouteName.TemplateRoute.GridView) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.GridView)
+        }
+
+        ItemButton(text =  RouteName.TemplateRoute.NetError) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.NetError)
+        }
+
+        ItemButton(text =  RouteName.TemplateRoute.SupportScreenSize) {
+            RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.SupportScreenSize)
         }
     }
 }

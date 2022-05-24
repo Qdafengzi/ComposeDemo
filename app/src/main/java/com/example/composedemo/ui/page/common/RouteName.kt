@@ -26,6 +26,10 @@ object RouteName {
         const val ColorPicker = "ColorPicker"
         const val Banner = "Banner"
         const val StaggeredGridCompare = "StaggeredGridCompare"
+        const val ChannelPage = "ChannelPage"
+        const val GridView = "GridView"
+        const val NetError = "NetError"
+        const val SupportScreenSize = "SupportScreenSize"
 
     }
 
