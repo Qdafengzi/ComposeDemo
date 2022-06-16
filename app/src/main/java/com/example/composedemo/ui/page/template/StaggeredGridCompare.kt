@@ -2,7 +2,7 @@ package com.example.composedemo.ui.page.template
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -22,7 +22,6 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.composedemo.flinger.StockFlingBehaviours
 import com.example.composedemo.ui.widget.CommonToolbar
-import com.example.composedemo.ui.widget.LazyStaggeredVerticalGrid
 import com.example.composedemo.ui.widget.StaggeredVerticalGrid
 import com.example.composedemo.utils.XLogger
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -73,7 +72,7 @@ fun getStaggeredList(): MutableList<StaggeredItem> {
 fun StaggeredGridCompare(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
         val scope = rememberCoroutineScope()
-        val pages = listOf("One", "Two", "Three")
+        val pages = listOf("One", "Two")
         val pagerState = rememberPagerState()
 
         TabRow(
@@ -110,9 +109,6 @@ fun StaggeredGridCompare(navCtrl: NavHostController, title: String) {
                 }
                 1 -> {
                     ListTwo()
-                }
-                2 -> {
-                    ListThree()
                 }
             }
         }
@@ -160,24 +156,6 @@ fun ListTwo() {
 
         }
     }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun ListThree() {
-    val list = getStaggeredList()
-    LazyStaggeredVerticalGrid(
-        modifier = Modifier.fillMaxWidth(),
-        cells = GridCells.Fixed(2),
-        content = {
-            items(count = list.size) {
-                val item = list[it]
-                StaggeredItem(item)
-            }
-        },
-        headContent = {
-
-        })
 }
 
 

@@ -17,16 +17,9 @@ class Dimensions {
         }
 
         @Composable
-        fun height(value:Float):Float{
+        fun height(value:Float):Float {
             val config = LocalConfiguration.current
-            return (value*config.screenHeightDp)/100
-        }
-
-        @Composable
-        fun fontSize(value:Float):Float{
-            val config = LocalConfiguration.current
-            XLogger.d("----->fontScale:${config.fontScale}")
-            return  value*config.fontScale
+            return (value * config.screenHeightDp) / 100
         }
     }
 }

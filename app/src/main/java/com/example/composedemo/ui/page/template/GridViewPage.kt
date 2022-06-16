@@ -3,9 +3,6 @@ package com.example.composedemo.ui.page.template
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.GridItemSpan
-import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,12 +26,12 @@ fun GridViewPage(navCtrl: NavHostController, title: String) {
         list.add(it.toChar().toString())
     }
     CommonToolbar(navCtrl, title) {
-        LazyVerticalGrid(
+        androidx.compose.foundation.lazy.grid.LazyVerticalGrid(
             contentPadding = PaddingValues(horizontal = 4.dp),
-            cells = GridCells.Fixed(3),
+            columns = androidx.compose.foundation.lazy.grid.GridCells.Fixed(3),
             content = {
                 list.forEachIndexed() { _, item ->
-                    item(span = { GridItemSpan(1) }) {
+                    item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(1) }) {
                         WordItem(word = item)
                     }
                 }

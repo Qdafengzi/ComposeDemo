@@ -17,7 +17,7 @@ import com.example.composedemo.ui.theme.AppTheme
 @Composable
 fun ItemButton(text: String, modifier: Modifier = Modifier, onclick: () -> Unit) {
     Button(modifier = modifier
-        .padding(start = 20.dp,end = 20.dp,top = 4.dp)
+        .padding(start = 20.dp, end = 20.dp, top = 10.dp)
         .fillMaxWidth(),
         shape = RoundedCornerShape(6.dp),
         colors = ButtonDefaults.buttonColors(
@@ -27,6 +27,13 @@ fun ItemButton(text: String, modifier: Modifier = Modifier, onclick: () -> Unit)
         onClick = {
             onclick.invoke()
         }) {
-        Text(text = text, color = Color.White,textAlign = TextAlign.Start)
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 10.dp),
+            text = text,
+            color = Color.White,
+            textAlign = TextAlign.Start
+        )
     }
 }

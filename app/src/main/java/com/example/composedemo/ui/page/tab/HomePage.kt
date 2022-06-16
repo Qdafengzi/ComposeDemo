@@ -31,7 +31,7 @@ fun HomePage(
 
     LazyColumn(modifier = Modifier
         .fillMaxSize()
-        .padding(bottom = 50.dp),
+        .padding(bottom = 80.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         content = {
         item {

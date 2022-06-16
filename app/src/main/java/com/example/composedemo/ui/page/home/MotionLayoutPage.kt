@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.compose.ConstraintSet
+import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.layoutId
 import androidx.navigation.NavHostController
@@ -31,6 +32,7 @@ fun MotionLayoutPage(navCtrl: NavHostController, title: String) {
 }
 
 
+@OptIn(ExperimentalMotionApi::class)
 @Composable
 fun MotionLayoutOne() {
     var animateToEnd by remember { mutableStateOf(false) }

@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
@@ -26,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeDemo">
 
+<!--            android:name=".ui.activity.StrokeOrderActivity"-->
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
@@ -39,64 +43,9 @@
         </activity>
 
 
-        <activity
-            android:name=".ui.activity.ModifierActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.ImageCardActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.FontActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-        <activity
-            android:name=".ui.activity.StateActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.SnackBarActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.ListActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.ConstrainLayoutActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.ButtonActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ComposeDemo.NoActionBar" />
-
-        <activity android:name=".ui.activity.WebViewActivity" />
-        <activity android:name=".ui.activity.GridListActivity" />
-        <activity android:name=".ui.activity.BezierActivity" />
-        <activity android:name=".ui.activity.CanvasActivity" />
-        <activity android:name=".ui.activity.ComplexActivity" />
-        <activity android:name=".ui.activity.SmartRefreshActivity" />
         <activity android:name=".ui.activity.XmlAndComposeActivity" />
-        <activity android:name=".ui.activity.ComposeAndXmlActivity" />
-        <activity android:name=".ui.activity.WechatFriendsCircleActivity" />
-        <activity android:name=".ui.activity.ComposeCameraXActivity" />
-        <activity android:name=".ui.activity.PermissionActivity" />
         <activity android:name=".ui.activity.MainActivityNewActivity" />
         <activity android:name=".ui.activity.BottomNavigationActivity" />
-        <activity android:name=".ui.activity.ClockActivity" />
-        <activity android:name=".ui.activity.NewUiStyleActivity" />
-        <activity android:name=".ui.activity.JDongActivity" />
-        <activity android:name=".ui.activity.LazyColumnForIndexedActivity" />
-        <activity android:name=".ui.activity.CanvasLineActivity" />
-        <activity android:name=".ui.activity.MlKitActivity" />
 
     </application>
 

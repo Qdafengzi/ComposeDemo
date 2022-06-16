@@ -1,39 +1,42 @@
 package com.example.composedemo.ui.page.anim
 
-import android.util.Log
 import androidx.compose.animation.*
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.Image
+import androidx.compose.animation.core.Easing
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInteropFilter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavHostController
 import com.example.composedemo.R
 import com.example.composedemo.state.ScrollViewModel
 import com.example.composedemo.ui.widget.CommonToolbar
+import com.example.composedemo.utils.XLogger
 import com.google.accompanist.pager.ExperimentalPagerApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -43,33 +46,29 @@ import kotlinx.coroutines.launch
 
 val CustomEasing = Easing { fraction -> fraction * fraction }
 
-
-@OptIn(
-    ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class,
-    ExperimentalPagerApi::class
-)
 @Composable
 fun MarqueePage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
-//        Banner1()
+        Banner1()
+
 //        AnimateIncrementDecrementExample()
 //        Banner2()
 
-        Row(modifier = Modifier.fillMaxSize()) {
-            repeat(4) {
-                Box(modifier = Modifier.offset(x = 10.dp)) {
-                    Image(
-                        painter = painterResource(id = R.mipmap.coil_icon1),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .size(34.dp)
-                            .clip(CircleShape)
-                            .border(width = 1.dp, color = Color.Red, CircleShape),
-                    )
-                }
-            }
-        }
+//        Row(modifier = Modifier.fillMaxSize()) {
+//            repeat(4) {
+//                Box(modifier = Modifier.offset(x = 10.dp)) {
+//                    Image(
+//                        painter = painterResource(id = R.mipmap.coil_icon1),
+//                        contentDescription = null,
+//                        contentScale = ContentScale.Crop,
+//                        modifier = Modifier
+//                            .size(34.dp)
+//                            .clip(CircleShape)
+//                            .border(width = 1.dp, color = Color.Red, CircleShape),
+//                    )
+//                }
+//            }
+//        }
 
 
 //        val pagerState = rememberPagerState()
@@ -141,7 +140,6 @@ fun MarqueePage(navCtrl: NavHostController, title: String) {
 }
 
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Banner2(viewModel: ScrollViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
     Column(
@@ -162,60 +160,56 @@ fun Banner1(viewModel: ScrollViewModel = androidx.lifecycle.viewmodel.compose.vi
     val list = viewModel.list
 
     val state = rememberLazyListState()
-
-
-//    val value by animateFloatAsState(
-//        targetValue = 100f,
-//        animationSpec = infiniteRepeatable(
-//            animation = tween(durationMillis = 300)
-//        )
-//    )
-
-    var index = 1
     val px = LocalDensity.current.run { 32.dp.toPx() }
-    val offset = animateIntOffsetAsState(targetValue = IntOffset(0, px.toInt()),
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1000)
-        ), finishedListener = {
-            Log.d("finish", "---->${it.y}}")
+    var time by remember {
+        mutableStateOf(0L)
+    }
+
+    var stop = false
+
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(Unit) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_PAUSE->{
+                    stop = true
+                }
+                Lifecycle.Event.ON_RESUME -> {
+                    stop = false
+                    time = System.currentTimeMillis()
+                }
+                else -> {
+
+                }
+            }
         }
-    )
-
-
-    LaunchedEffect(Unit) {
-
-
-        scope.launch {
-//                delay(2000)
-//            index +=1
-//            state.animateScrollToItem(index)
-            state.animateScrollBy(
-                px, infiniteRepeatable(
-                    animation = tween(durationMillis = 1000)
-                )
-            )
-
-
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
 
 
-    Log.d("--------", "0000000")
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    LaunchedEffect(key1= time, key2 = stop) {
+        scope.launch {
+            delay(1000)
+            state.animateScrollBy(px)
+            if(!stop){
+                time = System.currentTimeMillis()
+            }
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.5f)
                 .height(((24 + 8) * 4).dp)
-                .offset(offset = {
-                    offset.value
-                })
                 .pointerInteropFilter {
                     true
                 },
-//            state = state,
+            state = state,
             content = {
-//                items(count = if (list.size > 0) Int.MAX_VALUE else 0) { index ->
-//                    val data = list[index % list.size]
                 items(count = list.size) { index ->
                     val data = list[index]
                     Box(
@@ -227,10 +221,13 @@ fun Banner1(viewModel: ScrollViewModel = androidx.lifecycle.viewmodel.compose.vi
                                 color = Color.LightGray,
                                 shape = RoundedCornerShape(9.dp)
                             ),
+                        contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
                             data,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 10.dp),
                             fontSize = 12.sp,
                             color = Color.White
                         )
