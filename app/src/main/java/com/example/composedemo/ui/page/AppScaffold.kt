@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composedemo.ui.page.anim.Aim1Page
 import com.example.composedemo.ui.page.anim.MarqueePage
 import com.example.composedemo.ui.page.anim.MoreText
+import com.example.composedemo.ui.page.anim.TouchAnimationPage
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
 import com.example.composedemo.ui.page.home.*
@@ -274,6 +275,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.MoreText) {
                     MoreText(navCtrl, RouteName.AimRoute.MoreText)
+                }
+
+                composable(route = RouteName.AimRoute.TouchAnimation) {
+                    TouchAnimationPage(navCtrl, RouteName.AimRoute.TouchAnimation)
                 }
 
 

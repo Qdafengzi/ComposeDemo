@@ -37,6 +37,7 @@ object RouteName {
         const val MarqueePage = "MarqueePage"
         const val Aim1 = "Aim1"
         const val MoreText = "MoreText"
+        const val TouchAnimation = "TouchAnimation"
     }
 
 
