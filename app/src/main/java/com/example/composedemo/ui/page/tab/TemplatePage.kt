@@ -121,5 +121,11 @@ fun TemplatePage(
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.CanvasPageTwo) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.CanvasPageTwo)
+            }
+        }
+
     }
 }

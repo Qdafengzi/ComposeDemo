@@ -40,6 +40,10 @@ fun AnimPage(
         ItemButton(text = RouteName.AimRoute.TouchAnimation) {
             RouteUtils.navTo(navCtrl, RouteName.AimRoute.TouchAnimation)
         }
+
+        ItemButton(text = RouteName.AimRoute.TransformPage) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.TransformPage)
+        }
     }
 
 }

@@ -30,6 +30,7 @@ object RouteName {
         const val GridView = "GridView"
         const val NetError = "NetError"
         const val SupportScreenSize = "SupportScreenSize"
+        const val CanvasPageTwo = "CanvasPageTwo"
 
     }
 
@@ -38,6 +39,7 @@ object RouteName {
         const val Aim1 = "Aim1"
         const val MoreText = "MoreText"
         const val TouchAnimation = "TouchAnimation"
+        const val TransformPage = "TransformPage"
     }
 
 

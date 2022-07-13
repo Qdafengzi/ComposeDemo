@@ -1,5 +1,6 @@
 package com.example.composedemo.ui.page
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -16,12 +17,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.composedemo.ui.page.anim.Aim1Page
-import com.example.composedemo.ui.page.anim.MarqueePage
-import com.example.composedemo.ui.page.anim.MoreText
-import com.example.composedemo.ui.page.anim.TouchAnimationPage
+import com.example.composedemo.ui.page.anim.*
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
+import com.example.composedemo.ui.page.common.RouteName.TemplateRoute.CanvasPageTwo
 import com.example.composedemo.ui.page.home.*
 import com.example.composedemo.ui.page.tab.AnimPage
 import com.example.composedemo.ui.page.tab.HomePage
@@ -35,6 +34,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.R)
 @InternalCoroutinesApi
 @ExperimentalPermissionsApi
@@ -60,7 +60,7 @@ fun AppScaffold() {
                 RouteName.Template -> BottomNavBarView(navCtrl = navCtrl)
             }
         },
-        content = {
+        content = {_->
             NavHost(
                 modifier = Modifier.background(MaterialTheme.colors.background),
                 navController = navCtrl,
@@ -257,6 +257,11 @@ fun AppScaffold() {
                 composable(route = RouteName.TemplateRoute.SupportScreenSize) {
                     SupportScreenSizePage(navCtrl, RouteName.TemplateRoute.SupportScreenSize)
                 }
+                composable(route = RouteName.TemplateRoute.CanvasPageTwo) {
+                    CanvasPageTwo(navCtrl, RouteName.TemplateRoute.CanvasPageTwo)
+
+                }
+
 
 
                 //widgets
@@ -279,6 +284,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.TouchAnimation) {
                     TouchAnimationPage(navCtrl, RouteName.AimRoute.TouchAnimation)
+                }
+
+                composable(route = RouteName.AimRoute.TransformPage) {
+                    TransformPage(navCtrl, RouteName.AimRoute.TransformPage)
                 }
 
 
