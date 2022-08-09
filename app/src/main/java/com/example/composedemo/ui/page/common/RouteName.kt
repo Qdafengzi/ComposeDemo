@@ -31,6 +31,7 @@ object RouteName {
         const val NetError = "NetError"
         const val SupportScreenSize = "SupportScreenSize"
         const val CanvasPageTwo = "CanvasPageTwo"
+        const val WebView = "WebView"
 
     }
 

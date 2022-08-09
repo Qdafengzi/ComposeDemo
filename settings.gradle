@@ -10,3 +10,4 @@ rootProject.name = "ComposeDemo"
 include ':app'
 include ':compose_refresh'
 include ':glpanorama'
+include ':benchmark'

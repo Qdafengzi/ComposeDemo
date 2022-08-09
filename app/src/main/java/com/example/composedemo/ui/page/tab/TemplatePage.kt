@@ -127,5 +127,12 @@ fun TemplatePage(
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.WebView) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.WebView)
+            }
+        }
+
+
     }
 }

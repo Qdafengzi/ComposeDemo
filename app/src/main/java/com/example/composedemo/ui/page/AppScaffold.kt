@@ -262,6 +262,10 @@ fun AppScaffold() {
 
                 }
 
+                composable(route = RouteName.TemplateRoute.WebView) {
+                    WebViewPageNew(navCtrl, RouteName.TemplateRoute.WebView)
+                }
+
 
 
                 //widgets
