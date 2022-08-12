@@ -16,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.*
@@ -37,6 +38,7 @@ import com.example.composedemo.ui.theme.Co_333333
 import com.example.composedemo.ui.widget.CommonToolbar
 
 
+@OptIn(ExperimentalTextApi::class)
 @Composable
 fun TextPage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
@@ -262,7 +264,32 @@ fun TextPage(navCtrl: NavHostController, title: String) {
                     onValueChange = { content = it },
                     label = { Text("Label") }
                 )
+
+
+                val brush = Brush.linearGradient(colors = listOf(Color.Magenta,Color.Cyan,Color.Red))
+
+                val buildAnnotatedString = buildAnnotatedString {
+                    withStyle(
+                        SpanStyle(
+                            brush = brush,
+                            alpha = .5f
+                        )
+                    ) {
+                        append("Text in ")
+                    }
+                    withStyle(
+                        SpanStyle(
+                            brush = brush,
+                            alpha = 1f
+                        )
+                    ) {
+                        append("Compose ❤️")
+                    }
+                }
+                Text(modifier = Modifier.padding(top = 10.dp),text = buildAnnotatedString, fontSize = 16.sp, fontWeight = FontWeight.Medium)
             }
+
+
         }
     }
 

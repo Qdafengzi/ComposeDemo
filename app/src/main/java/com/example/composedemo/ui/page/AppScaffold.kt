@@ -5,6 +5,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
@@ -12,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -20,7 +21,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composedemo.ui.page.anim.*
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
-import com.example.composedemo.ui.page.common.RouteName.TemplateRoute.CanvasPageTwo
 import com.example.composedemo.ui.page.home.*
 import com.example.composedemo.ui.page.tab.AnimPage
 import com.example.composedemo.ui.page.tab.HomePage
@@ -28,8 +28,6 @@ import com.example.composedemo.ui.page.tab.TemplatePage
 import com.example.composedemo.ui.page.tab.WidgetsPage
 import com.example.composedemo.ui.page.template.*
 import com.example.composedemo.ui.page.widgets.KeyboardPage
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi

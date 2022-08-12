@@ -24,9 +24,6 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavHostController
 import com.example.composedemo.ui.widget.CommonToolbar
-import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.navigationBarsWithImePadding
-import com.google.accompanist.insets.statusBarsPadding
 
 
 @RequiresApi(Build.VERSION_CODES.R)
@@ -45,117 +42,115 @@ fun KeyboardPage(navCtrl: NavHostController, title: String) {
     }
 
     CommonToolbar(navCtrl, title) {
-        ProvideWindowInsets {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .imePadding()
+        ) {
+            val text = remember {
+                mutableStateOf(TextFieldValue())
+            }
+
+            TextField(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .statusBarsPadding()
-                    .navigationBarsWithImePadding()
-            ) {
-                val text = remember {
-                    mutableStateOf(TextFieldValue())
+                    .fillMaxWidth(),
+                value = text.value,
+                onValueChange = { text.value = it },
+                placeholder = {
+                    Text(text = "请输入内容", color = Color.LightGray)
                 }
 
-                TextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = text.value,
-                    onValueChange = { text.value = it },
-                    placeholder = {
-                        Text(text = "请输入内容", color = Color.LightGray)
-                    }
-
-                )
-                Spacer(Modifier.weight(1f))
-                if (keyboardStatus) {
-                    Box(modifier = Modifier.fillMaxWidth()) {
-                        Row(
+            )
+            Spacer(Modifier.weight(1f))
+            if (keyboardStatus) {
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.DarkGray)
+                            .padding(top = 10.dp, bottom = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = "😀",
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .background(color = Color.DarkGray)
-                                .padding(top = 10.dp, bottom = 10.dp),
-                            horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Text(
-                                text = "😀",
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        text.value =
-                                            text.value.copy(
-                                                text = text.value.text + "😀",
-                                                selection = TextRange((text.value.text + "😀").length)
-                                            )
-                                    },
-                                textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = "🤣",
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        text.value =
-                                            text.value.copy(
-                                                text = text.value.text + "🤣",
-                                                selection = TextRange((text.value.text + "🤣").length)
-                                            )
-                                    },
-                                textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = "😇",
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        text.value =
-                                            text.value.copy(
-                                                text = text.value.text + "😇",
-                                                selection = TextRange((text.value.text + "😇").length)
-                                            )
-                                    },
-                                textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = "🐺",
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        text.value =
-                                            text.value.copy(
-                                                text = text.value.text + "🐺",
-                                                selection = TextRange((text.value.text + "🐺").length)
-                                            )
-                                    },
-                                textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = "🐽",
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        text.value =
-                                            text.value.copy(
-                                                text = text.value.text + "🐽",
-                                                selection = TextRange((text.value.text + "🐽").length)
-                                            )
-                                    },
-                                textAlign = TextAlign.Center,
-                            )
-                            Text(
-                                text = "🐸",
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        text.value = text.value.copy(
-                                            text = text.value.text + "🐸",
-                                            selection = TextRange((text.value.text + "🐸").length),
+                                .weight(1f)
+                                .clickable {
+                                    text.value =
+                                        text.value.copy(
+                                            text = text.value.text + "😀",
+                                            selection = TextRange((text.value.text + "😀").length)
                                         )
-                                    },
-                                textAlign = TextAlign.Center,
-                            )
-                        }
+                                },
+                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = "🤣",
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    text.value =
+                                        text.value.copy(
+                                            text = text.value.text + "🤣",
+                                            selection = TextRange((text.value.text + "🤣").length)
+                                        )
+                                },
+                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = "😇",
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    text.value =
+                                        text.value.copy(
+                                            text = text.value.text + "😇",
+                                            selection = TextRange((text.value.text + "😇").length)
+                                        )
+                                },
+                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = "🐺",
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    text.value =
+                                        text.value.copy(
+                                            text = text.value.text + "🐺",
+                                            selection = TextRange((text.value.text + "🐺").length)
+                                        )
+                                },
+                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = "🐽",
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    text.value =
+                                        text.value.copy(
+                                            text = text.value.text + "🐽",
+                                            selection = TextRange((text.value.text + "🐽").length)
+                                        )
+                                },
+                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = "🐸",
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    text.value = text.value.copy(
+                                        text = text.value.text + "🐸",
+                                        selection = TextRange((text.value.text + "🐸").length),
+                                    )
+                                },
+                            textAlign = TextAlign.Center,
+                        )
                     }
                 }
             }
