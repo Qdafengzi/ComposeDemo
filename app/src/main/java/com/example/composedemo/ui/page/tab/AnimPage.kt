@@ -44,6 +44,10 @@ fun AnimPage(
         ItemButton(text = RouteName.AimRoute.TransformPage) {
             RouteUtils.navTo(navCtrl, RouteName.AimRoute.TransformPage)
         }
+
+        ItemButton(text = RouteName.AimRoute.VoteAnimation) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.VoteAnimation)
+        }
     }
 
 }

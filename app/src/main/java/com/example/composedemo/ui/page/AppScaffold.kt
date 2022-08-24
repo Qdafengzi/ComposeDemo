@@ -291,6 +291,9 @@ fun AppScaffold() {
                 composable(route = RouteName.AimRoute.TransformPage) {
                     TransformPage(navCtrl, RouteName.AimRoute.TransformPage)
                 }
+                composable(route = RouteName.AimRoute.VoteAnimation) {
+                    VoteAnimation(navCtrl, RouteName.AimRoute.VoteAnimation)
+                }
 
 
                 //WebView

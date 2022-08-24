@@ -41,6 +41,7 @@ object RouteName {
         const val MoreText = "MoreText"
         const val TouchAnimation = "TouchAnimation"
         const val TransformPage = "TransformPage"
+        const val VoteAnimation = "VoteAnimation"
     }
 
 
