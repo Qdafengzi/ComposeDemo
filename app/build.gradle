@@ -29,11 +29,10 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
         freeCompilerArgs+="-Xopt-in=kotlin.RequiresOptIn"
     }
     buildFeatures {
@@ -48,7 +47,7 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
@@ -71,7 +70,7 @@ dependencies {
     // CameraX View class
     implementation 'androidx.camera:camera-view:1.2.0-alpha02'
     //权限
-    def accompanist_version = '0.25.0'
+    def accompanist_version = '0.25.1'
     implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager:${accompanist_version}"
     implementation "com.google.accompanist:accompanist-pager-indicators:${accompanist_version}"
@@ -98,7 +97,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "com.google.accompanist:accompanist-flowlayout:0.24.8-beta"
 
-    api("io.coil-kt:coil-compose:2.1.0")
+    api("io.coil-kt:coil-compose:2.2.0")
 
     // = "com.github.iamjosephmj:flinger:${Versions.flinger}"
     //implementation 'com.github.iamjosephmj:flinger:1.1.1'
@@ -108,7 +107,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.0'
     // To recognize Chinese script
     implementation 'com.google.mlkit:text-recognition-chinese:16.0.0-beta4'
-    implementation "com.google.code.gson:gson:2.9.0"
+    implementation "com.google.code.gson:gson:2.9.1"
 
     implementation "androidx.profileinstaller:profileinstaller:1.2.0"
 

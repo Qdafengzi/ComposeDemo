@@ -16,14 +16,18 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavHostController
 import com.example.composedemo.ui.widget.CommonToolbar
+import com.example.composedemo.utils.XLogger
 
 
 @RequiresApi(Build.VERSION_CODES.R)
@@ -63,6 +67,32 @@ fun KeyboardPage(navCtrl: NavHostController, title: String) {
                 }
 
             )
+
+            var keyBoardShow by remember {
+                mutableStateOf(false)
+            }
+
+            val isVisible = androidx.compose.foundation.layout.WindowInsets.ime.getBottom(LocalDensity.current) > 0
+            LaunchedEffect(key1 = isVisible) {
+                keyBoardShow = if (isVisible) {
+                    //hide fab button
+                    XLogger.d("-------->展示")
+                    true
+                } else {
+                    //show fab button
+                    XLogger.d("-------->隐藏")
+                    false
+                }
+            }
+
+            Text(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp),
+                text = "键盘的状态:${if (keyBoardShow) "弹出" else "隐藏"}",
+                color = Color.Black,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium)
+
             Spacer(Modifier.weight(1f))
             if (keyboardStatus) {
                 Box(modifier = Modifier.fillMaxWidth()) {
