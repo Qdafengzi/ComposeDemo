@@ -48,6 +48,18 @@ fun AnimPage(
         ItemButton(text = RouteName.AimRoute.VoteAnimation) {
             RouteUtils.navTo(navCtrl, RouteName.AimRoute.VoteAnimation)
         }
+
+        ItemButton(text = RouteName.AimRoute.MotionLayoutAnimation) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.MotionLayoutAnimation)
+        }
+
+        ItemButton(text = RouteName.AimRoute.MotionLayoutAnimationTwo) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.MotionLayoutAnimationTwo)
+        }
+
+        ItemButton(text = RouteName.AimRoute.MotionLayoutAnimation3) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.MotionLayoutAnimation3)
+        }
     }
 
 }

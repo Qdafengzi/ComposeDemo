@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composedemo.ui.page.anim.*
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
+import com.example.composedemo.ui.page.common.RouteName.AimRoute.MotionLayoutAnimationTwo
 import com.example.composedemo.ui.page.home.*
 import com.example.composedemo.ui.page.tab.AnimPage
 import com.example.composedemo.ui.page.tab.HomePage
@@ -293,6 +294,18 @@ fun AppScaffold() {
                 }
                 composable(route = RouteName.AimRoute.VoteAnimation) {
                     VoteAnimation(navCtrl, RouteName.AimRoute.VoteAnimation)
+                }
+
+                composable(route = RouteName.AimRoute.MotionLayoutAnimation) {
+                    MotionLayoutAnimationOne(navCtrl, RouteName.AimRoute.MotionLayoutAnimation)
+                }
+
+                composable(route = RouteName.AimRoute.MotionLayoutAnimationTwo) {
+                    MotionLayoutAnimationTwo(navCtrl, RouteName.AimRoute.MotionLayoutAnimationTwo)
+                }
+
+                composable(route = RouteName.AimRoute.MotionLayoutAnimation3) {
+                    MotionLayoutAnimation3(navCtrl, RouteName.AimRoute.MotionLayoutAnimation3)
                 }
 
 

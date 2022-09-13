@@ -1,7 +1,5 @@
 package com.example.composedemo.ui.page.common
 
-import com.example.composedemo.ui.widget.StaggeredGridScope
-
 object RouteName {
     const val HOME = "home"
     const val WIDGETS = "Widgets"
@@ -42,6 +40,9 @@ object RouteName {
         const val TouchAnimation = "TouchAnimation"
         const val TransformPage = "TransformPage"
         const val VoteAnimation = "VoteAnimation"
+        const val MotionLayoutAnimation = "MotionLayoutAnimation"
+        const val MotionLayoutAnimationTwo = "MotionLayoutAnimationTwo"
+        const val MotionLayoutAnimation3 = "MotionLayoutAnimation3"
     }
 
 
