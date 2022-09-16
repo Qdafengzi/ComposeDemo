@@ -43,6 +43,7 @@ object RouteName {
         const val MotionLayoutAnimation = "MotionLayoutAnimation"
         const val MotionLayoutAnimationTwo = "MotionLayoutAnimationTwo"
         const val MotionLayoutAnimation3 = "MotionLayoutAnimation3"
+        const val Recomposition = "Recomposition"
     }
 
 

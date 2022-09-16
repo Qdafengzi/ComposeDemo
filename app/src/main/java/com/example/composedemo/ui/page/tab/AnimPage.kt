@@ -60,6 +60,10 @@ fun AnimPage(
         ItemButton(text = RouteName.AimRoute.MotionLayoutAnimation3) {
             RouteUtils.navTo(navCtrl, RouteName.AimRoute.MotionLayoutAnimation3)
         }
+
+        ItemButton(text = RouteName.AimRoute.Recomposition) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.Recomposition)
+        }
     }
 
 }

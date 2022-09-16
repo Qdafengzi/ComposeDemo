@@ -308,6 +308,10 @@ fun AppScaffold() {
                     MotionLayoutAnimation3(navCtrl, RouteName.AimRoute.MotionLayoutAnimation3)
                 }
 
+                composable(route = RouteName.AimRoute.Recomposition) {
+                    RecompositionExp(navCtrl, RouteName.AimRoute.Recomposition)
+                }
+
 
                 //WebView
 //                composable(route = RouteName.WEB_VIEW + "/{webData}",
