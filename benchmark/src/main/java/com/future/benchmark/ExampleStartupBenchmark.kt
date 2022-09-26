@@ -35,5 +35,6 @@ class ExampleStartupBenchmark {
     ) {
         pressHome()
         startActivityAndWait()
+        device.waitForIdle()
     }
 }
