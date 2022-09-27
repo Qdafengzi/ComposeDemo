@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "32.0.0"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
 
     defaultConfig {
         applicationId "com.example.composedemo"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -46,8 +46,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.compose.ui:ui:$compose_version"
     api "androidx.compose.ui:ui-tooling-preview:$compose_version"
@@ -85,15 +85,21 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha03"
     implementation("androidx.navigation:navigation-compose:2.5.1")
-    api("androidx.lifecycle:lifecycle-common-java8:2.5.1")
+
+
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    def lifecycle = "2.5.1"
+    api("androidx.lifecycle:lifecycle-common-java8:${lifecycle}")
     // viewModel
-    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    api("androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}")
     // liveData
-    api("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
-    api("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    api("androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}")
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:${lifecycle}'
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:${lifecycle}")
+    api("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}")
+
     api("androidx.palette:palette-ktx:1.0.0")
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+
     implementation "com.airbnb.android:lottie-compose:5.2.0"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "com.google.accompanist:accompanist-flowlayout:0.24.8-beta"

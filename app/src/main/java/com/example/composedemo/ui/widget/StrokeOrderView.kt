@@ -185,24 +185,25 @@ class StrokeOrderView : View {
         val animator = createAnimation()
         animator.start()
         animator.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 Log.d("zuo", "anim end")
             }
 
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
             }
 
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
                 Log.d("zuo", "anim start")
                 progress = 0F
                 currIndex = 0
             }
 
-            override fun onAnimationRepeat(animation: Animator?) {
+            override fun onAnimationRepeat(animation: Animator) {
                 Log.d("zuo", "anim repeat")
                 progress = 0F
                 currIndex = 0
             }
+
         })
     }
 

@@ -19,24 +19,28 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
-@OptIn(
-    ExperimentalPermissionsApi::class,
-    ExperimentalComposeUiApi::class,
-    ExperimentalFoundationApi::class,
-    ExperimentalPagerApi::class,
-    InternalCoroutinesApi::class,
-)
 class MainActivity : androidx.activity.ComponentActivity() {
+
+    @OptIn(InternalCoroutinesApi::class, ExperimentalPermissionsApi::class,
+        ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class,
+        ExperimentalPagerApi::class
+    )
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             AppTheme() {
                 AppScaffold()
             }
+
         }
 
+        //getImageData()
 
+    }
+
+    fun getImageData() {
         val IMAGE_PROJECTION = arrayOf(
             MediaStore.Images.Media.DATA,
             MediaStore.Images.Media.DATE_MODIFIED,

@@ -21,7 +21,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composedemo.ui.page.anim.*
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
-import com.example.composedemo.ui.page.common.RouteName.AimRoute.MotionLayoutAnimationTwo
 import com.example.composedemo.ui.page.home.*
 import com.example.composedemo.ui.page.tab.AnimPage
 import com.example.composedemo.ui.page.tab.HomePage
@@ -189,6 +188,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.HomeRoute.Goods3dImagePageThree) {
                     Goods3dImagePageThree(navCtrl, RouteName.HomeRoute.Goods3dImagePageThree)
+                }
+
+                composable(route = RouteName.HomeRoute.SaveHandle) {
+                    SaveHandlePage(navCtrl, RouteName.HomeRoute.SaveHandle)
                 }
 
                 //TemplateRoute
