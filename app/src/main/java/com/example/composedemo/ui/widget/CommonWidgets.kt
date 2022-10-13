@@ -1,5 +1,6 @@
 package com.example.composedemo.ui.widget
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.ui.page.template.SimpleCameraPreview
 import com.example.composedemo.ui.theme.AppTheme
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun CommonToolbar(navCtrl: NavHostController, title: String,content: @Composable () -> Unit) {
     Scaffold(topBar = {

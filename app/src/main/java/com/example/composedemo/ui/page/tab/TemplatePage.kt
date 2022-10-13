@@ -133,6 +133,12 @@ fun TemplatePage(
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.StaggeredGrid_office) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.StaggeredGrid_office)
+            }
+        }
+
 
     }
 }

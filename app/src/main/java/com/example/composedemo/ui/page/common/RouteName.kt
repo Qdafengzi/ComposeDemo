@@ -30,6 +30,7 @@ object RouteName {
         const val SupportScreenSize = "SupportScreenSize"
         const val CanvasPageTwo = "CanvasPageTwo"
         const val WebView = "WebView"
+        const val StaggeredGrid_office = "StaggeredGrid_office"
 
     }
 

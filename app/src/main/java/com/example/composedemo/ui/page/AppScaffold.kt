@@ -268,6 +268,10 @@ fun AppScaffold() {
                     WebViewPageNew(navCtrl, RouteName.TemplateRoute.WebView)
                 }
 
+                composable(route = RouteName.TemplateRoute.StaggeredGrid_office) {
+                    StaggeredGridOffice(navCtrl, RouteName.TemplateRoute.StaggeredGrid_office)
+                }
+
 
 
                 //widgets
