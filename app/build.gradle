@@ -45,21 +45,13 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    api "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.ui:ui-util:$compose_version"
-    implementation 'androidx.activity:activity-compose:1.6.0'
-
-
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation project(path: ':glpanorama')
-    implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha17'
+
+    api "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.compose.ui:ui-util:$compose_version"
+    implementation 'androidx.appcompat:appcompat:1.5.1'
 
     // CameraX core library
     def camerax_version = '1.2.0-beta02'
@@ -78,13 +70,14 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
     implementation "com.google.accompanist:accompanist-webview:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_version"
 
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha04"
-    implementation("androidx.navigation:navigation-compose:2.5.2")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 
 
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -102,7 +95,7 @@ dependencies {
 
     implementation "com.airbnb.android:lottie-compose:5.2.0"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-    implementation "com.google.accompanist:accompanist-flowlayout:0.24.8-beta"
+
 
     api("io.coil-kt:coil-compose:2.2.0")
 
@@ -117,5 +110,7 @@ dependencies {
     implementation "com.google.code.gson:gson:2.9.1"
 
     implementation "androidx.profileinstaller:profileinstaller:1.2.0"
+
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 
 }

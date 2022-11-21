@@ -46,7 +46,7 @@ fun StaggeredGridOffice(navCtrl: NavHostController, title: String) {
                             .background(color = Color.Magenta, shape = RoundedCornerShape(9.dp)),
                     ) {
                         Image(
-                            painter = painterResource(id = R.mipmap.img_10),
+                            painter = painterResource(id = com.example.composedemo.R.mipmap.img_10),
                             contentDescription = null,
                             contentScale = ContentScale.FillBounds,
                             modifier = Modifier
