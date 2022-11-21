@@ -31,6 +31,8 @@ object RouteName {
         const val CanvasPageTwo = "CanvasPageTwo"
         const val WebView = "WebView"
         const val StaggeredGrid_office = "StaggeredGrid_office"
+        const val Youtube_page = "youtube_page"
+        const val Youtube_Rv_page = "Youtube_Rv_page"
 
     }
 

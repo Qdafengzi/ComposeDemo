@@ -139,6 +139,18 @@ fun TemplatePage(
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.Youtube_page) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.Youtube_page)
+            }
+        }
+
+        item {
+            ItemButton(text = RouteName.TemplateRoute.Youtube_Rv_page) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.Youtube_Rv_page)
+            }
+        }
+
 
     }
 }

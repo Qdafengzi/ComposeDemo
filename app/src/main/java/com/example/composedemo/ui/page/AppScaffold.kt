@@ -272,6 +272,14 @@ fun AppScaffold() {
                     StaggeredGridOffice(navCtrl, RouteName.TemplateRoute.StaggeredGrid_office)
                 }
 
+                composable(route = RouteName.TemplateRoute.Youtube_page) {
+                    YoutubeListPage(navCtrl, RouteName.TemplateRoute.Youtube_page)
+                }
+
+                composable(route = RouteName.TemplateRoute.Youtube_Rv_page) {
+                    YoutubeRvPage(navCtrl, RouteName.TemplateRoute.Youtube_Rv_page)
+                }
+
 
 
                 //widgets
