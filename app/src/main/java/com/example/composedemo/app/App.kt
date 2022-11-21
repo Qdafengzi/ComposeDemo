@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.composedemo.state.AppViewModel
+import com.google.android.gms.ads.MobileAds
 
 val appViewModel: AppViewModel by lazy { App.appViewModelInstance }
 
@@ -30,6 +31,7 @@ class App : Application(), ViewModelStoreOwner {
     override fun onCreate() {
         super.onCreate()
         CONTEXT = this
+        MobileAds.initialize(this)
         mAppViewModelStore = ViewModelStore()
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
     }

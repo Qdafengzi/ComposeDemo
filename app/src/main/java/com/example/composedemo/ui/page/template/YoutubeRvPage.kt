@@ -40,8 +40,10 @@ fun YoutubeRvPage(navCtrl: NavHostController, title: String) {
     )
 
     val list = mutableListOf<VideoEntity>()
-    repeat(30) {
-        if (it % 3 == 0) {
+    repeat(40) {
+        if (it % 4 == 0) {
+            list.add(VideoEntity(isAd = true))
+        } else if (it % 5 == 0) {
             list.add(VideoEntity(videoId = videoIds.removeFirst()))
         } else {
             list.add(VideoEntity(text = "item is $it"))
@@ -52,27 +54,22 @@ fun YoutubeRvPage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
         val lifecycleOwner = LocalLifecycleOwner.current
         XLogger.d("---------->CommonToolbar")
-        AndroidView(
-            modifier = Modifier
-                .padding(start = 8.dp, end = 8.dp, top = 12.dp)
-                .fillMaxWidth()
-                .background(color = Color.White),
-            factory = { context ->
-                val binding = DataBindingUtil.inflate<ActivityYoutubeListRvBinding>(
-                    LayoutInflater.from(context),
-                    R.layout.activity_youtube_list_rv,
-                    null,
-                    false
-                )
-                binding.rv.setHasFixedSize(true)
+        AndroidView(modifier = Modifier
+            .padding(start = 8.dp, end = 8.dp, top = 12.dp)
+            .fillMaxWidth()
+            .background(color = Color.White), factory = { context ->
+            val binding = DataBindingUtil.inflate<ActivityYoutubeListRvBinding>(
+                LayoutInflater.from(context), R.layout.activity_youtube_list_rv, null, false
+            )
+            binding.rv.setHasFixedSize(true)
 
-                val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-                binding.rv.layoutManager = mLayoutManager
+            val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+            binding.rv.layoutManager = mLayoutManager
 
-                val youtubeListAdapter = YoutubeListAdapter(list, lifecycleOwner.lifecycle)
-                binding.rv.adapter = youtubeListAdapter
+            val youtubeListAdapter = YoutubeListAdapter(list, lifecycleOwner.lifecycle)
+            binding.rv.adapter = youtubeListAdapter
 
-                binding.root
-            })
+            binding.root
+        })
     }
 }

@@ -13,4 +13,6 @@
     <string name="minus">减去</string>
     <string name="plus">加啊</string>
     <string name="shopping_cart">购物车</string>
+
+    <string name="ad_attribution">Ad</string>
 </resources>
