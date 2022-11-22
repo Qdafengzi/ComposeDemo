@@ -24,7 +24,7 @@ android {
         // release build (for example, with minification on). It's signed with a debug key
         // for easy local/CI testing.
         benchmark {
-            debuggable = true
+            debuggable = false
             signingConfig = debug.signingConfig
             matchingFallbacks = ["release"]
         }
