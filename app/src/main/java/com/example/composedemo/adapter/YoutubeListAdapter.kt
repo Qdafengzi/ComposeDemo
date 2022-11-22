@@ -55,7 +55,7 @@ class YoutubeListAdapter(data: List<VideoEntity>, private val lifecycle: Lifecyc
                     ) {
                         // 绑定 item 数据
                         item?.let {
-                            holder.bind("${item.text}")
+                            holder.bind("${item.text}",item.des?:"")
                         }
                     }
 
@@ -90,24 +90,65 @@ class YoutubeListAdapter(data: List<VideoEntity>, private val lifecycle: Lifecyc
                     }
 
                 })
+            .addItemType(ITEM_TYPE_BIG_PIC,
+                object : OnMultiItemAdapterListener<VideoEntity, BigPicViewHolder> { // 类型 2
+                    override fun onCreate(
+                        context: Context, parent: ViewGroup, viewType: Int
+                    ): BigPicViewHolder {
+                        // 创建 viewholder
+                        return BigPicViewHolder(ComposeView(parent.context))
+                    }
+
+                    override fun onBind(
+                        holder: BigPicViewHolder, position: Int, item: VideoEntity?
+                    ) {
+                        // 绑定 item 数据
+                        item?.let {
+                            holder.bind("${item.text}",item.des?:"")
+                        }
+                    }
+
+                    override fun isFullSpanItem(itemType: Int): Boolean {
+                        // 使用GridLayoutManager时，此类型的 item 是否是满跨度
+                        return true
+                    }
+
+                })
+            .addItemType(ITEM_TYPE_THREE_PIC,
+                object : OnMultiItemAdapterListener<VideoEntity, ThreePicViewHolder> { // 类型 2
+                    override fun onCreate(
+                        context: Context, parent: ViewGroup, viewType: Int
+                    ): ThreePicViewHolder {
+                        // 创建 viewholder
+                        return ThreePicViewHolder(ComposeView(parent.context))
+                    }
+
+                    override fun onBind(
+                        holder: ThreePicViewHolder, position: Int, item: VideoEntity?
+                    ) {
+                        // 绑定 item 数据
+                        item?.let {
+                            holder.bind("${item.text}")
+                        }
+                    }
+
+                    override fun isFullSpanItem(itemType: Int): Boolean {
+                        // 使用GridLayoutManager时，此类型的 item 是否是满跨度
+                        return true
+                    }
+
+                })
             .onItemViewType { position, list -> // 根据数据，返回对应的 ItemViewType
-                val item = list[position]
-                if (item.isAd == true) {
-                    ITEM_TYPE_AD
-                } else if (!item.text.isNullOrBlank()) {
-                    ITEM_TYPE_TEXT
-                } else {
-                    ITEM_TYPE_VIDEO
-                }
+                list[position].type
             }
     }
 
     companion object {
-        private const val ITEM_TYPE_VIDEO = 0
-        private const val ITEM_TYPE_TEXT = 1
-        private const val ITEM_TYPE_AD = 2
+        const val ITEM_TYPE_VIDEO = 0
+        const val ITEM_TYPE_TEXT = 1
+        const val ITEM_TYPE_AD = 2
+        const val ITEM_TYPE_THREE_PIC = 3
+        const val ITEM_TYPE_BIG_PIC = 4
     }
-
-
 }
 

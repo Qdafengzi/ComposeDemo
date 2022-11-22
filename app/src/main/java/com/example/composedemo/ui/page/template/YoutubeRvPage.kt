@@ -2,9 +2,11 @@ package com.example.composedemo.ui.page.template
 
 import android.view.LayoutInflater
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -20,9 +22,60 @@ import com.example.composedemo.data.VideoEntity
 import com.example.composedemo.databinding.ActivityYoutubeListRvBinding
 import com.example.composedemo.ui.widget.CommonToolbar
 import com.example.composedemo.utils.XLogger
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun YoutubeRvPage(navCtrl: NavHostController, title: String) {
+    XLogger.d("-------------------->YoutubeRvPage")
+    CommonToolbar(navCtrl, title) {
+        val coroutineScope = rememberCoroutineScope()
+        val pagerState = rememberPagerState()
+        val tabs = listOf("关注","推荐","世界杯","热点","深圳","视频","小说","数码","娱乐","美食")
+        ScrollableTabRow(modifier = Modifier.fillMaxWidth(),
+            selectedTabIndex = pagerState.currentPage,
+            contentColor = Color.White,
+            edgePadding = 10.dp,
+            backgroundColor =Color.Red,
+            divider = {
+                Divider()
+            },
+            indicator = {
+
+            },
+        ) {
+            tabs.forEachIndexed { tabIndex, tab ->
+                Tab(
+                    selected = pagerState.currentPage == tabIndex,
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.scrollToPage(tabIndex)
+                        }
+                    },
+                    text = { Text(text = tab) }
+                )
+            }
+        }
+
+        HorizontalPager(
+            count = tabs.size,
+            state = pagerState,
+            userScrollEnabled = false,
+            modifier = Modifier
+                .fillMaxSize(),
+        ) { pageIndex ->
+            NewsPage()
+        }
+    }
+}
+
+@Composable
+fun NewsPage() {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    XLogger.d("---------->NewsPage")
 
     val videoIds = mutableListOf(
         "6JYIGclVQdw",
@@ -40,36 +93,43 @@ fun YoutubeRvPage(navCtrl: NavHostController, title: String) {
     )
 
     val list = mutableListOf<VideoEntity>()
-    repeat(40) {
+
+
+    repeat(50) {
         if (it % 4 == 0) {
-            list.add(VideoEntity(isAd = true))
+            list.add(VideoEntity(isAd = true, type = YoutubeListAdapter.ITEM_TYPE_AD))
         } else if (it % 5 == 0) {
-            list.add(VideoEntity(videoId = videoIds.removeFirst()))
+            list.add(VideoEntity(videoId = videoIds.removeFirst(), type = YoutubeListAdapter.ITEM_TYPE_VIDEO))
+        } else if (it % 3 == 0) {
+            list.add(
+                VideoEntity(
+                    text = "News Title is $it",
+                    des="普京愿意要和乌坐下来谈？泽连斯基发声，中方立场或见效",
+                    type = YoutubeListAdapter.ITEM_TYPE_THREE_PIC
+                )
+            )
+        } else if (it % 7 == 0) {
+            list.add(VideoEntity(text = "News Title is $it",des="普京愿意要和乌坐下来谈？泽连斯基发声，中方立场或见效", type = YoutubeListAdapter.ITEM_TYPE_BIG_PIC))
         } else {
-            list.add(VideoEntity(text = "item is $it"))
+            list.add(VideoEntity(text = "News Title is $it",des="普京愿意要和乌坐下来谈？泽连斯基发声，中方立场或见效", type = YoutubeListAdapter.ITEM_TYPE_TEXT))
         }
     }
 
+    AndroidView(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color(0xE9E9E7E7))
+        .padding(start = 8.dp, end = 8.dp), factory = { context ->
+        XLogger.d("---------->AndroidView")
+        val binding = DataBindingUtil.inflate<ActivityYoutubeListRvBinding>(
+            LayoutInflater.from(context), R.layout.activity_youtube_list_rv, null, false
+        )
+        binding.rv.setHasFixedSize(true)
 
-    CommonToolbar(navCtrl, title) {
-        val lifecycleOwner = LocalLifecycleOwner.current
-        XLogger.d("---------->CommonToolbar")
-        AndroidView(modifier = Modifier
-            .padding(start = 8.dp, end = 8.dp, top = 12.dp)
-            .fillMaxWidth()
-            .background(color = Color.White), factory = { context ->
-            val binding = DataBindingUtil.inflate<ActivityYoutubeListRvBinding>(
-                LayoutInflater.from(context), R.layout.activity_youtube_list_rv, null, false
-            )
-            binding.rv.setHasFixedSize(true)
+        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        binding.rv.layoutManager = mLayoutManager
 
-            val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-            binding.rv.layoutManager = mLayoutManager
-
-            val youtubeListAdapter = YoutubeListAdapter(list, lifecycleOwner.lifecycle)
-            binding.rv.adapter = youtubeListAdapter
-
-            binding.root
-        })
-    }
+        val youtubeListAdapter = YoutubeListAdapter(list, lifecycleOwner.lifecycle)
+        binding.rv.adapter = youtubeListAdapter
+        binding.root
+    })
 }
