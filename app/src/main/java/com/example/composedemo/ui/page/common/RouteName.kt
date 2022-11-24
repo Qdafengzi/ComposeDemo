@@ -91,6 +91,7 @@ object RouteName {
         const val Goods3dImagePageTwo = "Goods3dImagePage Two"
         const val Goods3dImagePageThree = "Goods3dImagePage three"
         const val SaveHandle = "SaveHandle"
+        const val RefreshPage = "RefreshPage"
 
     }
 

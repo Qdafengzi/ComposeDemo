@@ -193,6 +193,11 @@ fun HomePage(
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.SaveHandle)
                 }
             }
+            item {
+                ItemButton(text = RouteName.HomeRoute.RefreshPage) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.RefreshPage)
+                }
+            }
         })
 }
 

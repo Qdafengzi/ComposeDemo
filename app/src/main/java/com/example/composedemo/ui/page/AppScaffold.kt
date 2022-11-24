@@ -194,6 +194,11 @@ fun AppScaffold() {
                     SaveHandlePage(navCtrl, RouteName.HomeRoute.SaveHandle)
                 }
 
+                composable(route = RouteName.HomeRoute.RefreshPage) {
+                    PullRefreshPage(navCtrl, RouteName.HomeRoute.RefreshPage)
+                }
+
+
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {
                     CameraPage(navCtrl, RouteName.TemplateRoute.CameraPage)
