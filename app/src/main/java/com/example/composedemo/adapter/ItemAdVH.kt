@@ -18,16 +18,13 @@ class ItemAdVH(private val viewBinding: ActivityYoutubeListItemAdBinding) :
     RecyclerView.ViewHolder(viewBinding.root) {
     init {
         refreshAd()
-
     }
 
 
     fun refreshAd() {
         val context = viewBinding.root.context
 //    mainActivityBinding.refreshButton.isEnabled = false
-
         val builder = AdLoader.Builder(context, ADMOB_AD_UNIT_ID)
-
         builder.forNativeAd { nativeAd ->
             // OnUnifiedNativeAdLoadedListener implementation.
             // If this callback occurs after the activity is destroyed, you must call
@@ -52,36 +49,21 @@ class ItemAdVH(private val viewBinding: ActivityYoutubeListItemAdBinding) :
         }
 
         val videoOptions = VideoOptions.Builder()
-//      .setStartMuted(mainActivityBinding.startMutedCheckbox.isChecked)
+//            .setStartMuted()
             .build()
 
         val adOptions = NativeAdOptions.Builder().setVideoOptions(videoOptions).build()
 
         builder.withNativeAdOptions(adOptions)
 
-        val adLoader =
-            builder
-                .withAdListener(
-                    object : AdListener() {
-                        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-//              val error =
-//                """
-//           domain: ${loadAdError.domain}, code: ${loadAdError.code}, message: ${loadAdError.message}
-//          """"
-//              mainActivityBinding.refreshButton.isEnabled = true
-//              Toast.makeText(
-//                  this@MainActivity,
-//                  "Failed to load native ad with error $error",
-//                  Toast.LENGTH_SHORT
-//                )
-//                .show()
-                        }
-                    }
-                )
-                .build()
+        val adLoader = builder.withAdListener(
+            object : AdListener() {
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                }
+            }
+        ).build()
 
         adLoader.loadAd(AdRequest.Builder().build())
-
 //    mainActivityBinding.videostatusText.text = ""
     }
 
