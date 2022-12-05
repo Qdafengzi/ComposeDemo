@@ -33,6 +33,7 @@ object RouteName {
         const val StaggeredGrid_office = "StaggeredGrid_office"
         const val Youtube_page = "youtube_page"
         const val Youtube_Rv_page = "Youtube_Rv_page"
+        const val BlurPage = "BlurPage"
 
     }
 

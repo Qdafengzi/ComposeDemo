@@ -285,6 +285,10 @@ fun AppScaffold() {
                     YoutubeRvPage(navCtrl, RouteName.TemplateRoute.Youtube_Rv_page)
                 }
 
+                composable(route = RouteName.TemplateRoute.BlurPage) {
+                    BlurPage(navCtrl, RouteName.TemplateRoute.BlurPage)
+                }
+
 
 
                 //widgets

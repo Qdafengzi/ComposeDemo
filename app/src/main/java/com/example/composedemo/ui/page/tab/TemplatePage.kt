@@ -151,6 +151,12 @@ fun TemplatePage(
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.BlurPage) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.BlurPage)
+            }
+        }
+
 
     }
 }
