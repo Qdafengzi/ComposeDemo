@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.composedemo.ui.widget.CommonToolbar
+import com.example.composedemo.utils.XLogger
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabel
 import com.google.mlkit.vision.label.ImageLabeler
@@ -41,11 +42,70 @@ import kotlin.coroutines.resume
 @Composable
 fun MLKitPage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
-        MLKitSample()
+//        MLKitSample()
+        MLKitIdCardSample()
     }
 }
 
+@Composable
+fun MLKitIdCardSample() {
 
+    var text by remember {
+        mutableStateOf("")
+    }
+    val coroutineScope = rememberCoroutineScope()
+    Column(Modifier.fillMaxSize()) {
+        val detctedObject = remember { mutableStateListOf<DetectedObject>() }
+        // When using Chinese script library
+        val recognizer = TextRecognition.getClient(ChineseTextRecognizerOptions.Builder().build())
+
+        //Load Image
+        val context = LocalContext.current
+        val bmp = remember(context) {
+            context.assetsToBitmap("id_card.png")!!
+//            context.assetsToBitmap("car_num.jpeg")!!
+        }
+
+        val image = InputImage.fromBitmap(bmp, 0)
+
+
+        Image(bitmap = bmp.asImageBitmap(), contentDescription = "")
+
+
+        val result1 = recognizer.process(image)
+            .addOnSuccessListener { visionText ->
+                // Task completed successfully
+                //                    L
+                for (block in visionText.textBlocks) {
+                    val blockText = block.text
+                    val blockCornerPoints = block.cornerPoints
+                    val blockFrame = block.boundingBox
+//                    XLogger.d("blockText========>$blockText")
+                    for (line in block.lines) {
+                        val lineText = line.text
+                        val lineCornerPoints = line.cornerPoints
+                        val lineFrame = line.boundingBox
+                        for (element in line.elements) {
+                            val elementText = element.text
+                            val elementCornerPoints = element.cornerPoints
+                            val elementFrame = element.boundingBox
+                            XLogger.d("elementText========>$elementText")
+                            if(elementText.contains("身份号码")){
+                                text = elementText
+                            }
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                // Task failed with an exception
+                // ...
+            }
+
+        Text(text = text, color = Color.Black, fontSize = 20.sp)
+
+    }
+}
 @Composable
 fun MLKitSample() {
 
