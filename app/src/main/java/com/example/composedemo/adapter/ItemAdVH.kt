@@ -12,14 +12,14 @@ import com.google.android.gms.ads.nativead.NativeAdView
 
 
 const val ADMOB_AD_UNIT_ID = "ca-app-pub-3940256099942544/2247696110"
-var currentNativeAd: NativeAd? = null
+
 
 class ItemAdVH(private val viewBinding: ActivityYoutubeListItemAdBinding) :
     RecyclerView.ViewHolder(viewBinding.root) {
     init {
         refreshAd()
     }
-
+    var currentNativeAd: NativeAd? = null
 
     fun refreshAd() {
         val context = viewBinding.root.context
@@ -60,10 +60,15 @@ class ItemAdVH(private val viewBinding: ActivityYoutubeListItemAdBinding) :
             object : AdListener() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                 }
+
+                override fun onAdLoaded() {
+                    super.onAdLoaded()
+                }
             }
         ).build()
+        adLoader.loadAds(AdRequest.Builder().build(),5)
 
-        adLoader.loadAd(AdRequest.Builder().build())
+//        adLoader.loadAd(AdRequest.Builder().build())
 //    mainActivityBinding.videostatusText.text = ""
     }
 
