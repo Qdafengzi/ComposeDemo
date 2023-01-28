@@ -103,11 +103,6 @@ fun WebViewPageNew(navCtrl: NavHostController, title: String) {
                     super.onReceivedSslError(view, handler, error)
                     XLogger.d("onReceivedSslError--------->${error.toString()}")
                 }
-
-                override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
-                    super.onReceivedError(view, errorCode, description, failingUrl)
-                    XLogger.d("onReceivedError------>${errorCode} $description")
-                }
             },
             chromeClient = object : AccompanistWebChromeClient() {
 

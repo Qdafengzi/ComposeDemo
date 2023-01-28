@@ -3,8 +3,8 @@ apply plugin: 'com.android.library'
 
 group='com.github.CN-ZPH'
 android {
-    compileSdkVersion 33
-    buildToolsVersion "33.0.0"
+    compileSdk 33
+    buildToolsVersion = "33.0.0"
 
     defaultConfig {
         minSdkVersion 23
