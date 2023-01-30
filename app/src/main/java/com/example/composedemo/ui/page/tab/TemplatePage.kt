@@ -156,7 +156,11 @@ fun TemplatePage(
                 RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.BlurPage)
             }
         }
-
+        item {
+            ItemButton(text = RouteName.TemplateRoute.WebViewPreLoading) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.WebViewPreLoading)
+            }
+        }
 
     }
 }

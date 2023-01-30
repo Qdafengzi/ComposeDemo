@@ -3,10 +3,12 @@ package com.example.composedemo.app
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.webkit.WebView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.composedemo.state.AppViewModel
+import com.google.accompanist.web.WebView
 import com.google.android.gms.ads.MobileAds
 
 val appViewModel: AppViewModel by lazy { App.appViewModelInstance }
@@ -24,6 +26,7 @@ class App : Application(), ViewModelStoreOwner {
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var CONTEXT: Context
+        lateinit var mSWebView: WebView
 
         lateinit var appViewModelInstance: AppViewModel
     }
@@ -31,6 +34,7 @@ class App : Application(), ViewModelStoreOwner {
     override fun onCreate() {
         super.onCreate()
         CONTEXT = this
+        initWebView()
         MobileAds.initialize(this)
         mAppViewModelStore = ViewModelStore()
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
@@ -49,5 +53,12 @@ class App : Application(), ViewModelStoreOwner {
             mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
         }
         return mFactory as ViewModelProvider.Factory
+    }
+
+    /**
+     * 预热一个WebView
+     */
+    private fun initWebView() {
+        mSWebView = WebView(CONTEXT)
     }
 }

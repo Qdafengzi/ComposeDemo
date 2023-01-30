@@ -34,7 +34,7 @@ object RouteName {
         const val Youtube_page = "youtube_page"
         const val Youtube_Rv_page = "Youtube_Rv_page"
         const val BlurPage = "BlurPage"
-
+        const val WebViewPreLoading = "WebViewPreLoading"
     }
 
     object AimRoute{

@@ -288,7 +288,9 @@ fun AppScaffold() {
                 composable(route = RouteName.TemplateRoute.BlurPage) {
                     BlurPage(navCtrl, RouteName.TemplateRoute.BlurPage)
                 }
-
+                composable(route = RouteName.TemplateRoute.WebViewPreLoading) {
+                    WebViewPreLoading(navCtrl, RouteName.TemplateRoute.WebViewPreLoading)
+                }
 
 
                 //widgets
