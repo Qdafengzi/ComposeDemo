@@ -62,7 +62,10 @@ fun PullRefreshPage(navCtrl: NavHostController, title: String) {
             }
         }
 
-        Column(Modifier.pullRefresh(::onPull, { onRelease() })) {
+        Column(Modifier.pullRefresh(::onPull, {
+            onRelease()
+            0f
+        })) {
             AnimatedVisibility(modifier = Modifier.wrapContentHeight(),visible = (refreshing || progress > 0)) {
                 if (refreshing) {
                     Column(modifier = Modifier.wrapContentHeight()) {

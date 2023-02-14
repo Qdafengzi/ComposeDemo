@@ -93,6 +93,7 @@ object RouteName {
         const val Goods3dImagePageThree = "Goods3dImagePage three"
         const val SaveHandle = "SaveHandle"
         const val RefreshPage = "RefreshPage"
+        const val Contact = "Contact"
 
     }
 

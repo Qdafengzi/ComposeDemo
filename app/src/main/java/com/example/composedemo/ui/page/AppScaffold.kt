@@ -198,6 +198,10 @@ fun AppScaffold() {
                     PullRefreshPage(navCtrl, RouteName.HomeRoute.RefreshPage)
                 }
 
+                composable(route = RouteName.HomeRoute.Contact) {
+                    ContactPage(navCtrl, RouteName.HomeRoute.Contact)
+                }
+
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {

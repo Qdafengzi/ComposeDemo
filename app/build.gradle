@@ -34,8 +34,8 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        freeCompilerArgs+="-Xopt-in=kotlin.RequiresOptIn"
-        jvmTarget = "1.8"
+        freeCompilerArgs+="-opt-in=kotlin.RequiresOptIn"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose true
@@ -46,23 +46,23 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.0"
     }
+    namespace 'com.example.composedemo'
 }
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     api "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation "androidx.compose.ui:ui-util:$compose_version"
-    implementation 'androidx.activity:activity-compose:1.6.1'
+    implementation 'androidx.activity:activity-compose:1.7.0-beta01'
 
 
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation project(path: ':glpanorama')
-    implementation 'androidx.paging:paging-compose:1.0.0-alpha17'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha18'
 
 
     // CameraX core library
@@ -75,7 +75,7 @@ dependencies {
     // CameraX View class
     implementation "androidx.camera:camera-view:$camerax_version"
     //权限
-    def accompanist_version = '0.25.1'
+    def accompanist_version = '0.28.0'
     implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager:${accompanist_version}"
     implementation "com.google.accompanist:accompanist-pager-indicators:${accompanist_version}"
@@ -88,17 +88,17 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha06"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha07"
     implementation("androidx.navigation:navigation-compose:2.5.3")
 
 
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    def lifecycle = "2.6.0-alpha05"
+    def lifecycle = "2.6.0-beta01"
     api("androidx.lifecycle:lifecycle-common-java8:${lifecycle}")
     // viewModel
     api("androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}")
     // liveData
-    api("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    api("androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}")
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${lifecycle}"
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:${lifecycle}")
     api("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}")
@@ -106,7 +106,7 @@ dependencies {
     api("androidx.palette:palette-ktx:1.0.0")
 
     implementation "com.airbnb.android:lottie-compose:5.2.0"
-    implementation "androidx.compose.runtime:runtime-livedata:1.4.0-alpha04"
+    implementation "androidx.compose.runtime:runtime-livedata:1.4.0-beta01"
 
 
     api('io.coil-kt:coil-compose:2.2.2')
@@ -130,6 +130,6 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.3.0-rc01"
     implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta04'
-    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
 
 }

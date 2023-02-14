@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.composedemo.state.AppViewModel
-import com.google.accompanist.web.WebView
 import com.google.android.gms.ads.MobileAds
 
 val appViewModel: AppViewModel by lazy { App.appViewModelInstance }
@@ -18,12 +17,11 @@ class App : Application(), ViewModelStoreOwner {
 
     private var mFactory: ViewModelProvider.Factory? = null
 
-    override fun getViewModelStore(): ViewModelStore {
-        return mAppViewModelStore
-    }
+    override val viewModelStore: ViewModelStore
+        get() =mAppViewModelStore
 
 
-    companion object {
+            companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var CONTEXT: Context
         lateinit var mSWebView: WebView
@@ -61,4 +59,6 @@ class App : Application(), ViewModelStoreOwner {
     private fun initWebView() {
         mSWebView = WebView(CONTEXT)
     }
+
+
 }

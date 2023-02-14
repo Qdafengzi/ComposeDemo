@@ -198,6 +198,12 @@ fun HomePage(
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.RefreshPage)
                 }
             }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.Contact) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.Contact)
+                }
+            }
         })
 }
 
