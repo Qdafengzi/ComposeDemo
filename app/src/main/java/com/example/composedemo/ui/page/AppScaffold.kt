@@ -202,6 +202,14 @@ fun AppScaffold() {
                     ContactPage(navCtrl, RouteName.HomeRoute.Contact)
                 }
 
+                composable(route = RouteName.HomeRoute.Transformation) {
+                    TransformationPage(navCtrl, RouteName.HomeRoute.Transformation)
+                }
+
+                composable(route = RouteName.HomeRoute.RichText) {
+                    RichTextPage(navCtrl, RouteName.HomeRoute.RichText)
+                }
+
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {

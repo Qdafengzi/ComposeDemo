@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+
+android {
+  compileSdk 33
+  buildToolsVersion = "33.0.0"
+
+  defaultConfig {
+    minSdkVersion 23
+    targetSdkVersion 33
+  }
+
+  namespace 'jp.wasabeef.richeditor'
+}

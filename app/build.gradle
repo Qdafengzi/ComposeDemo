@@ -63,6 +63,7 @@ dependencies {
 
     implementation project(path: ':glpanorama')
     implementation 'androidx.paging:paging-compose:1.0.0-alpha18'
+    implementation project(path: ':richeditor')
 
 
     // CameraX core library

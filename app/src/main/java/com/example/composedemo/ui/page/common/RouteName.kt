@@ -94,6 +94,8 @@ object RouteName {
         const val SaveHandle = "SaveHandle"
         const val RefreshPage = "RefreshPage"
         const val Contact = "Contact"
+        const val Transformation = "Transformation"
+        const val RichText = "RichText"
 
     }
 

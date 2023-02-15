@@ -204,6 +204,17 @@ fun HomePage(
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.Contact)
                 }
             }
+            item {
+                ItemButton(text = RouteName.HomeRoute.Transformation) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.Transformation)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.RichText) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.RichText)
+                }
+            }
         })
 }
 
