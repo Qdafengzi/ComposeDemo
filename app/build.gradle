@@ -6,7 +6,6 @@ plugins {
 
 android {
     compileSdk 33
-    buildToolsVersion = "33.0.0"
 
     defaultConfig {
         applicationId "com.example.composedemo"
@@ -45,6 +44,12 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.0"
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
     namespace 'com.example.composedemo'
 }

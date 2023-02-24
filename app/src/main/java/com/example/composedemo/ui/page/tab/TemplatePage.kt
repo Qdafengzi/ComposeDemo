@@ -3,7 +3,6 @@ package com.example.composedemo.ui.page.tab
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -15,10 +14,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
 @Composable
-fun TemplatePage(
-    navCtrl: NavHostController,
-    scaffoldState: ScaffoldState,
-) {
+fun TemplatePage(navCtrl: NavHostController) {
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()

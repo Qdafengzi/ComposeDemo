@@ -2,7 +2,14 @@ package com.example.composedemo.ui.page.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
@@ -118,7 +125,10 @@ private fun CreateItemsOne() {
 private fun CreateItems() {
     val painter1 = painterResource(id = com.example.composedemo.R.drawable.sheep)
     val painter2 = painterResource(id = com.example.composedemo.R.drawable.ic_launcher_background)
-    LazyColumn() {
+
+    val modifier: Modifier = Modifier
+
+    LazyColumn(modifier = modifier) {
         items(200) {
             Column() {
                 Text(
@@ -126,15 +136,18 @@ private fun CreateItems() {
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier
+                    modifier = modifier
                         .fillMaxWidth()
                         .padding(16.dp)
+                        .background(color = Color.Gray)
                 )
 
                 Image(
-                    modifier = Modifier
+                    modifier = modifier
                         .padding(top = 16.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .background(color = Color.Blue)
+                    ,
                     painter = if (it % 2 == 0) painter1 else painter2,
                     contentDescription = ""
                 )

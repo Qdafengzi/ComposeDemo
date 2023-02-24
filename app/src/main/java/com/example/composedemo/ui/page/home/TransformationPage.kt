@@ -1,7 +1,7 @@
 package com.example.composedemo.ui.page.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
@@ -14,16 +14,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.TransformedText
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.navigation.NavHostController
+import com.example.composedemo.text.LinkifyText
 import com.example.composedemo.ui.widget.CommonToolbar
 import com.example.composedemo.utils.XLogger
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TransformationPage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
@@ -38,48 +36,92 @@ fun TransformationPage(navCtrl: NavHostController, title: String) {
             source = text1, segment = "my website", link = link
         )
         ClickableText(text = annotatedText, onClick = {
-            annotatedText.getStringAnnotations(TAG_URL, it, it).firstOrNull()
-                ?.let { url -> {
-                    XLogger.d("======》打开")
-                } }
+            annotatedText.getStringAnnotations(TAG_URL, it, it).firstOrNull()?.let { url ->
+                    {
+                        XLogger.d("======》打开")
+                    }
+                }
         })
 
-        TextField(modifier = Modifier.fillMaxWidth(), value = text, onValueChange = {
 
+        val str = """
+            **我**的🧒有时候
+            
+        """.trimIndent()
+
+
+        //提取体征点
+        buildAnnotatedString {
+            withStyle(SpanStyle()) {}
+            //遍历特征点
+            addStyle(SpanStyle(), 0, 0)
+        }
+        //两份 数据
+
+        //val HASHTAG_REGEX_PATTERN = Regex(pattern = "(#[A-Za-z0-9-_]+)(?:#[A-Za-z0-9-_]+)*")
+        //val BOLD_REGEX_PATTERN = Regex(pattern = "(\\*{2})(\\s*\\b)([^\\*]*)(\\b\\s*)(\\*{2})")
+        //val ITALICS_REGEX_PATTERN = Regex(pattern = "(\\~{2})(\\s*\\b)([^\\*]*)(\\b\\s*)(\\~{2})")
+        //val HEADING_REGEX_PATTERN = Regex(pattern = "\\#{1,4}\\s([^\\#]*)\\s\\#{1,4}(?=\\n)")
+
+
+        LinkifyText(
+            text = """
+                    www.google.com is a website without https
+                    with https https://www.google.com/search?q=sample
+                    9876543210 is a sample phone number (note: phone number linking depends on location, and is same as TextView's autoLink)
+                    Sample email address sample@gmail.com
+                """.trimIndent(),
+            modifier = Modifier,
+            linkColor = Color.Blue,
+            linkEntire = false,
+            clickable = true,
+            onClickLink = null,
+            color = Color.Black,
+        )
+
+
+
+        TextField(modifier = Modifier.fillMaxSize(), value = text, onValueChange = {
             text = it
 
-        }, visualTransformation = object : VisualTransformation {
-            fun transform(original: String): String {
-                val trimmed: String = original.take(8)
-                if (trimmed.length < 4) return trimmed
-                if (trimmed.length == 4) return "$trimmed-"
-                val (year, monthAndOrDate) = trimmed.chunked(4)
-                if (trimmed.length == 5) return "$year-$monthAndOrDate"
-                if (trimmed.length == 6) return "$year-$monthAndOrDate-"
-                val (month, date) = monthAndOrDate.chunked(2)
-                return "$year-$month-$date"
-            }
+        },
+//            visualTransformation = TextEditorVisualTransformer()
+        )
 
-            override fun filter(text: AnnotatedString): TransformedText {
-                return TransformedText(
-                    AnnotatedString(transform(text.text)),
-                    object : OffsetMapping {
-                        override fun originalToTransformed(offset: Int): Int {
-                            if (offset <= 3) return offset
-                            if (offset <= 5) return offset + 1
-                            if (offset <= 7) return offset + 2
-                            return 10
-                        }
-
-                        override fun transformedToOriginal(offset: Int): Int {
-                            if (offset <= 4) return offset
-                            if (offset <= 7) return offset - 1
-                            if (offset <= 10) return offset - 2
-                            return 8
-                        }
-                    })
-            }
-        })
+//        TextField(modifier = Modifier.fillMaxWidth(), value = text, onValueChange = {
+//            text = it
+//
+//        }, visualTransformation = object : VisualTransformation {
+//            fun transform(original: String): String {
+//                val trimmed: String = original.take(8)
+//                if (trimmed.length < 4) return trimmed
+//                if (trimmed.length == 4) return "$trimmed-"
+//                val (year, monthAndOrDate) = trimmed.chunked(4)
+//                if (trimmed.length == 5) return "$year-$monthAndOrDate"
+//                if (trimmed.length == 6) return "$year-$monthAndOrDate-"
+//                val (month, date) = monthAndOrDate.chunked(2)
+//                return "$year-$month-$date"
+//            }
+//
+//            override fun filter(text: AnnotatedString): TransformedText {
+//                return TransformedText(AnnotatedString(transform(text.text)),
+//                    object : OffsetMapping {
+//                        override fun originalToTransformed(offset: Int): Int {
+//                            if (offset <= 3) return offset
+//                            if (offset <= 5) return offset + 1
+//                            if (offset <= 7) return offset + 2
+//                            return 10
+//                        }
+//
+//                        override fun transformedToOriginal(offset: Int): Int {
+//                            if (offset <= 4) return offset
+//                            if (offset <= 7) return offset - 1
+//                            if (offset <= 10) return offset - 2
+//                            return 8
+//                        }
+//                    })
+//            }
+//        })
     }
 }
 

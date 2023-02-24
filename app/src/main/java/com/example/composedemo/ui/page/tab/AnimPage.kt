@@ -2,7 +2,6 @@ package com.example.composedemo.ui.page.tab
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -15,10 +14,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
 @Composable
-fun AnimPage(
-    navCtrl: NavHostController,
-    scaffoldState: ScaffoldState,
-) {
+fun AnimPage(navCtrl: NavHostController) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,6 +59,10 @@ fun AnimPage(
 
         ItemButton(text = RouteName.AimRoute.Recomposition) {
             RouteUtils.navTo(navCtrl, RouteName.AimRoute.Recomposition)
+        }
+
+        ItemButton(text = RouteName.AimRoute.CanvasAnimation) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.CanvasAnimation)
         }
     }
 
