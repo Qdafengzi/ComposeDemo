@@ -9,8 +9,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.composedemo.ui.theme.AppTheme
 
 
@@ -30,10 +32,12 @@ fun ItemButton(text: String, modifier: Modifier = Modifier, onclick: () -> Unit)
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 10.dp),
+                .padding(vertical = 6.dp),
             text = text,
             color = Color.White,
-            textAlign = TextAlign.Start
+            textAlign = TextAlign.Start,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Light
         )
     }
 }

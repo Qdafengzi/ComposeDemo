@@ -4,7 +4,6 @@ apply plugin: 'com.android.library'
 group='com.github.CN-ZPH'
 android {
     compileSdk 33
-    buildToolsVersion = "33.0.0"
 
     defaultConfig {
         minSdkVersion 23

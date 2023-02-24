@@ -4,7 +4,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -24,10 +23,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @InternalCoroutinesApi
 @ExperimentalPagerApi
 @Composable
-fun HomePage(
-    navCtrl: NavHostController,
-    scaffoldState: ScaffoldState,
-) {
+fun HomePage(navCtrl: NavHostController) {
 
     LazyColumn(modifier = Modifier
         .fillMaxSize()

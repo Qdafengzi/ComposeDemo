@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -44,8 +43,6 @@ fun AppScaffold() {
     val navCtrl = rememberNavController()
     val navBackStackEntry by navCtrl.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    val scaffoldState = rememberScaffoldState()
-
     Scaffold(
         modifier = Modifier
             .statusBarsPadding()
@@ -66,17 +63,17 @@ fun AppScaffold() {
             ) {
                 //首页
                 composable(route = RouteName.HOME) {
-                    HomePage(navCtrl, scaffoldState)
+                    HomePage(navCtrl)
                 }
 
                 composable(route = RouteName.WIDGETS) {
-                    WidgetsPage(navCtrl, scaffoldState)
+                    WidgetsPage(navCtrl)
                 }
                 composable(route = RouteName.Anim) {
-                    AnimPage(navCtrl, scaffoldState)
+                    AnimPage(navCtrl)
                 }
                 composable(route = RouteName.Template) {
-                    TemplatePage(navCtrl, scaffoldState)
+                    TemplatePage(navCtrl)
                 }
 
 
@@ -348,6 +345,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.Recomposition) {
                     RecompositionExp(navCtrl, RouteName.AimRoute.Recomposition)
+                }
+
+                composable(route = RouteName.AimRoute.CanvasAnimation) {
+                    CanvasAnimation(navCtrl, RouteName.AimRoute.CanvasAnimation)
                 }
 
 
