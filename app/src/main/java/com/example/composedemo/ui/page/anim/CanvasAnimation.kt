@@ -80,17 +80,28 @@ fun WeTradeStep2() {
                     }
                 }
                 .drawWithCache {
+                    //生成平滑曲线的路径
                     val path = generateSmoothPath(graphData, size)
+
+                    //获取曲线下面的内容面的区域
                     val filledPath = generateSmoothPath(graphData, size)
 
+                    //x轴不变 相当于Y轴移动size.height的高度 就是y轴从0移动到整个面的最下面，这个最重点在右下方
                     filledPath.relativeLineTo(0f, size.height)
+                    //再从右下方连线 到左下方
                     filledPath.lineTo(0f, size.height)
+                    //关闭
                     filledPath.close()
 
+
+                    //画轴
                     onDrawBehind {
                         val barWidthPx = 1.dp.toPx()
+                        //画矩形 大小为整个区域
                         drawRect(BarColor, style = Stroke(barWidthPx))
 
+
+                        //画竖线
                         val verticalLines = 4
                         val verticalSize = size.width / (verticalLines + 1)
                         repeat(verticalLines) { i ->
@@ -102,6 +113,8 @@ fun WeTradeStep2() {
                                 strokeWidth = barWidthPx
                             )
                         }
+
+                        //画横线
                         val horizontalLines = 3
                         val sectionSize = size.height / (horizontalLines + 1)
                         repeat(horizontalLines) { i ->
@@ -114,9 +127,12 @@ fun WeTradeStep2() {
                             )
                         }
 
-                        // draw line
+                        //裁剪矩形区域，绘制在裁剪好的矩形区域内
                         clipRect(right = size.width * animationProgress.value) {
+                            //画曲线
                             drawPath(path, Color.Green, style = Stroke(1.dp.toPx()))
+
+                            //画曲线下面的内容 填充
                             drawPath(
                                 filledPath,
                                 brush = Brush.verticalGradient(
