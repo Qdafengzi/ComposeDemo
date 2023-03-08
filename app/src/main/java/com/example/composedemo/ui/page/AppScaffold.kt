@@ -351,6 +351,10 @@ fun AppScaffold() {
                     CanvasAnimation(navCtrl, RouteName.AimRoute.CanvasAnimation)
                 }
 
+                composable(route = RouteName.AimRoute.SkyAnimation) {
+                    SkyAnimation(navCtrl, RouteName.AimRoute.SkyAnimation)
+                }
+
 
                 //WebView
 //                composable(route = RouteName.WEB_VIEW + "/{webData}",

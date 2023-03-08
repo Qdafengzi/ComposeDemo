@@ -64,6 +64,10 @@ fun AnimPage(navCtrl: NavHostController) {
         ItemButton(text = RouteName.AimRoute.CanvasAnimation) {
             RouteUtils.navTo(navCtrl, RouteName.AimRoute.CanvasAnimation)
         }
+
+        ItemButton(text = RouteName.AimRoute.SkyAnimation) {
+            RouteUtils.navTo(navCtrl, RouteName.AimRoute.SkyAnimation)
+        }
     }
 
 }
