@@ -21,8 +21,11 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 class MainActivity : androidx.activity.ComponentActivity() {
 
-    @OptIn(InternalCoroutinesApi::class, ExperimentalPermissionsApi::class,
-        ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class,
+    @OptIn(
+        InternalCoroutinesApi::class,
+        ExperimentalPermissionsApi::class,
+        ExperimentalComposeUiApi::class,
+        ExperimentalFoundationApi::class,
         ExperimentalPagerApi::class
     )
     @RequiresApi(Build.VERSION_CODES.R)
@@ -69,20 +72,19 @@ class MainActivity : androidx.activity.ComponentActivity() {
                     XLogger.d("LoaderManager------->onCreateLoader")
                     data?.let {
                         try {
-                            val cursor = data
-                            while (cursor.moveToNext()) {
+                            while (data.moveToNext()) {
                                 val path =
-                                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                                    data.getString(data.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
                                 val name =
-                                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME))
+                                    data.getString(data.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME))
                                 val dateTime =
-                                    cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED))
+                                    data.getLong(data.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED))
                                 val mediaType =
-                                    cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE))
+                                    data.getInt(data.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE))
                                 val size =
-                                    cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE))
+                                    data.getLong(data.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE))
                                 val id =
-                                    cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID))
+                                    data.getInt(data.getColumnIndexOrThrow(MediaStore.Images.Media._ID))
                                 if (size < 1) continue
                                 if (path == null || path == "") continue
 
@@ -109,7 +111,7 @@ class MainActivity : androidx.activity.ComponentActivity() {
 //                                folders.add(folder)
 //                            }
                             }
-                            cursor.close()
+                            data.close()
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }

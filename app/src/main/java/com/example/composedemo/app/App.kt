@@ -18,10 +18,10 @@ class App : Application(), ViewModelStoreOwner {
     private var mFactory: ViewModelProvider.Factory? = null
 
     override val viewModelStore: ViewModelStore
-        get() =mAppViewModelStore
+        get() = mAppViewModelStore
 
 
-            companion object {
+    companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var CONTEXT: Context
         lateinit var mSWebView: WebView
@@ -59,6 +59,5 @@ class App : Application(), ViewModelStoreOwner {
     private fun initWebView() {
         mSWebView = WebView(CONTEXT)
     }
-
 
 }
