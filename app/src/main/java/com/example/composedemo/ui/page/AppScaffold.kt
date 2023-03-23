@@ -355,6 +355,14 @@ fun AppScaffold() {
                     SkyAnimation(navCtrl, RouteName.AimRoute.SkyAnimation)
                 }
 
+                composable(route = RouteName.AimRoute.BannerAnimation) {
+                    BannerAnimation(navCtrl, RouteName.AimRoute.BannerAnimation)
+                }
+
+                composable(route = RouteName.AimRoute.TextMarqueeAnimation) {
+                    TextMarqueePage(navCtrl, RouteName.AimRoute.TextMarqueeAnimation)
+                }
+
 
                 //WebView
 //                composable(route = RouteName.WEB_VIEW + "/{webData}",

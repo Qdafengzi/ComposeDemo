@@ -50,6 +50,8 @@ object RouteName {
         const val Recomposition = "Recomposition"
         const val CanvasAnimation = "CanvasAnimation"
         const val SkyAnimation = "SkyAnimation"
+        const val BannerAnimation = "BannerAnimation"
+        const val TextMarqueeAnimation = "TextMarqueeAnimation"
     }
 
 

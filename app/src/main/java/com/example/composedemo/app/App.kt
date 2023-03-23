@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.composedemo.state.AppViewModel
+import com.example.composedemo.utils.XLogger
 import com.google.android.gms.ads.MobileAds
 
 val appViewModel: AppViewModel by lazy { App.appViewModelInstance }
@@ -31,6 +32,8 @@ class App : Application(), ViewModelStoreOwner {
 
     override fun onCreate() {
         super.onCreate()
+        var maxMemory = Runtime.getRuntime().maxMemory()/1024/1024
+        XLogger.d("maxMemory====>$maxMemory")
         CONTEXT = this
         initWebView()
         MobileAds.initialize(this)
