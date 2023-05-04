@@ -16,9 +16,10 @@ import com.example.composedemo.ui.theme.AppTheme
 import com.example.composedemo.utils.XLogger
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 
-
+@AndroidEntryPoint
 class MainActivity : androidx.activity.ComponentActivity() {
 
     @OptIn(

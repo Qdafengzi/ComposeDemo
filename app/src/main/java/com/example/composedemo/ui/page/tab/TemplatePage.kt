@@ -158,5 +158,12 @@ fun TemplatePage(navCtrl: NavHostController) {
             }
         }
 
+        item {
+
+            ItemButton(text = RouteName.AimRoute.KotlinLock) {
+                RouteUtils.navTo(navCtrl, RouteName.AimRoute.KotlinLock)
+            }
+        }
+
     }
 }

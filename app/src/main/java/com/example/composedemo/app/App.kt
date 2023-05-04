@@ -10,9 +10,12 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.example.composedemo.state.AppViewModel
 import com.example.composedemo.utils.XLogger
 import com.google.android.gms.ads.MobileAds
+import dagger.hilt.android.HiltAndroidApp
 
 val appViewModel: AppViewModel by lazy { App.appViewModelInstance }
 
+
+@HiltAndroidApp
 class App : Application(), ViewModelStoreOwner {
     private lateinit var mAppViewModelStore: ViewModelStore
 

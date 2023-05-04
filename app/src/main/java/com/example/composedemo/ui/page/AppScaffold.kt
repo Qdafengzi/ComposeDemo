@@ -207,6 +207,10 @@ fun AppScaffold() {
                     RichTextPage(navCtrl, RouteName.HomeRoute.RichText)
                 }
 
+                composable(route = RouteName.HomeRoute.DraggableToolPalette) {
+                    DraggableToolPalette(navCtrl, RouteName.HomeRoute.DraggableToolPalette)
+                }
+
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {
@@ -361,6 +365,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.TextMarqueeAnimation) {
                     TextMarqueePage(navCtrl, RouteName.AimRoute.TextMarqueeAnimation)
+                }
+
+                composable(route = RouteName.AimRoute.KotlinLock) {
+                    KotlinLock(navCtrl, RouteName.AimRoute.KotlinLock)
                 }
 
 

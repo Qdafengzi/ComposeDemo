@@ -52,6 +52,7 @@ object RouteName {
         const val SkyAnimation = "SkyAnimation"
         const val BannerAnimation = "BannerAnimation"
         const val TextMarqueeAnimation = "TextMarqueeAnimation"
+        const val KotlinLock = "KotlinLock"
     }
 
 
@@ -100,7 +101,7 @@ object RouteName {
         const val Contact = "Contact"
         const val Transformation = "Transformation"
         const val RichText = "RichText"
-
+        const val DraggableToolPalette = "DraggableToolPalette"
     }
 
 

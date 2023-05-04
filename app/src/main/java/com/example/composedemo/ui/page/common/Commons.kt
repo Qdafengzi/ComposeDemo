@@ -32,7 +32,7 @@ fun BottomNavBarView(navCtrl: NavHostController) {
         bottomNavList.forEach { screen ->
             val isSelected = currentDestination?.hierarchy?.any { it.route == screen.routeName } == true
             BottomNavigationItem(
-                modifier = Modifier.background(AppTheme.colors.themeUi),
+                modifier = Modifier.background(color = AppTheme.colors.themeUi),
                 icon = {
                     Icon(
                         imageVector = screen.icon,

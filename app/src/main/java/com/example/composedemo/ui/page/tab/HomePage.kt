@@ -211,6 +211,12 @@ fun HomePage(navCtrl: NavHostController) {
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.RichText)
                 }
             }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.DraggableToolPalette) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.DraggableToolPalette)
+                }
+            }
         })
 }
 
