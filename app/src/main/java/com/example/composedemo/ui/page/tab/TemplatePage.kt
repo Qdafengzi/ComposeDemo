@@ -160,8 +160,8 @@ fun TemplatePage(navCtrl: NavHostController) {
 
         item {
 
-            ItemButton(text = RouteName.AimRoute.KotlinLock) {
-                RouteUtils.navTo(navCtrl, RouteName.AimRoute.KotlinLock)
+            ItemButton(text = RouteName.TemplateRoute.KotlinLock) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.KotlinLock)
             }
         }
 

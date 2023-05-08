@@ -35,6 +35,7 @@ object RouteName {
         const val Youtube_Rv_page = "Youtube_Rv_page"
         const val BlurPage = "BlurPage"
         const val WebViewPreLoading = "WebViewPreLoading"
+        const val KotlinLock = "KotlinLock"
     }
 
     object AimRoute{
@@ -52,7 +53,7 @@ object RouteName {
         const val SkyAnimation = "SkyAnimation"
         const val BannerAnimation = "BannerAnimation"
         const val TextMarqueeAnimation = "TextMarqueeAnimation"
-        const val KotlinLock = "KotlinLock"
+
     }
 
 

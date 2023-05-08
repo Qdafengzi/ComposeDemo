@@ -1,31 +1,47 @@
 package com.example.composedemo.ui.page.anim
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.Easing
-import androidx.compose.animation.core.keyframes
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.with
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.animateScrollBy
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
@@ -34,8 +50,6 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.R
 import com.example.composedemo.state.ScrollViewModel
 import com.example.composedemo.ui.widget.CommonToolbar
-import com.example.composedemo.utils.XLogger
-import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -299,73 +313,5 @@ private enum class CartState {
     Expanded,
     Collapsed
 }
-
-@OptIn(ExperimentalAnimationApi::class)
-@Composable
-private fun AnimatedContentTransitionSpecExample() {
-    var cartState by remember { mutableStateOf(CartState.Collapsed) }
-    val transitionSpec: AnimatedContentScope<CartState>.() -> ContentTransform =
-        {
-            fadeIn(animationSpec = tween(150, delayMillis = 150))
-                .with(fadeOut(animationSpec = tween(150)))
-                .using(
-                    SizeTransform { initialSize, targetSize ->
-                        if (CartState.Collapsed isTransitioningTo CartState.Expanded) {
-                            keyframes {
-                                durationMillis = 500
-                                IntSize(targetSize.width, initialSize.height + 200) at 150
-                            }
-                        } else {
-                            keyframes {
-                                durationMillis = 500
-                                IntSize(
-                                    initialSize.width,
-                                    (initialSize.height + targetSize.height) / 2
-                                ) at 150
-                            }
-                        }
-                    }
-                )
-        }
-//    AnimatedContent(
-//        targetState = cartState,
-//        transitionSpec = transitionSpec
-//    ) { state ->
-//        when (state) {
-//            CartState.Expanded -> ExpandedCart {
-//                cartState = CartState.Collapsed
-//            }
-//            CartState.Collapsed -> CollapsedCart {
-//                cartState = CartState.Expanded
-//            }
-//        }
-//    }
-}
-//
-//@OptIn(ExperimentalMaterialApi::class)
-//@Composable
-//private fun ExpandedCart(
-//    onClick: () -> Unit
-//) {
-//    val shoppingCart = stringResource(id = R.string.shopping_cart)
-//    Card(
-//        shape = CutCornerShape(12.dp),
-//        onClick = onClick,
-//        backgroundColor = MaterialTheme.colors.primary
-//    ) {
-//        Row(
-//            modifier = Modifier.padding(16.dp)
-//        ) {
-//            Icon(
-//                imageVector = Icons.Filled.AddShoppingCart,
-//                contentDescription = shoppingCart
-//            )
-//            Text(
-//                text = shoppingCart,
-//            )
-//        }
-//    }
-//}
-
 
 

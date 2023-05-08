@@ -367,8 +367,8 @@ fun AppScaffold() {
                     TextMarqueePage(navCtrl, RouteName.AimRoute.TextMarqueeAnimation)
                 }
 
-                composable(route = RouteName.AimRoute.KotlinLock) {
-                    KotlinLock(navCtrl, RouteName.AimRoute.KotlinLock)
+                composable(route = RouteName.TemplateRoute.KotlinLock) {
+                    KotlinLock(navCtrl, RouteName.TemplateRoute.KotlinLock)
                 }
 
 
