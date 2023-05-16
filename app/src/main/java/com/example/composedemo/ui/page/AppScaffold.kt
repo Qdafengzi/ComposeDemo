@@ -211,6 +211,10 @@ fun AppScaffold() {
                     DraggableToolPalette(navCtrl, RouteName.HomeRoute.DraggableToolPalette)
                 }
 
+                composable(route = RouteName.HomeRoute.RecompositionPage) {
+                    ReCompositionPage(navCtrl, RouteName.HomeRoute.RecompositionPage)
+                }
+
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {

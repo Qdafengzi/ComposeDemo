@@ -103,6 +103,7 @@ object RouteName {
         const val Transformation = "Transformation"
         const val RichText = "RichText"
         const val DraggableToolPalette = "DraggableToolPalette"
+        const val RecompositionPage = "RecompositionPage"
     }
 
 

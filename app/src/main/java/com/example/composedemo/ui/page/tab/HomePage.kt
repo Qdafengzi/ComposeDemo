@@ -217,6 +217,12 @@ fun HomePage(navCtrl: NavHostController) {
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.DraggableToolPalette)
                 }
             }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.RecompositionPage) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.RecompositionPage)
+                }
+            }
         })
 }
 
