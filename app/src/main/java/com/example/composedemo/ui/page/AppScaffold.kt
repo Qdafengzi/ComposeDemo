@@ -215,6 +215,10 @@ fun AppScaffold() {
                     ReCompositionPage(navCtrl, RouteName.HomeRoute.RecompositionPage)
                 }
 
+                composable(route = RouteName.HomeRoute.JavaPrettify) {
+                    JavaPrettify(navCtrl, RouteName.HomeRoute.JavaPrettify)
+                }
+
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {
@@ -369,6 +373,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.TextMarqueeAnimation) {
                     TextMarqueePage(navCtrl, RouteName.AimRoute.TextMarqueeAnimation)
+                }
+
+                composable(route = RouteName.AimRoute.PrintText) {
+                    PrintText(navCtrl, RouteName.AimRoute.PrintText)
                 }
 
                 composable(route = RouteName.TemplateRoute.KotlinLock) {

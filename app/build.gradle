@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+//    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -34,9 +35,11 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        freeCompilerArgs+="-opt-in=kotlin.RequiresOptIn"
-        jvmTarget = "17"
+        jvmTarget = 17
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        languageVersion = "2.0"
     }
+
     buildFeatures {
         compose true
     }
@@ -44,7 +47,7 @@ android {
         enabled = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion kotlin_compiler
     }
 
     packagingOptions {
@@ -52,11 +55,20 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+//    kotlin {
+//        sourceSets.configureEach {
+//            languageSettings {
+//                languageVersion = "2.0"
+//            }
+//        }
+//    }
+
     namespace 'com.example.composedemo'
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -64,25 +76,26 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation "androidx.compose.ui:ui-util:$compose_version"
-    implementation 'androidx.activity:activity-compose:1.7.1'
+    implementation 'androidx.activity:activity-compose:1.7.2'
 
 
     implementation project(path: ':glpanorama')
-    implementation 'androidx.paging:paging-compose:1.0.0-alpha19'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha20'
     implementation project(path: ':richeditor')
+    implementation files('lib/JavaPrettify-1.2.1.jar')
 
 
     // CameraX core library
-    def camerax_version = '1.3.0-alpha06'
+    def camerax_version = '1.3.0-alpha07'
     implementation "androidx.camera:camera-core:$camerax_version"
     // CameraX Camera2 extensions
-    implementation "androidx.camera:camera-camera2:1.3.0-alpha06"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
     // CameraX Lifecycle library
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
     // CameraX View class
     implementation "androidx.camera:camera-view:$camerax_version"
     //权限
-    def accompanist_version = '0.28.0'
+    def accompanist_version = '0.30.1'
     implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager:${accompanist_version}"
     implementation "com.google.accompanist:accompanist-pager-indicators:${accompanist_version}"
@@ -95,8 +108,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha09"
-    implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha10"
+    implementation("androidx.navigation:navigation-compose:2.6.0")
 
 
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -113,7 +126,7 @@ dependencies {
     api("androidx.palette:palette-ktx:1.0.0")
 
     implementation "com.airbnb.android:lottie-compose:6.0.0"
-    implementation 'androidx.compose.runtime:runtime-livedata:1.5.0-alpha03'
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
 
     api('io.coil-kt:coil-compose:2.3.0')
@@ -137,14 +150,13 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.3.0"
     implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta04'
-    implementation 'com.google.android.gms:play-services-ads:22.0.0'
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
 
     kapt "com.google.dagger:hilt-compiler:${hilt_version}"
     implementation "com.google.dagger:hilt-android:${hilt_version}"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
-
 
 
 }

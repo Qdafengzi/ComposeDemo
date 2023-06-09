@@ -53,6 +53,7 @@ object RouteName {
         const val SkyAnimation = "SkyAnimation"
         const val BannerAnimation = "BannerAnimation"
         const val TextMarqueeAnimation = "TextMarqueeAnimation"
+        const val PrintText = "PrintText"
 
     }
 
@@ -104,6 +105,7 @@ object RouteName {
         const val RichText = "RichText"
         const val DraggableToolPalette = "DraggableToolPalette"
         const val RecompositionPage = "RecompositionPage"
+        const val JavaPrettify = "JavaPrettify"
     }
 
 

@@ -31,7 +31,9 @@ fun ReCompositionPage(navCtrl: NavHostController, title: String) {
 //        val lists = remember {
 //            mutableStateListOf("香蕉", "苹果", "芒果", "萝卜", "咖啡")
 //        }
-        val state = rememberPagerState()
+        val state = rememberPagerState(){
+            lists.size
+        }
         val scope = rememberCoroutineScope()
         Column {
             ScrollableTabRow(
@@ -56,7 +58,6 @@ fun ReCompositionPage(navCtrl: NavHostController, title: String) {
             HorizontalPager(
                 state = state,//Pager当前所在页数
                 modifier = Modifier.height(300.dp),
-                pageCount = lists.size,
                 ) { pagePosition ->
 
                 val color = (0..255)

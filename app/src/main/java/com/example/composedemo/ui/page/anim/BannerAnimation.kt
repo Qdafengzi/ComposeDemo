@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -59,8 +60,13 @@ fun BannerAnimation(navCtrl: NavHostController, title: String) {
             modifier = Modifier.padding(16.dp),
             shape = RoundedCornerShape(16.dp),
         ) {
+
+
             AutoSlidingCarousel(
                 itemsCount = images.size,
+                pagerState = rememberPagerState {
+                    images.size
+                },
                 itemContent = { index ->
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
@@ -82,7 +88,7 @@ fun BannerAnimation(navCtrl: NavHostController, title: String) {
 fun AutoSlidingCarousel(
     modifier: Modifier = Modifier,
     autoSlideDuration: Long = 3000,
-    pagerState: PagerState = remember { PagerState() },
+    pagerState: PagerState,
     itemsCount: Int,
     itemContent: @Composable (index: Int) -> Unit,
 ) {
@@ -113,7 +119,7 @@ fun AutoSlidingCarousel(
     Box(
         modifier = modifier.fillMaxWidth(),
     ) {
-        HorizontalPager(
+        HorizontalPager(state =pagerState,
             modifier = Modifier
                 .pointerInteropFilter {
                     if(it.action == MotionEvent.ACTION_DOWN){
@@ -150,8 +156,10 @@ fun AutoSlidingCarousel(
 //                        }
 //                    }
 //                }
-            , pageCount = itemsCount, state = pagerState) { page ->
-            itemContent(page)
+            ,
+
+            ) {
+            itemContent(it)
         }
         /* Surface(
              modifier = Modifier

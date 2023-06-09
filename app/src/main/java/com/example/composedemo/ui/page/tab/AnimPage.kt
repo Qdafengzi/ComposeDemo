@@ -103,6 +103,13 @@ fun AnimPage(navCtrl: NavHostController) {
                     RouteUtils.navTo(navCtrl, RouteName.AimRoute.TextMarqueeAnimation)
                 }
             }
+
+            item {
+
+                ItemButton(text = RouteName.AimRoute.PrintText) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.PrintText)
+                }
+            }
         })
 
 }

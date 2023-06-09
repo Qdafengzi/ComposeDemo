@@ -3,7 +3,6 @@ package com.example.composedemo.utils
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
 /**
@@ -68,14 +67,14 @@ object RouteUtils {
         navigateUp()
     }
 
-    private fun getPopUpId(navCtrl: NavHostController, routeName: String?): Int {
-        val defaultId = navCtrl.graph.findStartDestination().id
-        return if (routeName == null) {
-            defaultId
-        } else {
-            navCtrl.findDestination(routeName)?.id ?: defaultId
-        }
-    }
+//    private fun getPopUpId(navCtrl: NavHostController, routeName: String?): Int {
+//        val defaultId = navCtrl.graph.findStartDestination().id
+//        return if (routeName == null) {
+//            defaultId
+//        } else {
+//            navCtrl.findDestination(routeName)?.id ?: defaultId
+//        }
+//    }
 
     fun <T> getArguments(navCtrl: NavHostController): T? {
         return navCtrl.previousBackStackEntry?.arguments?.getParcelable(ARGS)

@@ -223,6 +223,12 @@ fun HomePage(navCtrl: NavHostController) {
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.RecompositionPage)
                 }
             }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.JavaPrettify) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.JavaPrettify)
+                }
+            }
         })
 }
 
