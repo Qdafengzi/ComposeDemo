@@ -32,7 +32,7 @@
 
 <img src="img/more_text.gif" width="200"/>
 
-#### 8.隐藏状态栏
+#### 8.滑动隐藏
 
 <img src="img/hide_toolbar.gif" width="200"/>
 
