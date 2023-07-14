@@ -54,7 +54,7 @@ object RouteName {
         const val BannerAnimation = "BannerAnimation"
         const val TextMarqueeAnimation = "TextMarqueeAnimation"
         const val PrintText = "PrintText"
-
+        const val LeftScrollSelect = "LeftScrollSelect"
     }
 
 

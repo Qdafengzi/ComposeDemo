@@ -379,9 +379,15 @@ fun AppScaffold() {
                     PrintText(navCtrl, RouteName.AimRoute.PrintText)
                 }
 
+                composable(route = RouteName.AimRoute.LeftScrollSelect) {
+                    LeftScrollSelect(navCtrl, RouteName.AimRoute.LeftScrollSelect)
+                }
+
                 composable(route = RouteName.TemplateRoute.KotlinLock) {
                     KotlinLock(navCtrl, RouteName.TemplateRoute.KotlinLock)
                 }
+
+
 
 
                 //WebView

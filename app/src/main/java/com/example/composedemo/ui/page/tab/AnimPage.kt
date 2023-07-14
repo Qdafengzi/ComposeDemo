@@ -105,9 +105,14 @@ fun AnimPage(navCtrl: NavHostController) {
             }
 
             item {
-
                 ItemButton(text = RouteName.AimRoute.PrintText) {
                     RouteUtils.navTo(navCtrl, RouteName.AimRoute.PrintText)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.AimRoute.LeftScrollSelect) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.LeftScrollSelect)
                 }
             }
         })

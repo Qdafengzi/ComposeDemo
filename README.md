@@ -39,3 +39,6 @@
 #### 9.联系人
 
 <img src="img/contact.gif" width="200"/>
+
+#### 10.左滑右滑选择
+<img src="img/selected.gif" width="200"/>
