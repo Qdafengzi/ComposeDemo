@@ -35,7 +35,6 @@ object RouteName {
         const val Youtube_Rv_page = "Youtube_Rv_page"
         const val BlurPage = "BlurPage"
         const val WebViewPreLoading = "WebViewPreLoading"
-        const val KotlinLock = "KotlinLock"
     }
 
     object AimRoute{
@@ -106,6 +105,7 @@ object RouteName {
         const val DraggableToolPalette = "DraggableToolPalette"
         const val RecompositionPage = "RecompositionPage"
         const val JavaPrettify = "JavaPrettify"
+        const val FlowData = "FlowData"
     }
 
 

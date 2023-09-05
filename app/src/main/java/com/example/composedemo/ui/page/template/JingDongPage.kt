@@ -1,10 +1,21 @@
 package com.example.composedemo.ui.page.template
 
 import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,12 +35,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import com.example.composedemo.R
 import com.example.composedemo.ui.widget.CommonToolbar
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
 
 
-@ExperimentalPagerApi
 @Composable
 fun JingDongPage(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
@@ -38,7 +45,6 @@ fun JingDongPage(navCtrl: NavHostController, title: String) {
 }
 
 
-@ExperimentalPagerApi
 @Composable
 fun Content() {
     val list1 = mutableListOf<String>()
@@ -166,18 +172,19 @@ fun Content() {
 }
 
 
-@ExperimentalPagerApi
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Banner() {
-    val pagerState = rememberPagerState()
+    val pagerState = androidx.compose.foundation.pager.rememberPagerState {
+        5
+    }
     val paintRes = painterResource(id = R.drawable.sheep)
 
     val size = 5
 
     ConstraintLayout() {
         val (horizontalPagerRefs, indicatorRes) = createRefs()
-        HorizontalPager(
-            count = size,
+        androidx.compose.foundation.pager.HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxWidth()

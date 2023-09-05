@@ -26,8 +26,7 @@ class MainActivity : androidx.activity.ComponentActivity() {
         InternalCoroutinesApi::class,
         ExperimentalPermissionsApi::class,
         ExperimentalComposeUiApi::class,
-        ExperimentalFoundationApi::class,
-        ExperimentalPagerApi::class
+        ExperimentalFoundationApi::class, ExperimentalPagerApi::class,
     )
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {

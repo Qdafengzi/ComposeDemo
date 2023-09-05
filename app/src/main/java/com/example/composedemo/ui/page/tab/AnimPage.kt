@@ -11,9 +11,7 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.ui.page.common.RouteName
 import com.example.composedemo.ui.widget.ItemButton
 import com.example.composedemo.utils.RouteUtils
-import com.google.accompanist.pager.ExperimentalPagerApi
 
-@ExperimentalPagerApi
 @Composable
 fun AnimPage(navCtrl: NavHostController) {
 

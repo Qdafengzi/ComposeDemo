@@ -2,7 +2,13 @@ package com.example.composedemo.ui.page.template
 
 import android.graphics.Bitmap
 import android.net.http.SslError
-import android.webkit.*
+import android.webkit.ClientCertRequest
+import android.webkit.ConsoleMessage
+import android.webkit.HttpAuthHandler
+import android.webkit.SslErrorHandler
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
+import android.webkit.WebView
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -55,13 +61,6 @@ fun WebViewPageNew(navCtrl: NavHostController, title: String) {
                     XLogger.d("------>${errorResponse?.data.toString()}")
                 }
 
-                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                    super.onReceivedError(view, request, error)
-                    XLogger.d("onReceivedError------->${error?.errorCode}")
-                    XLogger.d("onReceivedError--url----->${request?.url}")
-                    XLogger.d("onReceivedError----method--->${request?.method}")
-                }
-
                 override fun onReceivedLoginRequest(view: WebView?, realm: String?, account: String?, args: String?) {
                     XLogger.d("onReceivedLoginRequest--------->$realm")
                     super.onReceivedLoginRequest(view, realm, account, args)
@@ -82,7 +81,7 @@ fun WebViewPageNew(navCtrl: NavHostController, title: String) {
                     XLogger.d("onReceivedClientCertRequest-------->${request?.host}")
                 }
 
-                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                override fun onPageStarted(view: WebView, url: String?, favicon: Bitmap?) {
 
                     if(url=="jianshu://notes/b937bee08bf8"){
 

@@ -8,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -17,33 +16,106 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.composedemo.ui.page.anim.*
+import com.example.composedemo.ui.page.anim.Aim1Page
+import com.example.composedemo.ui.page.anim.BannerAnimation
+import com.example.composedemo.ui.page.anim.CanvasAnimation
+import com.example.composedemo.ui.page.anim.LeftScrollSelect
+import com.example.composedemo.ui.page.anim.MarqueePage
+import com.example.composedemo.ui.page.anim.MoreText
+import com.example.composedemo.ui.page.anim.MotionLayoutAnimation3
+import com.example.composedemo.ui.page.anim.MotionLayoutAnimationOne
+import com.example.composedemo.ui.page.anim.MotionLayoutAnimationTwo
+import com.example.composedemo.ui.page.anim.PrintText
+import com.example.composedemo.ui.page.anim.RecompositionExp
+import com.example.composedemo.ui.page.anim.SkyAnimation
+import com.example.composedemo.ui.page.anim.TextMarqueePage
+import com.example.composedemo.ui.page.anim.TouchAnimationPage
+import com.example.composedemo.ui.page.anim.TransformPage
+import com.example.composedemo.ui.page.anim.VoteAnimation
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
-import com.example.composedemo.ui.page.home.*
+import com.example.composedemo.ui.page.home.BezierPage
+import com.example.composedemo.ui.page.home.BottomNavigationPage
+import com.example.composedemo.ui.page.home.ButtonPage
+import com.example.composedemo.ui.page.home.CanvasLinePage
+import com.example.composedemo.ui.page.home.CanvasPage
+import com.example.composedemo.ui.page.home.ClockPage
+import com.example.composedemo.ui.page.home.ComplexPage
+import com.example.composedemo.ui.page.home.ComposeWithXmlPage
+import com.example.composedemo.ui.page.home.ConstraintLayoutPage
+import com.example.composedemo.ui.page.home.ContactPage
+import com.example.composedemo.ui.page.home.ContentScreensPage
+import com.example.composedemo.ui.page.home.DraggableToolPalette
+import com.example.composedemo.ui.page.home.FlowDataPage
+import com.example.composedemo.ui.page.home.Goods3dImagePage
+import com.example.composedemo.ui.page.home.Goods3dImagePageThree
+import com.example.composedemo.ui.page.home.Goods3dImagePageTwo
+import com.example.composedemo.ui.page.home.GridListPage
+import com.example.composedemo.ui.page.home.ImageCardPage
+import com.example.composedemo.ui.page.home.JavaPrettify
+import com.example.composedemo.ui.page.home.LazyColumnPage
+import com.example.composedemo.ui.page.home.LeftScrollDeletePage
+import com.example.composedemo.ui.page.home.ListPage
+import com.example.composedemo.ui.page.home.ModifierPage
+import com.example.composedemo.ui.page.home.MotionLayoutPage
+import com.example.composedemo.ui.page.home.NavigationPage
+import com.example.composedemo.ui.page.home.NestedScrollPage
+import com.example.composedemo.ui.page.home.NewUiStylePage
+import com.example.composedemo.ui.page.home.PullRefreshPage
+import com.example.composedemo.ui.page.home.ReCompositionPage
+import com.example.composedemo.ui.page.home.RichTextPage
+import com.example.composedemo.ui.page.home.RowAndColumn
+import com.example.composedemo.ui.page.home.SaveHandlePage
+import com.example.composedemo.ui.page.home.SnackBarPage
+import com.example.composedemo.ui.page.home.StatePage
+import com.example.composedemo.ui.page.home.TextPage
+import com.example.composedemo.ui.page.home.TransformationPage
+import com.example.composedemo.ui.page.home.WebViewPage
+import com.example.composedemo.ui.page.home.XmlWithComposePage
 import com.example.composedemo.ui.page.tab.AnimPage
 import com.example.composedemo.ui.page.tab.HomePage
 import com.example.composedemo.ui.page.tab.TemplatePage
 import com.example.composedemo.ui.page.tab.WidgetsPage
-import com.example.composedemo.ui.page.template.*
+import com.example.composedemo.ui.page.template.BannerPage
+import com.example.composedemo.ui.page.template.BlurPage
+import com.example.composedemo.ui.page.template.CameraPage
+import com.example.composedemo.ui.page.template.CanvasPageTwo
+import com.example.composedemo.ui.page.template.ChannelPage
+import com.example.composedemo.ui.page.template.ColorPickerPage
+import com.example.composedemo.ui.page.template.DebouncedClickable
+import com.example.composedemo.ui.page.template.GridViewPage
+import com.example.composedemo.ui.page.template.ImageZoom
+import com.example.composedemo.ui.page.template.JingDongPage
+import com.example.composedemo.ui.page.template.MLKitPage
+import com.example.composedemo.ui.page.template.NetErrorPage
+import com.example.composedemo.ui.page.template.PermissionPage
+import com.example.composedemo.ui.page.template.SealedClassListPage
+import com.example.composedemo.ui.page.template.SmartRefreshPage
+import com.example.composedemo.ui.page.template.StaggeredGridCompare
+import com.example.composedemo.ui.page.template.StaggeredGridOffice
+import com.example.composedemo.ui.page.template.SupportScreenSizePage
+import com.example.composedemo.ui.page.template.WebViewPageNew
+import com.example.composedemo.ui.page.template.WebViewPreLoading
+import com.example.composedemo.ui.page.template.WechatFriendsCirclePage
+import com.example.composedemo.ui.page.template.YoutubeListPage
+import com.example.composedemo.ui.page.template.YoutubeRvPage
 import com.example.composedemo.ui.page.widgets.KeyboardPage
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.R)
 @InternalCoroutinesApi
 @ExperimentalPermissionsApi
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
-@ExperimentalPagerApi
 @Composable
 fun AppScaffold() {
     val navCtrl = rememberNavController()
     val navBackStackEntry by navCtrl.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    Scaffold(
+
+    androidx.compose.material3.Scaffold(
         modifier = Modifier
             .statusBarsPadding()
             .navigationBarsPadding(),
@@ -219,6 +291,10 @@ fun AppScaffold() {
                     JavaPrettify(navCtrl, RouteName.HomeRoute.JavaPrettify)
                 }
 
+                composable(route = RouteName.HomeRoute.FlowData) {
+                    FlowDataPage(navCtrl, RouteName.HomeRoute.FlowData)
+                }
+
 
                 //TemplateRoute
                 composable(route = RouteName.TemplateRoute.CameraPage) {
@@ -381,10 +457,6 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.LeftScrollSelect) {
                     LeftScrollSelect(navCtrl, RouteName.AimRoute.LeftScrollSelect)
-                }
-
-                composable(route = RouteName.TemplateRoute.KotlinLock) {
-                    KotlinLock(navCtrl, RouteName.TemplateRoute.KotlinLock)
                 }
 
 

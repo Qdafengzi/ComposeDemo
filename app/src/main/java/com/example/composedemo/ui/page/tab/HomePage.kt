@@ -13,7 +13,6 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.ui.page.common.RouteName
 import com.example.composedemo.ui.widget.ItemButton
 import com.example.composedemo.utils.RouteUtils
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -21,7 +20,6 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @ExperimentalPermissionsApi
 @ExperimentalFoundationApi
 @InternalCoroutinesApi
-@ExperimentalPagerApi
 @Composable
 fun HomePage(navCtrl: NavHostController) {
 
@@ -227,6 +225,12 @@ fun HomePage(navCtrl: NavHostController) {
             item {
                 ItemButton(text = RouteName.HomeRoute.JavaPrettify) {
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.JavaPrettify)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.FlowData) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.FlowData)
                 }
             }
         })

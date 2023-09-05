@@ -10,9 +10,7 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.ui.page.common.RouteName
 import com.example.composedemo.ui.widget.ItemButton
 import com.example.composedemo.utils.RouteUtils
-import com.google.accompanist.pager.ExperimentalPagerApi
 
-@ExperimentalPagerApi
 @Composable
 fun TemplatePage(navCtrl: NavHostController) {
     LazyColumn(
@@ -155,13 +153,6 @@ fun TemplatePage(navCtrl: NavHostController) {
         item {
             ItemButton(text = RouteName.TemplateRoute.WebViewPreLoading) {
                 RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.WebViewPreLoading)
-            }
-        }
-
-        item {
-
-            ItemButton(text = RouteName.TemplateRoute.KotlinLock) {
-                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.KotlinLock)
             }
         }
 
