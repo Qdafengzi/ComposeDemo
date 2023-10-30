@@ -156,5 +156,12 @@ fun TemplatePage(navCtrl: NavHostController) {
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.HorizontalPagerPage) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.HorizontalPagerPage)
+            }
+        }
+
+
     }
 }

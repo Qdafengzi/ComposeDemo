@@ -34,6 +34,7 @@ import com.example.composedemo.ui.page.anim.TransformPage
 import com.example.composedemo.ui.page.anim.VoteAnimation
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
+import com.example.composedemo.ui.page.common.RouteName.TemplateRoute.HorizontalPagerPage
 import com.example.composedemo.ui.page.home.BezierPage
 import com.example.composedemo.ui.page.home.BottomNavigationPage
 import com.example.composedemo.ui.page.home.ButtonPage
@@ -84,6 +85,7 @@ import com.example.composedemo.ui.page.template.ChannelPage
 import com.example.composedemo.ui.page.template.ColorPickerPage
 import com.example.composedemo.ui.page.template.DebouncedClickable
 import com.example.composedemo.ui.page.template.GridViewPage
+import com.example.composedemo.ui.page.template.HorizontalPagerPage
 import com.example.composedemo.ui.page.template.ImageZoom
 import com.example.composedemo.ui.page.template.JingDongPage
 import com.example.composedemo.ui.page.template.MLKitPage
@@ -387,6 +389,10 @@ fun AppScaffold() {
                 }
                 composable(route = RouteName.TemplateRoute.WebViewPreLoading) {
                     WebViewPreLoading(navCtrl, RouteName.TemplateRoute.WebViewPreLoading)
+                }
+
+                composable(route = RouteName.TemplateRoute.HorizontalPagerPage) {
+                    HorizontalPagerPage(navCtrl, RouteName.TemplateRoute.HorizontalPagerPage)
                 }
 
 
