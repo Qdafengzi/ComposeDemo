@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        compose_version = '1.5.0'
-        hilt_version= '2.48'
+        compose_version = '1.5.4'
+        hilt_version= '2.48.1'
         kotlin_version = '1.9.10'
         kotlin_compiler = '1.5.3'
     }
@@ -34,9 +34,9 @@ plugins {
 //    id 'com.google.devtools.ksp' version '1.8.21-1.0.11' apply false
 }
 //
-//tasks.register("clean"){
-//    delete rootProject.buildDir
-//}
+tasks.register("clean"){
+    delete rootProject.buildDir
+}
 
 subprojects {
 //    tasks.withType(KotlinCompile).configureEach {

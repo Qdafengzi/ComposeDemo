@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-  compileSdk 33
+  compileSdk 34
 
   defaultConfig {
     minSdkVersion 23
-    targetSdkVersion 33
+    targetSdkVersion 34
   }
+
 
   namespace 'jp.wasabeef.richeditor'
 }

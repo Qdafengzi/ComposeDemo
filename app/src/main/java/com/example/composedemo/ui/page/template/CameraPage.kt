@@ -54,7 +54,9 @@ fun SimpleCameraPreview() {
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
+
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
+
 
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -93,6 +95,8 @@ fun SimpleCameraPreview() {
                             // Preview is incorrectly scaled in Compose on some devices without this
                             implementationMode = PreviewView.ImplementationMode.COMPATIBLE
                         }
+
+
 
 
                         cameraProviderFuture.addListener({

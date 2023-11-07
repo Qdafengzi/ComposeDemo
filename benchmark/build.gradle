@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
     defaultConfig {
         minSdk 23
-        targetSdk 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,6 +21,17 @@ android {
             signingConfig = debug.signingConfig
             matchingFallbacks = ["release"]
         }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = 17
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        languageVersion = "2.0"
     }
 
     targetProjectPath = ":app"
