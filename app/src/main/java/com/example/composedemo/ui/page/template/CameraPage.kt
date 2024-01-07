@@ -26,8 +26,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import com.example.composedemo.ui.widget.CommonToolbar
+import com.example.composedemo.utils.getActivity
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
+
+
 
 
 @Composable
@@ -54,6 +57,7 @@ fun SimpleCameraPreview() {
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
+
 
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
 
