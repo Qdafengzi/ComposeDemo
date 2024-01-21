@@ -162,6 +162,12 @@ fun TemplatePage(navCtrl: NavHostController) {
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.OutLineText) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.OutLineText)
+            }
+        }
+
 
     }
 }

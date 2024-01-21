@@ -74,7 +74,7 @@ dependencies {
     implementation "androidx.compose.ui:ui:$compose_version"
     api "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.material3:material3-android:1.2.0-beta01"
+    implementation "androidx.compose.material3:material3-android:1.2.0-beta02"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation "androidx.compose.ui:ui-util:$compose_version"
     implementation 'androidx.activity:activity-compose:1.8.2'
@@ -121,7 +121,7 @@ dependencies {
 
 
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    def lifecycle = '2.6.2'
+    def lifecycle = '2.7.0'
     api("androidx.lifecycle:lifecycle-common-java8:${lifecycle}")
     // viewModel
     api("androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}")

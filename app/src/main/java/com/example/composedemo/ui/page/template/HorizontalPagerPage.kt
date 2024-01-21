@@ -194,7 +194,6 @@ fun HorizontalPagerPage(navCtrl: NavHostController, title: String) {
 }
 
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PhoneLoginView() {
     val keyboardController = LocalSoftwareKeyboardController.current

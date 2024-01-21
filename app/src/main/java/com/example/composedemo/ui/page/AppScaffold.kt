@@ -90,6 +90,7 @@ import com.example.composedemo.ui.page.template.ImageZoom
 import com.example.composedemo.ui.page.template.JingDongPage
 import com.example.composedemo.ui.page.template.MLKitPage
 import com.example.composedemo.ui.page.template.NetErrorPage
+import com.example.composedemo.ui.page.template.OutLineTextPage
 import com.example.composedemo.ui.page.template.PermissionPage
 import com.example.composedemo.ui.page.template.SealedClassListPage
 import com.example.composedemo.ui.page.template.SmartRefreshPage
@@ -393,6 +394,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.TemplateRoute.HorizontalPagerPage) {
                     HorizontalPagerPage(navCtrl, RouteName.TemplateRoute.HorizontalPagerPage)
+                }
+
+                composable(route = RouteName.TemplateRoute.OutLineText) {
+                    OutLineTextPage(navCtrl, RouteName.TemplateRoute.OutLineText)
                 }
 
 
