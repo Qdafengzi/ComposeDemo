@@ -2,19 +2,26 @@ package com.example.composedemo.ui.page.template
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.util.Rational
-import android.view.ViewGroup
-import androidx.camera.core.*
+import androidx.camera.core.AspectRatio
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageProxy
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
@@ -62,6 +69,7 @@ fun SimpleCameraPreview() {
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
 
 
+
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
@@ -89,16 +97,18 @@ fun SimpleCameraPreview() {
                 AndroidView(
                     factory = { ctx ->
                         val executor = ContextCompat.getMainExecutor(ctx)
-
                         val previewView = PreviewView(context).apply {
-                            this.scaleType = scaleType
-                            layoutParams = ViewGroup.LayoutParams(
-                                ViewGroup.LayoutParams.MATCH_PARENT,
-                                ViewGroup.LayoutParams.MATCH_PARENT
-                            )
+//                            this.scaleType = scaleType
+//                            layoutParams = ViewGroup.LayoutParams(
+//                                ViewGroup.LayoutParams.MATCH_PARENT,
+//                                ViewGroup.LayoutParams.MATCH_PARENT
+//                            )
                             // Preview is incorrectly scaled in Compose on some devices without this
                             implementationMode = PreviewView.ImplementationMode.COMPATIBLE
+//                            this.controller?.isTapToFocusEnabled = true
+//                            this.controller?.isPinchToZoomEnabled = true
                         }
+
 
 
 
@@ -106,74 +116,101 @@ fun SimpleCameraPreview() {
                         cameraProviderFuture.addListener({
                             val cameraProvider = cameraProviderFuture.get()
 
-                            val cameraUseCase = Preview.Builder().build()
-                            cameraUseCase.setSurfaceProvider(previewView.surfaceProvider)
                             val cameraSelector: CameraSelector = CameraSelector.Builder()
-                                .requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+                                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                                //.addCameraFilter() 过滤器
+                                .build()
 
 
-                            val viewPort: ViewPort = ViewPort.Builder(
-                                Rational(
-                                    previewView.width,
-                                    previewView.height
-                                ),
-                                previewView.display.rotation
-                            ).setScaleType(ViewPort.FILL_CENTER).build()
+                            val cameraUseCase = Preview.Builder().build()
+                            cameraUseCase.targetRotation = 3/4
+
+//                            ResolutionSelector.Builder
+//                                .fromResolutionSelector()
+//                                .setAspectRatioStrategy(AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY)
+
+                            val imageCapture = ImageCapture.Builder()
+                                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+//                                .setTargetAspectRatio(AspectRatio.RATIO_16_9)
+                                .build()
 
 
-                            val useCaseGroupBuilder: UseCaseGroup.Builder =
-                                UseCaseGroup.Builder().setViewPort(
-                                    viewPort
-                                )
+//                            setTargetAspectRatio(AspectRatio.RATIO_16_9)，ImageAnalysis 最大只能输出1280x720，无法输出1920x1080
+//                            setTargetResolution(Size(1920, 1080)) ，ImageAnalysis 最大只能输出1600x1200，无法输出1920X1080
+
+                            cameraUseCase.setSurfaceProvider(previewView.surfaceProvider)
+
+
+
+
+//                            val viewPort: ViewPort = ViewPort.Builder(
+//                                Rational(
+//                                    previewView.width,
+//                                    previewView.width*3/4
+//                                ),
+//                                previewView.display.rotation
+//                            ).setScaleType(ViewPort.FILL_CENTER).build()
+
+
+//                            val useCaseGroupBuilder: UseCaseGroup.Builder =
+//                                UseCaseGroup.Builder().setViewPort(
+//                                    viewPort
+//                                )
+
+
+//                            val useCaseGroupBuilder: UseCaseGroup.Builder =
+//                                UseCaseGroup.Builder()
 
                             Log.d(
                                 "imageProxy:::::",
                                 "imageProxy::::: ${previewView.width}   ${previewView.height} "
                             )
-                            val analysis2 = ImageAnalysis.Builder().build()
-                            analysis2.setAnalyzer(
-                                executor,
-                                InfoAnalyzer(mColor, pointPosition, mSelectedColor)
-                            )
+//                            val analysis2 = ImageAnalysis.Builder().build()
+//                            analysis2.setAnalyzer(
+//                                executor,
+//                                InfoAnalyzer(mColor, pointPosition, mSelectedColor)
+//                            )
 
-                            useCaseGroupBuilder.addUseCase(cameraUseCase)
-                            useCaseGroupBuilder.addUseCase(analysis2)
+//                            useCaseGroupBuilder.addUseCase(cameraUseCase)
+//                            useCaseGroupBuilder.addUseCase(analysis2)
 
 
                             cameraProvider.unbindAll()
                             val camera = cameraProvider.bindToLifecycle(
                                 lifecycleOwner,
                                 cameraSelector,
-                                useCaseGroupBuilder.build()
+                                imageCapture
                             )
 
                             //  // androidx.camera.camera2
                             Log.d("implementationType", "${camera.cameraInfo.implementationType}")
 
-                            camera.cameraControl.cancelFocusAndMetering()
+//                            camera.cameraControl.cancelFocusAndMetering()
                         }, executor)
                         previewView
                     },
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(4 / 3f),
                 )
             }
 
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .constrainAs(focusView) {
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                }
-                .onSizeChanged {
-                    pointPosition.value =
-                        Offset((it.width / 2).toFloat(), (it.height / 2).toFloat())
-                }
-                .drawBehind {
-                    drawCircle(color = mColor.value, radius = 20f)
-                }) {
-            }
+//            Box(modifier = Modifier
+//                .fillMaxSize()
+//                .constrainAs(focusView) {
+//                    start.linkTo(parent.start)
+//                    end.linkTo(parent.end)
+//                    top.linkTo(parent.top)
+//                    bottom.linkTo(parent.bottom)
+//                }
+//                .onSizeChanged {
+//                    pointPosition.value =
+//                        Offset((it.width / 2).toFloat(), (it.height / 2).toFloat())
+//                }
+//                .drawBehind {
+//                    drawCircle(color = mColor.value, radius = 20f)
+//                }) {
+//            }
         }
     }
 }

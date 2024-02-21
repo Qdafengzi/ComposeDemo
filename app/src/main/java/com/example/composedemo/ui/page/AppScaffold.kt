@@ -34,7 +34,6 @@ import com.example.composedemo.ui.page.anim.TransformPage
 import com.example.composedemo.ui.page.anim.VoteAnimation
 import com.example.composedemo.ui.page.common.BottomNavBarView
 import com.example.composedemo.ui.page.common.RouteName
-import com.example.composedemo.ui.page.common.RouteName.TemplateRoute.HorizontalPagerPage
 import com.example.composedemo.ui.page.home.BezierPage
 import com.example.composedemo.ui.page.home.BottomNavigationPage
 import com.example.composedemo.ui.page.home.ButtonPage
@@ -80,6 +79,7 @@ import com.example.composedemo.ui.page.tab.WidgetsPage
 import com.example.composedemo.ui.page.template.BannerPage
 import com.example.composedemo.ui.page.template.BlurPage
 import com.example.composedemo.ui.page.template.CameraPage
+import com.example.composedemo.ui.page.template.CameraXPage
 import com.example.composedemo.ui.page.template.CanvasPageTwo
 import com.example.composedemo.ui.page.template.ChannelPage
 import com.example.composedemo.ui.page.template.ColorPickerPage
@@ -102,6 +102,7 @@ import com.example.composedemo.ui.page.template.WebViewPreLoading
 import com.example.composedemo.ui.page.template.WechatFriendsCirclePage
 import com.example.composedemo.ui.page.template.YoutubeListPage
 import com.example.composedemo.ui.page.template.YoutubeRvPage
+import com.example.composedemo.ui.page.widgets.ImagePaintPage
 import com.example.composedemo.ui.page.widgets.KeyboardPage
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -304,6 +305,10 @@ fun AppScaffold() {
                     CameraPage(navCtrl, RouteName.TemplateRoute.CameraPage)
                 }
 
+                composable(route = RouteName.TemplateRoute.CameraPageX) {
+                    CameraXPage(navCtrl, RouteName.TemplateRoute.CameraPageX)
+                }
+
                 composable(route = RouteName.TemplateRoute.JingDongPage) {
                     JingDongPage(navCtrl, RouteName.TemplateRoute.JingDongPage)
                 }
@@ -404,6 +409,10 @@ fun AppScaffold() {
                 //widgets
                 composable(route = RouteName.WidgetsRoute.KeyboardPage) {
                     KeyboardPage(navCtrl, RouteName.WidgetsRoute.KeyboardPage)
+                }
+
+                composable(route = RouteName.WidgetsRoute.ImagePaintPage) {
+                    ImagePaintPage(navCtrl, RouteName.WidgetsRoute.ImagePaintPage)
                 }
 
                 //Aim

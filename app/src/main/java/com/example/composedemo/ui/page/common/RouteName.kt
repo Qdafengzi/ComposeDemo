@@ -9,12 +9,14 @@ object RouteName {
 
     object WidgetsRoute{
         const val KeyboardPage ="KeyboardPage"
+        const val ImagePaintPage ="ImagePaintPage"
     }
 
     object TemplateRoute{
         const val PermissionPage ="PermissionPage"
         const val SmartRefreshPage ="SmartRefreshPage"
         const val CameraPage ="CameraPage"
+        const val CameraPageX ="CameraPageX"
         const val JingDongPage ="JingDongPage"
         const val WechatFriendsCirclePage ="WechatFriendsCirclePage"
         const val MLKitPage ="MLKitPage"

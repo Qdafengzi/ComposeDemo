@@ -26,6 +26,12 @@ fun TemplatePage(navCtrl: NavHostController) {
         }
 
         item {
+            ItemButton(text = RouteName.TemplateRoute.CameraPageX) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.CameraPageX)
+            }
+        }
+
+        item {
             ItemButton(text = RouteName.TemplateRoute.PermissionPage) {
                 RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.PermissionPage)
             }
