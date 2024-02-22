@@ -39,11 +39,14 @@ import androidx.navigation.NavHostController
 import com.example.composedemo.R
 import com.example.composedemo.ui.widget.CommonToolbar
 import com.example.composedemo.utils.XLogger
+import kotlin.math.max
+import kotlin.math.min
 
 // 定义一个回调接口
 interface EraserCallback {
     fun onMove(x: Float, y: Float)
 }
+
 class EraserView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -51,8 +54,8 @@ class EraserView @JvmOverloads constructor(
     var eraserWidth: Float = 20f,
 ) : View(context, attrs, defStyleAttr) {
 
-
     var brushWidth = eraserWidth
+    var isEraserMode = true
 
     private lateinit var bitmap: Bitmap
     private lateinit var canvas: Canvas
@@ -60,8 +63,9 @@ class EraserView @JvmOverloads constructor(
     private val bitmapPaint = Paint()
     private var canvasBitmap: Bitmap? = null
 
-
     var callback: EraserCallback? = null
+
+    private lateinit var bitmapOriginal: Bitmap
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -72,7 +76,11 @@ class EraserView @JvmOverloads constructor(
         val imgScaledBitmap = Bitmap.createScaledBitmap(imgBitmap, w, h, true)
         canvasBitmap = imgScaledBitmap
         canvas.drawBitmap(imgScaledBitmap, 0f, 0f, bitmapPaint)
+
+        // Create a copy of the original bitmap
+        bitmapOriginal = imgScaledBitmap.copy(Bitmap.Config.ARGB_8888, true)
     }
+
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -83,16 +91,21 @@ class EraserView @JvmOverloads constructor(
     private val paths = mutableListOf<Pair<Path, Paint>>()
     private val undonePaths = mutableListOf<Pair<Path, Paint>>()
 
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        XLogger.d("onTouchE")
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 currentPath = Path().apply {
                     moveTo(event.x, event.y)
                 }
+
                 val currentPaint = Paint().apply {
-                    color = android.graphics.Color.TRANSPARENT
-                    xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+                    color =
+                        if (isEraserMode) android.graphics.Color.TRANSPARENT else bitmap.getPixel(
+                            event.x.toInt(),
+                            event.y.toInt()
+                        )
+                    xfermode = if (isEraserMode) PorterDuffXfermode(PorterDuff.Mode.CLEAR) else null
                     style = Paint.Style.STROKE
                     strokeWidth = brushWidth
                     isAntiAlias = true
@@ -102,7 +115,43 @@ class EraserView @JvmOverloads constructor(
 
             MotionEvent.ACTION_MOVE -> {
                 currentPath.lineTo(event.x, event.y)
-                callback?.onMove(event.x,event.y)
+
+                if (!isEraserMode) {
+                    val x = event.x.toInt()
+                    val y = event.y.toInt()
+                    val radius = brushWidth.toInt()
+
+                    val xBound = max(0, x - radius)
+                    val yBound = max(0, y - radius)
+                    val widthBound = min(bitmapOriginal.width, x + radius) - xBound
+                    val heightBound = min(bitmapOriginal.height, y + radius) - yBound
+                    // Get the pixels from the original bitmap
+                    try {
+                        val pixels = IntArray(widthBound * heightBound)
+                        bitmapOriginal.getPixels(
+                            pixels,
+                            0,
+                            widthBound,
+                            xBound,
+                            yBound,
+                            widthBound,
+                            heightBound
+                        )
+                        bitmap.setPixels(
+                            pixels,
+                            0,
+                            widthBound,
+                            xBound,
+                            yBound,
+                            widthBound,
+                            heightBound
+                        )
+                    } catch (e: Exception) {
+                        // Handle the exception
+                        XLogger.d("算法======error")
+                    }
+                }
+                callback?.onMove(event.x, event.y)
             }
 
             else -> return false
@@ -111,6 +160,7 @@ class EraserView @JvmOverloads constructor(
         drawPaths()
         return true
     }
+
 
     fun undo() {
         if (paths.isNotEmpty()) {
@@ -125,6 +175,7 @@ class EraserView @JvmOverloads constructor(
             drawPaths()
         }
     }
+
     private fun drawPaths() {
         val imgBitmap = BitmapFactory.decodeResource(resources, R.mipmap.img_2)
         val imgScaledBitmap = Bitmap.createScaledBitmap(imgBitmap, width, height, true)
@@ -134,6 +185,7 @@ class EraserView @JvmOverloads constructor(
             canvas.drawPath(path, paint)
         }
         invalidate()
+
     }
 }
 
@@ -148,10 +200,10 @@ fun ImagePaintPage(navCtrl: NavHostController, title: String) {
         var eraserWidth by remember { mutableFloatStateOf(20f) }
         var touchPosition by remember { mutableStateOf(Offset.Zero) }
         val eraserView = remember { EraserView(context, eraserWidth = eraserWidth) }
-        eraserView.callback = object :EraserCallback{
+
+        eraserView.callback = object : EraserCallback {
             override fun onMove(x: Float, y: Float) {
-                XLogger.d("onMove:${x} $y")
-                touchPosition = Offset(x,y)
+                touchPosition = Offset(x, y)
             }
         }
 
@@ -161,17 +213,19 @@ fun ImagePaintPage(navCtrl: NavHostController, title: String) {
                 onValueChange = { newWidth ->
                     eraserWidth = newWidth
                 },
-                onValueChangeFinished = {
-
-                },
                 valueRange = 1f..100f
             )
 
             Button(onClick = { eraserView.undo() }) {
                 Text("Undo")
             }
+
             Button(onClick = { eraserView.redo() }) {
                 Text("Redo")
+            }
+
+            Button(onClick = { eraserView.isEraserMode = !eraserView.isEraserMode }) {
+                Text("Switch Mode")
             }
 
 
