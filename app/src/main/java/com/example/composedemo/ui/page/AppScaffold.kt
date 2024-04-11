@@ -78,6 +78,7 @@ import com.example.composedemo.ui.page.tab.TemplatePage
 import com.example.composedemo.ui.page.tab.WidgetsPage
 import com.example.composedemo.ui.page.template.BannerPage
 import com.example.composedemo.ui.page.template.BlurPage
+import com.example.composedemo.ui.page.template.BottomBarPage
 import com.example.composedemo.ui.page.template.CameraPage
 import com.example.composedemo.ui.page.template.CameraXPage
 import com.example.composedemo.ui.page.template.CanvasPageTwo
@@ -403,6 +404,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.TemplateRoute.OutLineText) {
                     OutLineTextPage(navCtrl, RouteName.TemplateRoute.OutLineText)
+                }
+
+                composable(route = RouteName.TemplateRoute.BottomBar) {
+                    BottomBarPage(navCtrl, RouteName.TemplateRoute.BottomBar)
                 }
 
 

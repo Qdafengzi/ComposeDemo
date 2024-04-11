@@ -39,6 +39,7 @@ object RouteName {
         const val WebViewPreLoading = "WebViewPreLoading"
         const val HorizontalPagerPage = "HorizontalPagerPage"
         const val OutLineText = "OutLineText"
+        const val BottomBar = "BottomBar"
     }
 
     object AimRoute{
