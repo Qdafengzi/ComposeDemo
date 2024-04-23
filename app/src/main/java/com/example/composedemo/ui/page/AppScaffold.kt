@@ -84,6 +84,7 @@ import com.example.composedemo.ui.page.template.CameraXPage
 import com.example.composedemo.ui.page.template.CanvasPageTwo
 import com.example.composedemo.ui.page.template.ChannelPage
 import com.example.composedemo.ui.page.template.ColorPickerPage
+import com.example.composedemo.ui.page.template.CrashCollectionPage
 import com.example.composedemo.ui.page.template.DebouncedClickable
 import com.example.composedemo.ui.page.template.GridViewPage
 import com.example.composedemo.ui.page.template.HorizontalPagerPage
@@ -103,8 +104,8 @@ import com.example.composedemo.ui.page.template.WebViewPreLoading
 import com.example.composedemo.ui.page.template.WechatFriendsCirclePage
 import com.example.composedemo.ui.page.template.YoutubeListPage
 import com.example.composedemo.ui.page.template.YoutubeRvPage
-import com.example.composedemo.ui.page.widgets.ImagePaintPage
 import com.example.composedemo.ui.page.widgets.KeyboardPage
+import com.example.composedemo.ui.page.widgets.painter.ImagePaintPage
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -408,6 +409,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.TemplateRoute.BottomBar) {
                     BottomBarPage(navCtrl, RouteName.TemplateRoute.BottomBar)
+                }
+
+                composable(route = RouteName.TemplateRoute.CrashCollection) {
+                    CrashCollectionPage(navCtrl, RouteName.TemplateRoute.CrashCollection)
                 }
 
 

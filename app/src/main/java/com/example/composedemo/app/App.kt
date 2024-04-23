@@ -42,6 +42,8 @@ class App : Application(), ViewModelStoreOwner {
         MobileAds.initialize(this)
         mAppViewModelStore = ViewModelStore()
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
+        AppCrashHandler.instance.init(this)
+
     }
 
 

@@ -40,6 +40,7 @@ object RouteName {
         const val HorizontalPagerPage = "HorizontalPagerPage"
         const val OutLineText = "OutLineText"
         const val BottomBar = "BottomBar"
+        const val CrashCollection = "CrashCollection"
     }
 
     object AimRoute{

@@ -1,18 +1,15 @@
-package com.example.composedemo.ui.page.widgets
+package com.example.composedemo.ui.page.widgets.painter
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
-import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -23,11 +20,9 @@ import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -35,12 +30,12 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.navigation.NavHostController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composedemo.R
-import com.example.composedemo.ui.widget.CommonToolbar
 import com.example.composedemo.utils.XLogger
 import kotlin.math.max
 import kotlin.math.min
+
 
 // 定义一个回调接口
 interface EraserCallback {
@@ -54,13 +49,12 @@ class EraserView @JvmOverloads constructor(
     var eraserWidth: Float = 20f,
 ) : View(context, attrs, defStyleAttr) {
 
-    var brushWidth = eraserWidth
     var isEraserMode = true
 
     private lateinit var bitmap: Bitmap
     private lateinit var canvas: Canvas
 
-    private val bitmapPaint = Paint()
+    private val bitmapPaint = android.graphics.Paint()
     private var canvasBitmap: Bitmap? = null
 
     var callback: EraserCallback? = null
@@ -87,27 +81,27 @@ class EraserView @JvmOverloads constructor(
         canvas.drawBitmap(bitmap, 0f, 0f, bitmapPaint)
     }
 
-    private var currentPath: Path = Path()
-    private val paths = mutableListOf<Pair<Path, Paint>>()
-    private val undonePaths = mutableListOf<Pair<Path, Paint>>()
+    private var currentPath: android.graphics.Path = android.graphics.Path()
+    private val paths = mutableListOf<Pair<android.graphics.Path, android.graphics.Paint>>()
+    private val undonePaths = mutableListOf<Pair<android.graphics.Path, android.graphics.Paint>>()
 
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                currentPath = Path().apply {
+                currentPath = android.graphics.Path().apply {
                     moveTo(event.x, event.y)
                 }
 
-                val currentPaint = Paint().apply {
+                val currentPaint = android.graphics.Paint().apply {
                     color =
                         if (isEraserMode) android.graphics.Color.TRANSPARENT else bitmap.getPixel(
                             event.x.toInt(),
                             event.y.toInt()
                         )
                     xfermode = if (isEraserMode) PorterDuffXfermode(PorterDuff.Mode.CLEAR) else null
-                    style = Paint.Style.STROKE
-                    strokeWidth = brushWidth
+                    style = android.graphics.Paint.Style.STROKE
+                    strokeWidth = eraserWidth
                     isAntiAlias = true
                 }
                 paths.add(currentPath to currentPaint)
@@ -119,7 +113,7 @@ class EraserView @JvmOverloads constructor(
                 if (!isEraserMode) {
                     val x = event.x.toInt()
                     val y = event.y.toInt()
-                    val radius = brushWidth.toInt()
+                    val radius = eraserWidth.toInt()
 
                     val xBound = max(0, x - radius)
                     val yBound = max(0, y - radius)
@@ -185,70 +179,70 @@ class EraserView @JvmOverloads constructor(
             canvas.drawPath(path, paint)
         }
         invalidate()
-
     }
 }
 
 
-@RequiresApi(Build.VERSION_CODES.R)
-@ExperimentalComposeUiApi
 @Composable
-fun ImagePaintPage(navCtrl: NavHostController, title: String) {
+fun PainterImageXml(viewModel: PainterViewModel = hiltViewModel()) {
     val context = LocalContext.current
+    var touchPosition by remember { mutableStateOf(Offset.Zero) }
+    val eraserView = remember { EraserView(context, eraserWidth = viewModel.eraserWidth) }
 
-    CommonToolbar(navCtrl, title) {
-        var eraserWidth by remember { mutableFloatStateOf(20f) }
-        var touchPosition by remember { mutableStateOf(Offset.Zero) }
-        val eraserView = remember { EraserView(context, eraserWidth = eraserWidth) }
+    eraserView.callback = object : EraserCallback {
+        override fun onMove(x: Float, y: Float) {
+            touchPosition = Offset(x, y)
+        }
+    }
 
-        eraserView.callback = object : EraserCallback {
-            override fun onMove(x: Float, y: Float) {
-                touchPosition = Offset(x, y)
-            }
+    Column {
+        Slider(
+            value = viewModel.eraserWidth,
+            onValueChange = { newWidth ->
+                viewModel.eraserWidth = newWidth
+            },
+            valueRange = 1f..100f
+        )
+
+        Button(onClick = {
+            eraserView.undo()
+        }) {
+            Text("Undo")
         }
 
-        Column {
-            Slider(
-                value = eraserWidth,
-                onValueChange = { newWidth ->
-                    eraserWidth = newWidth
-                },
-                valueRange = 1f..100f
+        Button(onClick = {
+            eraserView.redo()
+        }) {
+            Text("Redo")
+        }
+
+        Button(onClick = {
+            eraserView.isEraserMode = !eraserView.isEraserMode
+        }) {
+            Text("Switch Mode")
+        }
+
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f),
+        ) {
+            AndroidView(
+                modifier = Modifier
+                    .fillMaxSize(),
+                factory = { eraserView },
+                update = { view -> view.eraserWidth = viewModel.eraserWidth }
             )
 
-            Button(onClick = { eraserView.undo() }) {
-                Text("Undo")
-            }
 
-            Button(onClick = { eraserView.redo() }) {
-                Text("Redo")
-            }
-
-            Button(onClick = { eraserView.isEraserMode = !eraserView.isEraserMode }) {
-                Text("Switch Mode")
-            }
-
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-            ) {
-                AndroidView(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    factory = { eraserView },
-                    update = { view -> view.eraserWidth = eraserWidth }
+            Canvas(modifier = Modifier.fillMaxSize()) {
+                drawCircle(
+                    color = Color.Black,
+                    radius = viewModel.eraserWidth / 2,
+                    center = touchPosition,
+                    style = Stroke(width = 1.dp.toPx())
                 )
-
-                androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
-                    drawCircle(
-                        color = Color.Black,
-                        radius = eraserWidth / 2,
-                        center = touchPosition,
-                        style = Stroke(width = 1.dp.toPx())
-                    )
-                }
             }
         }
     }

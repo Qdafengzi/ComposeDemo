@@ -180,6 +180,12 @@ fun TemplatePage(navCtrl: NavHostController) {
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.CrashCollection) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.CrashCollection)
+            }
+        }
+
 
     }
 }

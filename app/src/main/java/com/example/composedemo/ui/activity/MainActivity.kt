@@ -31,6 +31,7 @@ class MainActivity : androidx.activity.ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        XLogger.d("MainActivity onCreate")
         setContent {
             AppTheme() {
                 AppScaffold()
