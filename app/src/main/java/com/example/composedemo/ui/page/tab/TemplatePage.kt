@@ -186,6 +186,12 @@ fun TemplatePage(navCtrl: NavHostController) {
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.TreeView) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.TreeView)
+            }
+        }
+
 
     }
 }

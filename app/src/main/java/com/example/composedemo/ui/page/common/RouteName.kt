@@ -41,6 +41,7 @@ object RouteName {
         const val OutLineText = "OutLineText"
         const val BottomBar = "BottomBar"
         const val CrashCollection = "CrashCollection"
+        const val TreeView = "TreeView"
     }
 
     object AimRoute{

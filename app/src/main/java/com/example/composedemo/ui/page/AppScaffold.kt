@@ -99,6 +99,7 @@ import com.example.composedemo.ui.page.template.SmartRefreshPage
 import com.example.composedemo.ui.page.template.StaggeredGridCompare
 import com.example.composedemo.ui.page.template.StaggeredGridOffice
 import com.example.composedemo.ui.page.template.SupportScreenSizePage
+import com.example.composedemo.ui.page.template.TreeViewPage
 import com.example.composedemo.ui.page.template.WebViewPageNew
 import com.example.composedemo.ui.page.template.WebViewPreLoading
 import com.example.composedemo.ui.page.template.WechatFriendsCirclePage
@@ -413,6 +414,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.TemplateRoute.CrashCollection) {
                     CrashCollectionPage(navCtrl, RouteName.TemplateRoute.CrashCollection)
+                }
+
+                composable(route = RouteName.TemplateRoute.TreeView) {
+                    TreeViewPage(navCtrl, RouteName.TemplateRoute.TreeView)
                 }
 
 
