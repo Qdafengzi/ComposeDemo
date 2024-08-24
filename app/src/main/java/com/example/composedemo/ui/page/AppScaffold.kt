@@ -55,6 +55,7 @@ import com.example.composedemo.ui.page.home.ImageCardPage
 import com.example.composedemo.ui.page.home.JavaPrettify
 import com.example.composedemo.ui.page.home.LazyColumnPage
 import com.example.composedemo.ui.page.home.LeftScrollDeletePage
+import com.example.composedemo.ui.page.home.LeftScrollDeletePage2
 import com.example.composedemo.ui.page.home.ListPage
 import com.example.composedemo.ui.page.home.ModifierPage
 import com.example.composedemo.ui.page.home.MotionLayoutPage
@@ -253,6 +254,9 @@ fun AppScaffold() {
                 }
                 composable(route = RouteName.HomeRoute.LeftScrollDeletePage) {
                     LeftScrollDeletePage(navCtrl, RouteName.HomeRoute.LeftScrollDeletePage)
+                }
+                composable(route = RouteName.HomeRoute.LeftScrollDeletePage2) {
+                    LeftScrollDeletePage2(navCtrl, RouteName.HomeRoute.LeftScrollDeletePage2)
                 }
 
                 composable(route = RouteName.HomeRoute.Goods3dImagePage) {

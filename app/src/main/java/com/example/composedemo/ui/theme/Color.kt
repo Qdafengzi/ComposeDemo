@@ -55,3 +55,8 @@ val blue = Color(0xFF0000FF)
 val info = Color(0xFF018786)
 val warn = Color(0xFFD87831)
 val gradient1 =listOf(Color(0xFF6253e1), Color(0xFF852D91),Color(0xFFA3A1FF),Color(0xFFF24645))
+
+val DeleteActionColor = Color(0xFFC62828)
+val EditActionColor = Color(0xFF40C4FF)
+val SaveActionColor = Color(0xFFFFC107)
+

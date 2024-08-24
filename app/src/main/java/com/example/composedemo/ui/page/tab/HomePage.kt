@@ -167,6 +167,11 @@ fun HomePage(navCtrl: NavHostController) {
                 }
             }
             item {
+                ItemButton(text = RouteName.HomeRoute.LeftScrollDeletePage2) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.LeftScrollDeletePage2)
+                }
+            }
+            item {
                 ItemButton(text = RouteName.HomeRoute.Goods3dImagePage) {
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.Goods3dImagePage)
                 }
