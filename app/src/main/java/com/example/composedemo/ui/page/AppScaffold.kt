@@ -27,6 +27,11 @@ import com.example.composedemo.ui.page.anim.MotionLayoutAnimationOne
 import com.example.composedemo.ui.page.anim.MotionLayoutAnimationTwo
 import com.example.composedemo.ui.page.anim.PrintText
 import com.example.composedemo.ui.page.anim.RecompositionExp
+import com.example.composedemo.ui.page.anim.Refresh1Page
+import com.example.composedemo.ui.page.anim.Refresh2Page
+import com.example.composedemo.ui.page.anim.Refresh3Page
+import com.example.composedemo.ui.page.anim.Refresh4Page
+import com.example.composedemo.ui.page.anim.Refresh5Page
 import com.example.composedemo.ui.page.anim.SkyAnimation
 import com.example.composedemo.ui.page.anim.TextMarqueePage
 import com.example.composedemo.ui.page.anim.TouchAnimationPage
@@ -496,6 +501,23 @@ fun AppScaffold() {
 
                 composable(route = RouteName.AimRoute.LeftScrollSelect) {
                     LeftScrollSelect(navCtrl, RouteName.AimRoute.LeftScrollSelect)
+                }
+
+                composable(route = RouteName.AimRoute.Refresh1) {
+                    Refresh1Page(navCtrl, RouteName.AimRoute.Refresh1)
+                }
+                composable(route = RouteName.AimRoute.Refresh2) {
+                    Refresh2Page(navCtrl, RouteName.AimRoute.Refresh2)
+                }
+                composable(route = RouteName.AimRoute.Refresh3) {
+                    Refresh3Page(navCtrl, RouteName.AimRoute.Refresh3)
+                }
+
+                composable(route = RouteName.AimRoute.Refresh4) {
+                    Refresh4Page(navCtrl, RouteName.AimRoute.Refresh4)
+                }
+                composable(route = RouteName.AimRoute.Refresh5) {
+                    Refresh5Page(navCtrl, RouteName.AimRoute.Refresh5)
                 }
 
 

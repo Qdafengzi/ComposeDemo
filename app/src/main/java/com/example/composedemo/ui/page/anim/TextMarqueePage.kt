@@ -1,7 +1,6 @@
 package com.example.composedemo.ui.page.anim
 
 import android.content.res.Configuration
-import androidx.compose.foundation.DefaultMarqueeDelayMillis
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.MarqueeSpacing
@@ -100,8 +99,8 @@ fun TextMarqueePage(navCtrl: NavHostController, title: String) {
                     modifier = Modifier.basicMarquee(
                         iterations = Int.MAX_VALUE,
                         animationMode = MarqueeAnimationMode.Immediately,
-                        delayMillis = 0,
-                        initialDelayMillis = DefaultMarqueeDelayMillis,
+//                        delayMillis = 0,
+//                        initialDelayMillis = DefaultMarqueeDelayMillis,
                         spacing = MarqueeSpacing(200.dp),
 //                    velocity = DefaultMarqueeVelocity
                         velocity = 300.dp,

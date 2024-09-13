@@ -61,6 +61,12 @@ object RouteName {
         const val TextMarqueeAnimation = "TextMarqueeAnimation"
         const val PrintText = "PrintText"
         const val LeftScrollSelect = "LeftScrollSelect"
+        const val Refresh1 = "Refresh1"
+        const val Refresh2 = "Refresh2"
+        const val Refresh3 = "Refresh3"
+        const val Refresh4 = "Refresh4"
+        const val Refresh5 = "Refresh5"
+
     }
 
 

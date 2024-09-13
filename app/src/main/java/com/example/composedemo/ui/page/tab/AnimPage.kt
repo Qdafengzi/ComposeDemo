@@ -113,6 +113,36 @@ fun AnimPage(navCtrl: NavHostController) {
                     RouteUtils.navTo(navCtrl, RouteName.AimRoute.LeftScrollSelect)
                 }
             }
+
+            item {
+                ItemButton(text = RouteName.AimRoute.Refresh1) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.Refresh1)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.AimRoute.Refresh2) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.Refresh2)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.AimRoute.Refresh3) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.Refresh3)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.AimRoute.Refresh4) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.Refresh4)
+                }
+            }
+
+            item {
+                ItemButton(text = RouteName.AimRoute.Refresh5) {
+                    RouteUtils.navTo(navCtrl, RouteName.AimRoute.Refresh5)
+                }
+            }
         })
 
 }

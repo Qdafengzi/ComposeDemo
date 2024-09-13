@@ -1,5 +1,6 @@
 package com.example.composedemo.ui.page.home.swipe
 
+import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
@@ -18,12 +19,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.example.composedemo.ui.page.home.swipe.DeleteAction
-import com.example.composedemo.ui.page.home.swipe.DragAnchors
-import com.example.composedemo.ui.page.home.swipe.DraggableItem
-import com.example.composedemo.ui.page.home.swipe.EditAction
-import com.example.composedemo.ui.page.home.swipe.HelloWorldCard
-import com.example.composedemo.ui.page.home.swipe.SaveAction
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -32,21 +27,35 @@ import kotlin.math.roundToInt
 fun ScrollMotionSwipeDemo() {
     val density = LocalDensity.current
 
-    val defaultActionSize = 80.dp
+    val defaultActionSize = 100.dp
+    val itemHeight = 68.dp
     val actionSizePx = with(density) { defaultActionSize.toPx() }
     val endActionSizePx = with(density) { (defaultActionSize * 2).toPx() }
+
+
+    val startActionSizePx = with(density) { defaultActionSize.toPx() }
+    val decayAnimationSpec = remember { exponentialDecay<Float>() }
+
 
     val state = remember {
         AnchoredDraggableState(
             initialValue = DragAnchors.Center,
             anchors = DraggableAnchors {
-                DragAnchors.Start at -actionSizePx
+                DragAnchors.Start at -startActionSizePx
                 DragAnchors.Center at 0f
                 DragAnchors.End at endActionSizePx
             },
             positionalThreshold = { distance: Float -> distance * 0.5f },
             velocityThreshold = { with(density) { 100.dp.toPx() } },
-            animationSpec = tween(),
+//            velocityThreshold = 1f,
+            snapAnimationSpec = tween(),
+            decayAnimationSpec = decayAnimationSpec
+
+//            snapAnimationSpec = tween(),
+//            decayAnimationSpec = tween(),
+//            confirmValueChange = true,
+
+//            animationSpec = tween(),
         )
     }
 
@@ -83,7 +92,7 @@ fun ScrollMotionSwipeDemo() {
                                 .roundToInt(), 0
                         )
                     }
-                )
+            )
             {
                 EditAction(
                     Modifier
