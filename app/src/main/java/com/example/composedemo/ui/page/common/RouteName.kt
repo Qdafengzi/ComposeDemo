@@ -42,6 +42,7 @@ object RouteName {
         const val BottomBar = "BottomBar"
         const val CrashCollection = "CrashCollection"
         const val TreeView = "TreeView"
+        const val AndroidXBle = "AndroidXBle"
     }
 
     object AimRoute{

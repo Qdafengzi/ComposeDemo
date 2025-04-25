@@ -192,6 +192,12 @@ fun TemplatePage(navCtrl: NavHostController) {
             }
         }
 
+        item {
+            ItemButton(text = RouteName.TemplateRoute.AndroidXBle) {
+                RouteUtils.navTo(navCtrl, RouteName.TemplateRoute.AndroidXBle)
+            }
+        }
+
 
     }
 }

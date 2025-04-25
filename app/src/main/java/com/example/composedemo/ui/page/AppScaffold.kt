@@ -82,6 +82,7 @@ import com.example.composedemo.ui.page.tab.AnimPage
 import com.example.composedemo.ui.page.tab.HomePage
 import com.example.composedemo.ui.page.tab.TemplatePage
 import com.example.composedemo.ui.page.tab.WidgetsPage
+import com.example.composedemo.ui.page.template.AndroidXBlePage
 import com.example.composedemo.ui.page.template.BannerPage
 import com.example.composedemo.ui.page.template.BlurPage
 import com.example.composedemo.ui.page.template.BottomBarPage
@@ -427,6 +428,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.TemplateRoute.TreeView) {
                     TreeViewPage(navCtrl, RouteName.TemplateRoute.TreeView)
+                }
+
+                composable(route = RouteName.TemplateRoute.AndroidXBle) {
+                    AndroidXBlePage(navCtrl, RouteName.TemplateRoute.AndroidXBle)
                 }
 
 

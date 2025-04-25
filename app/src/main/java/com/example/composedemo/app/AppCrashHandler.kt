@@ -30,7 +30,7 @@ class AppCrashHandler : Thread.UncaughtExceptionHandler {
 
 
     override fun uncaughtException(t: Thread, e: Throwable) {
-       XLogger.d("thread name ${t.name} throw error ${e?.message}")
+       XLogger.e("thread name ${t.name} throw error ${e?.message}")
         if (e == null) {
             defaultSystemExpHandler?.uncaughtException(t, e)
         } else {
