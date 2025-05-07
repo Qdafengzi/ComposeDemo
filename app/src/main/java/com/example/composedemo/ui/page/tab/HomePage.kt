@@ -238,6 +238,12 @@ fun HomePage(navCtrl: NavHostController) {
                     RouteUtils.navTo(navCtrl, RouteName.HomeRoute.FlowData)
                 }
             }
+
+            item {
+                ItemButton(text = RouteName.HomeRoute.Media3ComposePlayer) {
+                    RouteUtils.navTo(navCtrl, RouteName.HomeRoute.Media3ComposePlayer)
+                }
+            }
         })
 }
 

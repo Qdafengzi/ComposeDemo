@@ -121,6 +121,7 @@ object RouteName {
         const val RecompositionPage = "RecompositionPage"
         const val JavaPrettify = "JavaPrettify"
         const val FlowData = "FlowData"
+        const val Media3ComposePlayer = "Media3ComposePlayer"
     }
 
 

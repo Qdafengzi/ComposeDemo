@@ -62,6 +62,7 @@ import com.example.composedemo.ui.page.home.LazyColumnPage
 import com.example.composedemo.ui.page.home.LeftScrollDeletePage
 import com.example.composedemo.ui.page.home.LeftScrollDeletePage2
 import com.example.composedemo.ui.page.home.ListPage
+import com.example.composedemo.ui.page.home.Media3ComposePlayerPage
 import com.example.composedemo.ui.page.home.ModifierPage
 import com.example.composedemo.ui.page.home.MotionLayoutPage
 import com.example.composedemo.ui.page.home.NavigationPage
@@ -310,6 +311,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.HomeRoute.FlowData) {
                     FlowDataPage(navCtrl, RouteName.HomeRoute.FlowData)
+                }
+
+                composable(route = RouteName.HomeRoute.Media3ComposePlayer) {
+                    Media3ComposePlayerPage(navCtrl, RouteName.HomeRoute.Media3ComposePlayer)
                 }
 
 
