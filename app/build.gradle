@@ -8,12 +8,12 @@ plugins {
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.example.composedemo"
-        minSdkVersion 26
-        targetSdkVersion 35
+        minSdkVersion 30
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
 
@@ -175,6 +175,14 @@ dependencies {
     implementation ("com.google.guava:guava:33.3.1-android")
 
     implementation "androidx.bluetooth:bluetooth:1.0.0-alpha02"
+
+    implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha01")
+    implementation("androidx.navigation3:navigation3-ui:1.0.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-navigation3:1.0.0-alpha01")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1")
+//    implementation("androidx.compose.material3.adaptive:adaptive-navigation3:1.0.0-SNAPSHOT")
+    implementation("androidx.compose.material3.adaptive:adaptive-navigation:1.2.0-alpha06")
+
 
 
 

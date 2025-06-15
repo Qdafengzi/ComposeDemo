@@ -3,11 +3,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 group='com.github.CN-ZPH'
 android {
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
-        minSdkVersion 26
-        targetSdkVersion 35
+        minSdkVersion 30
+        targetSdkVersion 36
     }
     buildTypes {
         release {

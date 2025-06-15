@@ -5,10 +5,10 @@ plugins {
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
     defaultConfig {
-        minSdk 26
-        targetSdk 35
+        minSdkVersion 30
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

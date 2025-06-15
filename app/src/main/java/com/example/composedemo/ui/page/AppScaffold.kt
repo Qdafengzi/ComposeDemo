@@ -65,6 +65,7 @@ import com.example.composedemo.ui.page.home.ListPage
 import com.example.composedemo.ui.page.home.Media3ComposePlayerPage
 import com.example.composedemo.ui.page.home.ModifierPage
 import com.example.composedemo.ui.page.home.MotionLayoutPage
+import com.example.composedemo.ui.page.home.Navigation3Page
 import com.example.composedemo.ui.page.home.NavigationPage
 import com.example.composedemo.ui.page.home.NestedScrollPage
 import com.example.composedemo.ui.page.home.NewUiStylePage
@@ -315,6 +316,10 @@ fun AppScaffold() {
 
                 composable(route = RouteName.HomeRoute.Media3ComposePlayer) {
                     Media3ComposePlayerPage(navCtrl, RouteName.HomeRoute.Media3ComposePlayer)
+                }
+
+                composable(route = RouteName.HomeRoute.Navigation3) {
+                    Navigation3Page(navCtrl, RouteName.HomeRoute.Navigation3)
                 }
 
 
