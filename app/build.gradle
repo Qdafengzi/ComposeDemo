@@ -164,20 +164,20 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.4.0"
     implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.3'
-    implementation 'com.google.android.gms:play-services-ads:23.6.0'
+    implementation 'com.google.android.gms:play-services-ads:24.4.0'
 
     kapt "com.google.dagger:hilt-compiler:${hilt_version}"
     implementation "com.google.dagger:hilt-android:${hilt_version}"
     implementation "androidx.hilt:hilt-navigation-compose:1.2.0"
 
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
 
     implementation ("com.google.guava:guava:33.3.1-android")
 
     implementation "androidx.bluetooth:bluetooth:1.0.0-alpha02"
 
-    implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha01")
-    implementation("androidx.navigation3:navigation3-ui:1.0.0-alpha01")
+    implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha03")
+    implementation("androidx.navigation3:navigation3-ui:1.0.0-alpha03")
     implementation("androidx.lifecycle:lifecycle-viewmodel-navigation3:1.0.0-alpha01")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1")
 //    implementation("androidx.compose.material3.adaptive:adaptive-navigation3:1.0.0-SNAPSHOT")
