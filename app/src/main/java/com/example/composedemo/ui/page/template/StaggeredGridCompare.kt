@@ -1,9 +1,18 @@
 package com.example.composedemo.ui.page.template
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
@@ -72,7 +81,7 @@ fun getStaggeredList(): MutableList<StaggeredItem> {
 fun StaggeredGridCompare(navCtrl: NavHostController, title: String) {
     CommonToolbar(navCtrl, title) {
         val scope = rememberCoroutineScope()
-        val pages = listOf("One", "Two")
+        val pages = listOf("One", "Two","Three")
         val pagerState = rememberPagerState()
 
         TabRow(
@@ -110,6 +119,25 @@ fun StaggeredGridCompare(navCtrl: NavHostController, title: String) {
                 1 -> {
                     ListTwo()
                 }
+                2->{
+                    ListThree()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun ListThree() {
+    val list = getStaggeredList()
+    LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(3)) {
+        item {
+            Text(modifier = Modifier.height(300.dp),text="头部")
+        }
+
+        list.forEachIndexed { _, staggeredItem ->
+            item {
+                StaggeredItem(staggeredItem)
             }
         }
     }
